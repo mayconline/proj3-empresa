@@ -3,12 +3,6 @@ import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angu
 import { AngularFireAuth } from 'angularfire2/auth';
 
 
-/**
- * Generated class for the ConfigurePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -23,6 +17,12 @@ export class ConfigurePage {
     public navCtrl: NavController, public navParams: NavParams) {
   }
 
+
+  async sair(){
+    await this.afAuth.auth.signOut();
+    this.navCtrl.setRoot('LoginPage');
+  }
+
   ionViewDidLoad() {
     this.afAuth.authState.subscribe(data => {
       if(data && data.email && data.uid){
@@ -34,7 +34,7 @@ export class ConfigurePage {
       } else {
 
         this.toast.create({
-          message: ` Não foi possivel se autenticar`,
+          message: `Deslogado com Sucesso `,
           duration:3000
       }).present();
 

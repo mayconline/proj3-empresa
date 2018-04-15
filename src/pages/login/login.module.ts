@@ -3,6 +3,7 @@ import { IonicPageModule } from 'ionic-angular';
 import { LoginPage } from './login';
 import { RegistroPageModule } from '../registro/registro.module';
 import { ConfigurePageModule } from '../configure/configure.module';
+import { ResetSenhaPageModule } from '../reset-senha/reset-senha.module';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { ConfigurePageModule } from '../configure/configure.module';
   imports: [
     IonicPageModule.forChild(LoginPage),
     RegistroPageModule,
-    ConfigurePageModule
+    ConfigurePageModule,
+    ResetSenhaPageModule
     
   ],
 })
