@@ -31,6 +31,7 @@ export class ConfigurePage {
           duration:3000
       }).present();
 
+
       } else {
 
         this.toast.create({
@@ -42,5 +43,12 @@ export class ConfigurePage {
         
     });
   }
+
+//Navegar entre Paginas//
+
+irRecompensas(){
+  this.navCtrl.push('RecompensasPage')
+}
+
 
 }
