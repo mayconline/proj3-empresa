@@ -15,21 +15,29 @@ export class RecompensasPage {
 
   constructor( private recompProvider:RecompensasProvider, private toast: ToastController,
     public navCtrl: NavController, public navParams: NavParams, public app: App, public modal: ModalController) {
-//this.initializeItems();
+
 
       this.recompensas = this.recompProvider.getAll();
+    //  this.initializeItems();
  
   }
-
-
- /* abrirModal(produto){
+  
+  //navegação
+ abrirModal(recompensa: Observable<any>){
    
-    const meuModal = this.modal.create('ModalRecompensaPage', {data:produto})
+    const meuModal = this.modal.create('ModalRecompensaPage', {recompensa:recompensa})
     meuModal.present();
     
  }
 
+ voltarLogin(){
+    
+  this.app.getRootNav().setRoot( 'LoginPage' );
+   
+ }
 
+
+/*
   Pontos(){
     this.navCtrl.push('MeusPontosPage');
  }
@@ -39,11 +47,6 @@ export class RecompensasPage {
  }
 */
   
-voltarLogin(){
-    
-    this.app.getRootNav().setRoot( 'LoginPage' );
-     
-   }
 
 //metodos de crud //
 
@@ -72,6 +75,8 @@ voltarLogin(){
         })
    }
     
+
+  
 /*   
   nome: string = '';
   produtos: any;

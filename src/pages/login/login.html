@@ -2,21 +2,22 @@
 
 
 <ion-content padding>
-  <img class="banner" src=""   />
+  <img class="banner" src="assets/imgs/logoempresa.png"   />
 
     <ion-card class="card"> 
 
         <ion-card-header  >
-          <img class="logo" src=""/>
-          <h1 ion-text>Faça seu Login - Empresa</h1>
+          <img class="logo" src="assets/imgs/logo.png"/>
+          <h1 ion-text>Faça seu Login </h1>
         </ion-card-header>
-      
+  
         <ion-card-content>
           
+            
             <ion-item>
                 
                 <ion-label stacked>Email:</ion-label>
-                <ion-input type="email" [(ngModel)]='user.email' placeholder="Digite seu Email"></ion-input>
+                <ion-input type="email" [(ngModel)]='user.email' id="email" placeholder="Digite seu Email"></ion-input>
                 <ion-icon name="mail" item-end></ion-icon>
             </ion-item>
             <ion-item>
@@ -31,7 +32,7 @@
                   </button>
               </ion-item>
 
-              <ion-item (click)="logar()">
+              <ion-item (click)="logar()" *ngIf="user.email && user.password">
                   <button  ion-button color="secondary" outline block round icon-left>
                        <ion-icon name="unlock"></ion-icon> Entrar 
                   </button>
@@ -42,9 +43,11 @@
                   <button (click)="registrese()" ion-button clear item-right> Registre-se </button>
               </ion-item>
 
-
+            
         </ion-card-content>
+    
       
       </ion-card>
+    
 
 </ion-content>

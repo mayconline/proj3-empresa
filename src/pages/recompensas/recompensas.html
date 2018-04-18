@@ -49,22 +49,29 @@
   
         <ion-row>
             <ion-col col-12>
-
-                    <ion-list>
+                
+                  <ion-list>     
                              <ion-item-sliding *ngFor="let recompensa of recompensas | async">  
-                                 <ion-item>
-                                     <h1>{{recompensa.nome}}</h1>
+                                 <ion-item (click)="abrirModal(recompensa)">
+                                    <ion-avatar item-start>
+                                     <img src="">
+                                    </ion-avatar>
+                                     <h2>{{recompensa.nome}}</h2>
                                      <p>{{recompensa.pontos}} Pontos</p>
+
+                                     <button  color="secondary" ion-button  item-content clear>
+                                            <ion-icon name="cart"> Resgatar</ion-icon>
+                                          </button>
                                  </ion-item>
 
                                  <ion-item-options side="left"> 
                                     
-                                    <button ion-button color="secondary" (click)="editarRecomp(recompensa)">
-                                        <ion-icon name="create"></ion-icon>
+                                    <button ion-button color="primary" (click)="editarRecomp(recompensa)">
+                                        <ion-icon name="create"> Editar</ion-icon>
                                     </button>
 
                                     <button ion-button color="danger" (click)="removerRecomp(recompensa.key)">
-                                            <ion-icon name="trash"></ion-icon>
+                                            <ion-icon name="trash"> Remover</ion-icon>
                                         </button>
     
 
@@ -72,12 +79,51 @@
 
                             </ion-item-sliding>
                     </ion-list>
+               
+            
+            </ion-col>
+        </ion-row>
+         
+       
+      </ion-grid>
+
+      <ion-grid>
+
+            <ion-row>
+                    <ion-col col-12>
+    
+                            <ion-fab right botton  (click)="criarRecomp()">
+                                    <button ion-fab color="secondary" item-content>
+                                        <ion-icon name="add"></ion-icon></button>
+                                        </ion-fab>      
+    
+                         
+                    </ion-col>
+                </ion-row>
 
 
+          <ion-row>
+              <ion-col col-12>
+                  
+                    <ion-buttons item-start>
+                        <button (click)="meuResgate()" ion-button round outline icon-left>
+                            <ion-icon name="list-box"></ion-icon>
+                          Meus Resgates </button>  
+                    </ion-buttons>                
+                  
+    
+                 
+              </ion-col>
+            </ion-row>
+
+           
+      
+      </ion-grid>
+
+</ion-content>
 
 
-
-               <!-- <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar> -->
+ <!-- <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar> -->
 <!--<ion-list *ngFor="let produto of produtos">
                     <ion-item >
                       
@@ -95,40 +141,8 @@
                 
                   </ion-list> -->
 
-                
-            
-            </ion-col>
-        </ion-row>
-          
-       
-      </ion-grid>
-
-      <ion-grid>
-          <ion-row>
-              <ion-col col-12>
-                  
-                    <ion-buttons>
-                        <button (click)="meuResgate()" ion-button block round outline icon-left>
-                            <ion-icon name="list-box"></ion-icon>
-                          Meus Resgates </button>  
-                    </ion-buttons>                
-                  
-    
-                 
-              </ion-col>
-            </ion-row>
-
-            <ion-row>
-                <ion-col col-12>
-
-                    <ion-buttons>
+                  <!-- <ion-buttons>
                         <button (click)="criarRecomp()" ion-button block round outline icon-left>
                             <ion-icon name="list-box"></ion-icon>
                           Add</button>  
-                    </ion-buttons>                
-                </ion-col>
-            </ion-row>
-      
-      </ion-grid>
-
-</ion-content>
+                    </ion-buttons>       -->    

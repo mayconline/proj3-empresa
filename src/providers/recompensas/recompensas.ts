@@ -42,12 +42,12 @@ export class RecompensasProvider {
 
         if(recompensa.key) {
               this.afDb.list(this.PATH)
-                .update(recompensa.key, {nome: recompensa.nome, pontos: recompensa.pontos})
+                .update(recompensa.key, {nome: recompensa.nome, pontos: recompensa.pontos, destaque: recompensa.destaque})
                 .then(()=> resolve())
                 .catch((e)=> reject(e));
         }else{
               this.afDb.list(this.PATH)
-                .push({ nome: recompensa.nome, pontos: recompensa.pontos})
+                .push({ nome: recompensa.nome, pontos: recompensa.pontos, destaque: recompensa.destaque})
                 .then(()=> resolve());
                 
 

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { RecompensasProvider } from '../../providers/recompensas/recompensas';
+import { async } from '@firebase/util';
 
 /**
  * Generated class for the ModalRecompensaPage page.
@@ -15,12 +17,17 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 })
 export class ModalRecompensaPage {
 
+ 
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public view: ViewController) {
+  constructor( private recompProvider:RecompensasProvider,
+    public navCtrl: NavController, public navParams: NavParams, public view: ViewController) {
 
-  
+     
+    
   }
+
+  prod = this.navParams.data.recompensa;
 
 
   fechar(){
@@ -29,11 +36,11 @@ export class ModalRecompensaPage {
 
   
   ionViewWillLoad() {
-    /* const data = this.navParams.get('data');
-     console.log(data);*/
+   
+     console.log(this.prod)
   }
 
-    prod = this.navParams.get('data'); 
+
   
    
 

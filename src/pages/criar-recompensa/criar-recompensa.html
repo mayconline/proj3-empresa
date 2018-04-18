@@ -35,6 +35,12 @@
 
       </ion-item>
 
+
+      <ion-item>
+          <ion-label>Colocar em Destaque</ion-label>
+          <ion-checkbox color="red" checked="true" formControlName="destaque"></ion-checkbox>
+        </ion-item>
+
       <div padding>
           <button ion-button block type="submit" [disabled]="!form.valid" (click)="onSubmit()">Salvar</button>
       </div>

@@ -32,7 +32,8 @@ export class CriarRecompensaPage {
       this.form = this.formBuilder.group({
         key:[this.recompensa.key],
         nome:[this.recompensa.nome, Validators.required],
-        pontos:[this.recompensa.pontos, Validators.required]
+        pontos:[this.recompensa.pontos, Validators.required],
+        destaque:[this.recompensa.destaque]
       })
   }
 
