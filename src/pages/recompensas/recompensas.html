@@ -3,22 +3,16 @@
 
     <ion-navbar>
         <ion-row text-center>
-            <ion-col col-4 >
-              
-                <ion-buttons>
-                 <button  (click)="Pontos()" ion-button clear  > Meus Pontos <br>550
-                </button> 
-        </ion-buttons>
-
-        </ion-col>
-            <ion-col col-4 offset-2 > Olá Usuario <br> Bem Vindo!!! </ion-col>
-            <ion-col col-2>
-                        <ion-buttons end>
-                            <button ion-button icon-only  (click)="voltarLogin()">
-                              <ion-icon name="exit"></ion-icon>
-                            </button>
-                          </ion-buttons>
-            </ion-col>
+        
+          <ion-col col-4 offset-6> Olá Admin
+            <br> Bem Vindo!!! </ion-col>
+          <ion-col col-2>
+            <ion-buttons end>
+              <button ion-button icon-only (click)="sair()">
+                <ion-icon name="exit"></ion-icon>
+              </button>
+            </ion-buttons>
+          </ion-col>
         </ion-row>
       </ion-navbar>
     
@@ -28,15 +22,10 @@
 
 <ion-content padding>
     <ion-grid>
-        <ion-row>
-            <ion-col col-12> <h4 text-center >Filtros</h4> </ion-col>
-        </ion-row>
+        
         <ion-row>
             <ion-col col-12> 
-                <!--<ion-item >   
-                <ion-icon name="search" item-content ></ion-icon>
-                <ion-searchbar (ionInput)="onInput($event)" placeholder="Filtre pelo Nome"></ion-searchbar>            
-              </ion-item> -->
+              <ion-searchbar (ionInput)="getItems($event)"  placeholder="Filtre pelo Nome"></ion-searchbar>
             </ion-col>
         </ion-row>
         
@@ -49,7 +38,7 @@
   
         <ion-row>
             <ion-col col-12>
-                
+               
                   <ion-list>     
                              <ion-item-sliding *ngFor="let recompensa of recompensas | async">  
                                  <ion-item (click)="abrirModal(recompensa)">
@@ -108,7 +97,7 @@
                     <ion-buttons item-start>
                         <button (click)="meuResgate()" ion-button round outline icon-left>
                             <ion-icon name="list-box"></ion-icon>
-                          Meus Resgates </button>  
+                          Histórico de Resgates </button>  
                     </ion-buttons>                
                   
     
@@ -121,28 +110,3 @@
       </ion-grid>
 
 </ion-content>
-
-
- <!-- <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar> -->
-<!--<ion-list *ngFor="let produto of produtos">
-                    <ion-item >
-                      
-                      <ion-avatar item-start>
-                        <img src="assets/imgs/produtos/iconProduto.png">
-                      </ion-avatar>
-                      <h2>{{produto.nome}}</h2>
-                     <p>Resgate: {{produto.ponto }} pontos</p> 
-                     
-                     
-                      <button (click)="abrirModal(produto)" color="secondary" ion-button icon-only item-content clear>
-                          <ion-icon name="information-circle"></ion-icon>
-                        </button>
-                    </ion-item>
-                
-                  </ion-list> -->
-
-                  <!-- <ion-buttons>
-                        <button (click)="criarRecomp()" ion-button block round outline icon-left>
-                            <ion-icon name="list-box"></ion-icon>
-                          Add</button>  
-                    </ion-buttons>       -->    

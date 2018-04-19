@@ -26,6 +26,11 @@ export class MeusResgatesPage {
    }
 
 
+  /* async sair(){
+    await this.afAuth.auth.signOut();
+    this.navCtrl.setRoot('LoginPage');
+  }*/
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad MeusResgatesPage');
   }

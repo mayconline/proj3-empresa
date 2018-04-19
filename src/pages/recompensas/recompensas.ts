@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, App, ModalController, ToastController } from 'ionic-angular';
 import { RecompensasProvider } from '../../providers/recompensas/recompensas';
 import { Observable } from 'rxjs/Observable';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 
 @IonicPage()
@@ -13,12 +14,13 @@ export class RecompensasPage {
   
   recompensas: Observable<any>;
 
-  constructor( private recompProvider:RecompensasProvider, private toast: ToastController,
+  constructor( private afAuth:AngularFireAuth,
+    private recompProvider:RecompensasProvider, private toast: ToastController,
     public navCtrl: NavController, public navParams: NavParams, public app: App, public modal: ModalController) {
 
-
+      //recupera e inicializa os itens do banco //
       this.recompensas = this.recompProvider.getAll();
-    //  this.initializeItems();
+  
  
   }
   
@@ -30,22 +32,15 @@ export class RecompensasPage {
     
  }
 
- voltarLogin(){
-    
+ async sair(){
+  await this.afAuth.auth.signOut();
   this.app.getRootNav().setRoot( 'LoginPage' );
-   
- }
+}
 
 
-/*
-  Pontos(){
-    this.navCtrl.push('MeusPontosPage');
- }
 
- meuResgate(){
-  this.navCtrl.push('MeusResgatesPage');
- }
-*/
+
+
   
 
 //metodos de crud //
@@ -77,41 +72,28 @@ export class RecompensasPage {
     
 
   
-/*   
-  nome: string = '';
-  produtos: any;
 
-  initializeItems() {
-  
-    this.produtos =  [{
-      nome:'Carro',
-      ponto:100
-    } ,
-    {
-      nome:'Blusa',
-      ponto:50
-    } ];
-  
-  }
+   // searchbar //
 
-  getItems(ev: any) {
+   getItems(ev: any) {
     // Reset items back to all of the items
-    this.initializeItems();
+    this.recompensas = this.recompProvider.getAll();
 
     // set val to the value of the searchbar
     let val = ev.target.value;
 
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
-      this.produtos = this.produtos.filter((produto) => {
-        return (produto.nome.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
+      this.recompensas = this.recompensas
+        .map(pessoaList => pessoaList.filter((v) => {
+           
+               return v.nome.toLowerCase().indexOf(val.toLowerCase()) !== -1;
+            
+        }));
+     
     }
-  }
-*/
+  } // searchbar //
 
 
   
-   
-
 }

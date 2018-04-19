@@ -37,7 +37,7 @@ export class ModalRecompensaPage {
   
   ionViewWillLoad() {
    
-     console.log(this.prod)
+     
   }
 
 

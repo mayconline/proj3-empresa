@@ -7,7 +7,18 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>configure</ion-title>
+    <ion-row text-center>
+    
+      <ion-col col-4 offset-6> Olá Admin
+        <br> Bem Vindo!!! </ion-col>
+      <ion-col col-2>
+        <ion-buttons end>
+          <button ion-button icon-only (click)="sair()">
+            <ion-icon name="exit"></ion-icon>
+          </button>
+        </ion-buttons>
+      </ion-col>
+    </ion-row>
   </ion-navbar>
 
 </ion-header>
