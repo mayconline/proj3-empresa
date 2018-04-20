@@ -9,42 +9,54 @@
 
 
 <ion-content padding>
-
-  <form [formGroup]="form">
+  <ion-grid>
+    <ion-row>
+        <ion-col col-12>
+            <form [formGroup]="form">
      
-    <ion-item>
-          <ion-label stacked >Nome</ion-label>
-          <ion-input type="text" formControlName="nome"></ion-input>
-      </ion-item>
-      <ion-item *ngIf="!form.controls.nome.valid && (form.controls.nome.dirty || form.controls.nome.touched)" color="danger">
-        <div [hidden]="!form.controls.nome.errors.required">
-          Campo Obrigatorio
-        </div>  
+                <ion-item>
+                      <ion-label stacked >Nome</ion-label>
+                      <ion-input type="text" formControlName="nome" ></ion-input>
+                      <ion-icon name="person" item-end></ion-icon>
+                  </ion-item>
+                  <ion-item *ngIf="!form.controls.nome.valid && (form.controls.nome.dirty || form.controls.nome.touched)" color="danger">
+                    <div [hidden]="!form.controls.nome.errors.required">
+                      Digite o nome do produto
+                    </div>  
+            
+                  </ion-item>
+            
+                 
+                  <ion-item>
+                      <ion-label stacked >Pontos</ion-label>
+                      <ion-input type="tel" formControlName="pontos"></ion-input>
+                      <ion-icon name="pricetag" item-end></ion-icon>
+                  </ion-item>
+                  <ion-item *ngIf="!form.controls.pontos.valid && (form.controls.pontos.dirty || form.controls.pontos.touched)" color="danger">
+                    <div [hidden]="!form.controls.pontos.errors.required">
+                      Digite quantos pontos é preciso para resgatar
+                    </div>  
+            
+                  </ion-item>
+            
+            
+                  <ion-item>
+                      <ion-label>Colocar em Destaque</ion-label>
+                      <ion-checkbox color="red" checked="true" formControlName="destaque"></ion-checkbox>
+                      <ion-icon name="star" item-end></ion-icon>
+                    </ion-item>
+            
+                  <div padding>
+                      <button ion-button block type="submit" [disabled]="!form.valid" (click)="onSubmit()">Salvar</button>
+                  </div>
+            
+                </form>
 
-      </ion-item>
+        </ion-col>
+    </ion-row>
 
-     
-      <ion-item>
-          <ion-label stacked >Pontos</ion-label>
-          <ion-input type="number" formControlName="pontos"></ion-input>
-      </ion-item>
-      <ion-item *ngIf="!form.controls.pontos.valid && (form.controls.pontos.dirty || form.controls.pontos.touched)" color="danger">
-        <div [hidden]="!form.controls.pontos.errors.required">
-          Campo Obrigatorio
-        </div>  
+  </ion-grid>
 
-      </ion-item>
-
-
-      <ion-item>
-          <ion-label>Colocar em Destaque</ion-label>
-          <ion-checkbox color="red" checked="true" formControlName="destaque"></ion-checkbox>
-        </ion-item>
-
-      <div padding>
-          <button ion-button block type="submit" [disabled]="!form.valid" (click)="onSubmit()">Salvar</button>
-      </div>
-
-    </form>
+  
 
 </ion-content>

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { ConfigurePage } from './configure';
-import { RecompensasPageModule } from '../recompensas/recompensas.module';
 
 @NgModule({
   declarations: [
@@ -9,7 +8,6 @@ import { RecompensasPageModule } from '../recompensas/recompensas.module';
   ],
   imports: [
     IonicPageModule.forChild(ConfigurePage),
-    RecompensasPageModule
   ],
 })
 export class ConfigurePageModule {}

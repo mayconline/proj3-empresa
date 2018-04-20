@@ -64,5 +64,16 @@ export class RecompensasProvider {
   }
 
 
+  getDestaque(){
+    
+    return this.afDb.list(this.PATH, ref=> ref.orderByChild('destaque').equalTo(true))
+    .snapshotChanges()
+    .map(changes =>{
+        return changes.map(recomp =>({ key: recomp.payload.key,...recomp.payload.val() }));
+
+
+    })
+  }
+
 
 }

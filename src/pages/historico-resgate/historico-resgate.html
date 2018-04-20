@@ -32,8 +32,79 @@
   
   
   <ion-content padding>
+
+      
+
       <ion-grid>
+
+          <ion-row>
+              <ion-col col-12> <h4 text-center> Resgates Gerais</h4> </ion-col>
+          </ion-row>
+
+
         <ion-row>
+          <ion-col col-12>
+              <div padding>
+                  <ion-segment [(ngModel)]="status" color="primary" >
+                    <ion-segment-button value="solicitados">
+                        <ion-icon name="clock"></ion-icon>
+                      Solicitados
+                    </ion-segment-button>
+                    <ion-segment-button value="finalizados">
+                        <ion-icon name="checkmark-circle-outline"></ion-icon>
+                      Finalizados
+                    </ion-segment-button>
+                  </ion-segment>
+                </div>
+
+          </ion-col>
+        </ion-row>
+          
+        <ion-row>
+          <ion-col col-12>
+              <div [ngSwitch]="status">
+
+                  <ion-list *ngSwitchCase="'solicitados'">
+  
+                      <ion-item>
+                          <ion-icon name="clock" item-content> </ion-icon>
+                           <h2>Produto 1 - Solicitado</h2>
+                          <h3> CPF: 999.999.999-99</h3>
+                          <p>Data: 08/04/2018 - 100 Pontos</p>
+                          
+                        </ion-item>
+  
+                    
+                  </ion-list>
+                
+                  <ion-list *ngSwitchCase="'finalizados'">
+  
+                      <ion-item>
+                          <ion-icon name="checkmark-circle-outline" item-content> </ion-icon>
+                           <h2>Produto 2 - Entregue</h2>
+                          <h3> CPF: 999.999.999-99</h3>
+                          <p>Data: 20/03/2018 - 50 Pontos</p>
+                          
+                        </ion-item>
+  
+                        <ion-item>
+                            <ion-icon name="close-circle" item-content> </ion-icon>
+                             <h2>Produto 1 - Cancelado</h2>
+                            <h3> CPF: 999.999.999-99</h3>
+                            <p>Data: 07/04/2018 - 100 Pontos</p>
+                            
+                          </ion-item>
+                    
+                  </ion-list>
+                </div>
+          
+
+          </ion-col>
+        </ion-row>
+
+           
+        
+        <!-- <ion-row>
             <ion-col col-12> <h4 text-center >Filtros</h4> </ion-col>
         </ion-row>
         <ion-row>
@@ -46,7 +117,7 @@
         </ion-row>
         
         <ion-row>
-            <ion-col col-12> <h4 text-center>Meus Resgates</h4> </ion-col>
+            <ion-col col-12> <h4 text-center> Resgates Gerais</h4> </ion-col>
         </ion-row>
   
         <ion-row>
@@ -88,9 +159,9 @@
             <ion-col>
               <h3 text-center> Total Acumulado: 550 Pontos</h3>
             </ion-col>
-        </ion-row>
+        </ion-row> -->
   
   
-      </ion-grid>
+      </ion-grid> 
   
   </ion-content>

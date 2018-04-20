@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
-import { RecompensasProvider } from '../../providers/recompensas/recompensas';
-import { async } from '@firebase/util';
+
+
 
 /**
  * Generated class for the ModalRecompensaPage page.
@@ -20,7 +20,7 @@ export class ModalRecompensaPage {
  
 
 
-  constructor( private recompProvider:RecompensasProvider,
+  constructor( 
     public navCtrl: NavController, public navParams: NavParams, public view: ViewController) {
 
      
@@ -32,8 +32,11 @@ export class ModalRecompensaPage {
 
   fechar(){
     this.view.dismiss();
-  }
+  };
 
+  irHistorico(){
+    this.navCtrl.setRoot('HistoricoResgatePage');
+  };
   
   ionViewWillLoad() {
    

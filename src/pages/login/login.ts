@@ -24,7 +24,7 @@ export class LoginPage {
 
 await this.afAuth.auth.signInWithEmailAndPassword(this.user.email, this.user.password)
       .then(() => {
-        this.navCtrl.setRoot('ConfigurePage');
+        this.navCtrl.setRoot('TabsPage');
       })
 
       .catch((error: any) => {

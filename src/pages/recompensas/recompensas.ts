@@ -32,10 +32,16 @@ export class RecompensasPage {
     
  }
 
+
+ irHistoricoResgate(){
+   this.navCtrl.push('HistoricoResgatePage');
+ }
+
  async sair(){
   await this.afAuth.auth.signOut();
   this.app.getRootNav().setRoot( 'LoginPage' );
 }
+
 
 
 

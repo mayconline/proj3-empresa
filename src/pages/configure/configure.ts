@@ -45,7 +45,6 @@ export class ConfigurePage {
   }
 
 //Navegar entre Paginas//
-
 irRecompensas(){
   this.navCtrl.push('RecompensasPage')
 }
