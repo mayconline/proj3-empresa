@@ -3,7 +3,8 @@
     <ion-navbar>
       <ion-row text-center>
       
-        <ion-col col-4 offset-6> Olá Admin
+        <ion-col col-4 offset-6> Olá 
+            {{user.name}}
           <br> Bem Vindo!!! </ion-col>
         <ion-col col-2>
           <ion-buttons end>
@@ -19,10 +20,11 @@
   
   
   <ion-content padding>
-  
-    
-  
-  
+ 
+
+    <button ion-button (click)="irUsuarios()" > Usuarios </button>
   
     <button ion-button (click)="irRecompensas()" > Recompensas </button>
+
+    <button ion-button (click)="irPontos()" > Pontos </button>
   </ion-content>

@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { ConfigurePage } from './configure';
+import { UsuariosPageModule } from '../usuarios/usuarios.module';
+import { PontosPageModule } from '../pontos/pontos.module';
+
+
 
 @NgModule({
   declarations: [
@@ -8,6 +12,8 @@ import { ConfigurePage } from './configure';
   ],
   imports: [
     IonicPageModule.forChild(ConfigurePage),
+    UsuariosPageModule,
+    PontosPageModule
   ],
 })
 export class ConfigurePageModule {}

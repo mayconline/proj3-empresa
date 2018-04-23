@@ -1,0 +1,53 @@
+<!--
+  Generated template for the InserirPontosPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>inserir-pontos</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <form [formGroup]="form">
+               
+        <ion-item>
+          <ion-label stacked>Nota</ion-label>
+          <ion-input type="tel" formControlName="nota"></ion-input>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label stacked>valor</ion-label>
+          <ion-input type="tel" formControlName="valor"></ion-input>
+        </ion-item>
+    
+
+        <ion-item>
+            <ion-label stacked>cpf</ion-label>
+            <ion-input type="tel" formControlName="cpf"></ion-input>
+          </ion-item>
+
+
+        <ion-item>
+            <ion-label stacked>status</ion-label>
+
+            <ion-select formControlName="status">
+                <ion-option value="Solicitado">Solicitado</ion-option>
+                <ion-option value="Entregue">Entregue</ion-option>
+              </ion-select>
+          </ion-item>
+    
+        <div padding>
+          <button ion-button block type="submit" [disabled]="!form.valid" (click)="onSubmit()">Salvar</button>
+        </div>
+    </form>
+
+
+
+</ion-content>

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams} from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
+import { Observable } from 'rxjs/Observable';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 
 
@@ -12,19 +14,33 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 })
 export class ConfigurePage {
 
-  
+  user:any = {}; 
 
-  constructor(
+  constructor( private afAuth:AngularFireAuth,
     public navCtrl: NavController, public navParams: NavParams, private authService: AuthServiceProvider) {
+  
+      //verifica os dados do usuario logado //
+      
+    this.afAuth.authState.subscribe(firebaseUser =>{
+        if(firebaseUser){
+          const usuarioLogado = authService.getUserInfo().subscribe(userData =>{
+            this.user = userData;
+
+            usuarioLogado.unsubscribe();
+
+          })
+        }else {
+          this.user = {};
+        }
+    })
   }
 
 
- /* async sair(){
-    await this.afAuth.auth.signOut();
-    this.navCtrl.setRoot('LoginPage');
-  }*/
 
-  
+
+ionViewDidLoad(){
+  console.log(this.user);
+}
 
 //Navegar entre Paginas//
 irRecompensas(){
@@ -33,6 +49,14 @@ irRecompensas(){
 
 sair(){
   this.authService.logout();
+}
+
+irUsuarios(){
+  this.navCtrl.push('UsuariosPage')
+}
+
+irPontos(){
+  this.navCtrl.push('PontosPage')
 }
 
 }

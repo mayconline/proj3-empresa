@@ -14,6 +14,8 @@ import { FIREBASE_CONFIG } from './app.firebase.config';
 import { LoginPageModule } from '../pages/login/login.module';
 import { RecompensasProvider } from '../providers/recompensas/recompensas';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
+import { UsuariosProvider } from '../providers/usuarios/usuarios';
+import { PontosProvider } from '../providers/pontos/pontos';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     RecompensasProvider,
-    AuthServiceProvider
+    AuthServiceProvider,
+    UsuariosProvider,
+    PontosProvider
   ]
 })
 export class AppModule {}

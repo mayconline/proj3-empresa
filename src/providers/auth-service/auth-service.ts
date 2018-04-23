@@ -25,7 +25,8 @@ export class AuthServiceProvider {
             
             name: user.name,
             cpf: user.cpf,
-            email:user.email
+            email:user,
+            pontos: user.pontos
 
           });
           resolve();
@@ -62,6 +63,21 @@ logout(){
 resetPassword(email: string) {
   return this.afAuth.auth.sendPasswordResetEmail(email);
 }
+
+
+
+
+
+getUserInfo() {
+  return this.afDb.object(this.PATH + this.afAuth.auth.currentUser.uid)
+    .snapshotChanges()
+    .map(changes => {
+      return { key: changes.key, ...changes.payload.val() };
+    });
+} 
+
+
+
 
 
 } 

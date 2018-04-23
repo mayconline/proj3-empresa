@@ -32,7 +32,8 @@ export class RegistroPage {
       name: [''],
       cpf: [''],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      pontos:['']
     });
   }
 

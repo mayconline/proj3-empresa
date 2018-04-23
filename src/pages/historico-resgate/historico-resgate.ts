@@ -1,13 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { AngularFireAuth } from 'angularfire2/auth';
 
-/**
- * Generated class for the HistoricoResgatePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -15,9 +10,26 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
   templateUrl: 'historico-resgate.html',
 })
 export class HistoricoResgatePage {
+  user:any = {};
 
-  constructor( public authService:AuthServiceProvider, 
+  constructor( private afAuth:AngularFireAuth,
+    public authService:AuthServiceProvider, 
     public navCtrl: NavController, public navParams: NavParams) {
+
+      //verifica os dados do usuario logado //
+      
+    this.afAuth.authState.subscribe(firebaseUser =>{
+      if(firebaseUser){
+        const usuarioLogado = authService.getUserInfo().subscribe(userData =>{
+          this.user = userData;
+
+          usuarioLogado.unsubscribe();
+
+        })
+      }else {
+        this.user = {};
+      }
+  })
   }
 
 
