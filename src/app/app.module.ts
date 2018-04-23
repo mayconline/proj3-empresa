@@ -13,6 +13,7 @@ import { MyApp } from './app.component';
 import { FIREBASE_CONFIG } from './app.firebase.config';
 import { LoginPageModule } from '../pages/login/login.module';
 import { RecompensasProvider } from '../providers/recompensas/recompensas';
+import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { RecompensasProvider } from '../providers/recompensas/recompensas';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    RecompensasProvider
+    RecompensasProvider,
+    AuthServiceProvider
   ]
 })
 export class AppModule {}

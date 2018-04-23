@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 /**
  * Generated class for the HistoricoResgatePage page.
@@ -15,11 +16,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class HistoricoResgatePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor( public authService:AuthServiceProvider, 
+    public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad HistoricoResgatePage');
+
+
+  sair(){
+    this.authService.logout();
   }
 
 }

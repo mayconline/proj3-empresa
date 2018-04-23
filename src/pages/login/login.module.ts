@@ -4,7 +4,8 @@ import { LoginPage } from './login';
 import { RegistroPageModule } from '../registro/registro.module';
 import { ConfigurePageModule } from '../configure/configure.module';
 import { ResetSenhaPageModule } from '../reset-senha/reset-senha.module';
-import { FormsModule } from '@angular/forms';
+import { TabsPageModule } from '../tabs/tabs.module';
+
 
 
 @NgModule({
@@ -16,7 +17,7 @@ import { FormsModule } from '@angular/forms';
     RegistroPageModule,
     ConfigurePageModule,
     ResetSenhaPageModule,
-    FormsModule
+    TabsPageModule
     
   ],
 })

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { IonicPage, NavController, NavParams} from 'ionic-angular';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+
 
 
 
@@ -13,41 +14,27 @@ export class ConfigurePage {
 
   
 
-  constructor( private afAuth: AngularFireAuth, private toast: ToastController ,
-    public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, public navParams: NavParams, private authService: AuthServiceProvider) {
   }
 
 
-  async sair(){
+ /* async sair(){
     await this.afAuth.auth.signOut();
     this.navCtrl.setRoot('LoginPage');
-  }
+  }*/
 
-  ionViewDidLoad() {
-    this.afAuth.authState.subscribe(data => {
-      if(data && data.email && data.uid){
-        this.toast.create({
-          message: ` Seja Bem Vindo : ${data.email},`,
-          duration:3000
-      }).present();
-
-
-      } else {
-
-        this.toast.create({
-          message: `Deslogado com Sucesso `,
-          duration:3000
-      }).present();
-
-      }
-        
-    });
-  }
+  
 
 //Navegar entre Paginas//
 irRecompensas(){
   this.navCtrl.push('RecompensasPage')
 }
 
+sair(){
+  this.authService.logout();
+}
 
 }
+
+//data && data.email && data.uid

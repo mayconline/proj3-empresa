@@ -2,7 +2,56 @@
 
 
 <ion-content padding>
-    <img class="banner" src="assets/imgs/logoempresa.png"   />
+
+
+
+        <form [formGroup]="form">
+               
+                <ion-item>
+                  <ion-label stacked>Nome</ion-label>
+                  <ion-input type="text" formControlName="name"></ion-input>
+                </ion-item>
+            
+                <ion-item>
+                  <ion-label stacked>CPF</ion-label>
+                  <ion-input type="text" formControlName="cpf"></ion-input>
+                </ion-item>
+            
+                <ion-item>
+                  <ion-label stacked>E-mail</ion-label>
+                  <ion-input type="email" formControlName="email"></ion-input>
+                </ion-item>
+                <ion-item *ngIf="!form.controls.email.valid && (form.controls.email.dirty || form.controls.email.touched)" color="danger">
+                  <div [hidden]="!form.controls.email.errors.required">
+                    O campo é obrigatório
+                  </div>
+                  <div [hidden]="!form.controls.email.errors.email">
+                    O e-mail é invalido
+                  </div>
+                </ion-item>
+            
+                <ion-item>
+                  <ion-label stacked>Senha</ion-label>
+                  <ion-input type="password" formControlName="password"></ion-input>
+                </ion-item>
+                <ion-item *ngIf="!form.controls.password.valid && (form.controls.password.dirty || form.controls.password.touched)" color="danger">
+                  <div [hidden]="!form.controls.password.errors.required">
+                    O campo é obrigatório
+                  </div>
+                </ion-item>
+            
+                <div padding>
+                  <button ion-button block type="submit" [disabled]="!form.valid" (click)="onSubmit()">Criar conta</button>
+                </div>
+            </form>
+
+
+
+
+
+
+
+  <!--  <img class="banner" src="assets/imgs/logoempresa.png"   />
   
       <ion-card class="card"> 
   
@@ -42,6 +91,6 @@
   
           </ion-card-content>
         
-        </ion-card>
+        </ion-card> -->
   
   </ion-content>

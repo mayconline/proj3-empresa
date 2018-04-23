@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, App, ModalController, ToastController } from 'ionic-angular';
 import { RecompensasProvider } from '../../providers/recompensas/recompensas';
 import { Observable } from 'rxjs/Observable';
-import { AngularFireAuth } from 'angularfire2/auth';
+
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 
 @IonicPage()
@@ -14,7 +15,7 @@ export class RecompensasPage {
   
   recompensas: Observable<any>;
 
-  constructor( private afAuth:AngularFireAuth,
+  constructor( private authService:AuthServiceProvider,
     private recompProvider:RecompensasProvider, private toast: ToastController,
     public navCtrl: NavController, public navParams: NavParams, public app: App, public modal: ModalController) {
 
@@ -37,9 +38,8 @@ export class RecompensasPage {
    this.navCtrl.push('HistoricoResgatePage');
  }
 
- async sair(){
-  await this.afAuth.auth.signOut();
-  this.app.getRootNav().setRoot( 'LoginPage' );
+ sair(){
+  this.authService.logout();
 }
 
 

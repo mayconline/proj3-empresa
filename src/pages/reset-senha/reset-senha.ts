@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { NgForm } from '@angular/forms';
 
-import { AngularFireAuth } from 'angularfire2/auth';
-import { User } from '../../models/user';
+
 
 
 @IonicPage()
@@ -12,17 +13,18 @@ import { User } from '../../models/user';
 })
 export class ResetSenhaPage {
 
-  user = {} as User;
+userEmail:string ='';
+@ViewChild('form') form: NgForm;
 
-  constructor( private afAuth: AngularFireAuth, private toast: ToastController,
+  constructor( private authService: AuthServiceProvider, private toast: ToastController,
     public navCtrl: NavController, public navParams: NavParams) {
   }
 
 
- async resetPass(user:User){
-
-  let toast =  this.toast.create({ duration: 3000, position: 'bottom' });
- await this.afAuth.auth.sendPasswordResetEmail(this.user.email)
+  resetPassword(){
+  if(this.form.form.valid){
+    let toast =  this.toast.create({ duration: 3000, position: 'bottom' });
+  this.authService.resetPassword(this.userEmail)
   .then(() => { 
         toast.setMessage('Email de Redefinição de Senha Enviado para seu email')
         toast.present();
@@ -39,5 +41,9 @@ toast.present();
 
   });
 }
+
+  }
+
+  
 
 }

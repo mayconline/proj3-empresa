@@ -1,15 +1,12 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
-import { User } from '../../models/user';
-import { AngularFireAuth } from 'angularfire2/auth';
 
 
-/**
- * Generated class for the RegistroPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+
+
+
 
 @IonicPage()
 @Component({
@@ -18,13 +15,69 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class RegistroPage {
 
-  user = {} as User;
+  public form: FormGroup;
+  
 
-  constructor( private afAuth: AngularFireAuth, private toast:ToastController, 
-    public navCtrl: NavController, public navParams: NavParams) {
+  constructor( private toast:ToastController, 
+    public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder,
+  private authService:AuthServiceProvider) {
+
+    this.createForm();
+  
   }
 
-  async registrar(user: User){
+  private createForm() {
+    this.form = this.formBuilder.group({
+      
+      name: [''],
+      cpf: [''],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
+    });
+  }
+
+  onSubmit() {
+    if (this.form.valid) {
+      let toast = this.toast.create({ duration: 3000, position: 'bottom' });
+
+      this.authService.registrar(this.form.value)
+
+        .then((user:any) => {
+          user.sendEmailVerification();
+
+          toast.setMessage('Usuário criado com sucesso.');
+          toast.present();  
+
+
+
+          this.navCtrl.setRoot('LoginPage');
+        })
+        
+        .catch((error:any)=>{
+
+          if (error.code  == 'auth/email-already-in-use') {
+            toast.setMessage('O e-mail digitado já está em uso.');
+          } else if (error.code  == 'auth/invalid-email') {
+            toast.setMessage('e-mail invalido');
+          } else if (error.code  == 'auth/operation-not-allowed') {
+            toast.setMessage('Sem autorização para criar usuarios');
+          } else if (error.code  == 'auth/weak-password') {
+            toast.setMessage('Senha minima de 6 caracteres');
+          }
+    toast.present();
+        });
+
+    }
+}
+
+
+
+
+
+
+
+
+ /* async registrar(user: User){
 
     let toast = this.toast.create({ duration: 3000, position: 'bottom' });
 
@@ -62,7 +115,7 @@ toast.present();
     }
       catch(e){
         console.error(e);
-      }*/
+      }
 
 
   }
@@ -71,6 +124,6 @@ toast.present();
 
   voltarLogin(){
     this.navCtrl.setRoot('LoginPage');
-  }
-
+  } 
+ */
 }
