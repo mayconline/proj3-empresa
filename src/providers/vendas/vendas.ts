@@ -72,10 +72,36 @@ export class VendasProvider {
       });
     
     }
+
+
+// atualiza pontos do usuario ao resgatar um produto 
+    atualizaPonto(user:any){
+      return new Promise((resolve, reject) => {
+    
+              this.afDb.list('userProfile/')
+                .update(this.user.key, {pontos: this.user.pontos})
+                .then(()=> resolve())
+                .catch((e)=> reject(e));
+        
+      });
+    
+    };
+
+
+    calcPontos(pontosProd){
+      
+      return this.user.pontos = this.user.pontos - pontosProd
+
+    };
+//
   
+
+//resgata o produto //
     save(resgate:any){
       return new Promise((resolve, reject) => {
-  
+        this.calcPontos(resgate.pontosProd);
+        this.atualizaPonto(this.user);
+
               this.afDb.list(this.PATH)
                
               
@@ -99,7 +125,7 @@ export class VendasProvider {
 
 
 
-
+//obtem os dados do usuario //
   obterUser(){
     this.afAuth.authState.subscribe(firebaseUser =>{
    if(firebaseUser){
@@ -125,9 +151,3 @@ export class VendasProvider {
 }
 
 
-
-                 // userNome: resgate.userNome, 
-                  // userKey: resgate.userKey,
-//prodKey: resgate.prodKey,
-                //  prodNome: resgate.prodNome
-                //  status: resgate.status
