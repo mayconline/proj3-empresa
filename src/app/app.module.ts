@@ -16,6 +16,7 @@ import { RecompensasProvider } from '../providers/recompensas/recompensas';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { UsuariosProvider } from '../providers/usuarios/usuarios';
 import { PontosProvider } from '../providers/pontos/pontos';
+import { VendasProvider } from '../providers/vendas/vendas';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { PontosProvider } from '../providers/pontos/pontos';
     RecompensasProvider,
     AuthServiceProvider,
     UsuariosProvider,
-    PontosProvider
+    PontosProvider,
+    VendasProvider
   ]
 })
 export class AppModule {}

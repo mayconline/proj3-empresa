@@ -1,0 +1,44 @@
+<!--
+  Generated template for the EditarHistoricoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>editar-historico</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+
+    <form [formGroup]="form">
+               
+        <ion-item>
+            <ion-label>key</ion-label>
+            <ion-input type="text" formControlName="key"></ion-input>
+        </ion-item>
+        
+
+        <ion-item>
+            <ion-label stacked>status</ion-label>
+
+            <ion-select formControlName="status">
+                <ion-option value="Solicitado">Solicitado</ion-option>
+                <ion-option value="Entregue">Entregue</ion-option>
+              </ion-select>
+          </ion-item>
+    
+        <div padding>
+          <button ion-button block type="submit" [disabled]="!form.valid" (click)="onSubmit()">Salvar</button>
+        </div>
+    </form>
+
+
+
+
+</ion-content>

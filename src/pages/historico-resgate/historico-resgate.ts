@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { VendasProvider } from '../../providers/vendas/vendas';
 
 
 @IonicPage()
@@ -11,8 +12,10 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class HistoricoResgatePage {
   user:any = {};
+  resgates:any;
+  entregues:any;
 
-  constructor( private afAuth:AngularFireAuth,
+  constructor( private afAuth:AngularFireAuth, private resgateService:VendasProvider,
     public authService:AuthServiceProvider, 
     public navCtrl: NavController, public navParams: NavParams) {
 
@@ -37,5 +40,21 @@ export class HistoricoResgatePage {
   sair(){
     this.authService.logout();
   }
+
+
+
+  editHist(resgate){
+    this.navCtrl.push('EditarHistoricoPage',  {resgate:resgate})
+
+  }
+
+
+  ionViewWillLoad(){
+    this.resgates = this.resgateService.getUserAll();
+    this.entregues = this.resgateService.getUserAllEntregue();
+    
+
+  }
+
 
 }

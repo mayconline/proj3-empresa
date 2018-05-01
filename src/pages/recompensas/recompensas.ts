@@ -20,26 +20,6 @@ export class RecompensasPage {
   constructor( private authService:AuthServiceProvider, private afAuth:AngularFireAuth,
     private recompProvider:RecompensasProvider, private toast: ToastController,
     public navCtrl: NavController, public navParams: NavParams, public app: App, public modal: ModalController) {
-
-      //recupera e inicializa os itens do banco //
-      this.recompensas = this.recompProvider.getAll();
-
-
-      //verifica os dados do usuario logado //
-      
-    this.afAuth.authState.subscribe(firebaseUser =>{
-      if(firebaseUser){
-        const usuarioLogado = authService.getUserInfo().subscribe(userData =>{
-          this.user = userData;
-
-          usuarioLogado.unsubscribe();
-
-        })
-      }else {
-        this.user = {};
-      }
-  })
-  
  
   }
   
@@ -63,6 +43,22 @@ export class RecompensasPage {
 
 
 
+obterUser(){
+  this.afAuth.authState.subscribe(firebaseUser =>{
+ if(firebaseUser){
+   const usuarioLogado = this.authService.getUserInfo().subscribe(userData =>{
+     this.user = userData;
+    
+    
+     usuarioLogado.unsubscribe();
+
+   })
+ }else {
+   this.user = {};
+ }
+})
+
+} 
 
 
   
@@ -119,5 +115,13 @@ export class RecompensasPage {
   } // searchbar //
 
 
-  
+
+ 
+  ionViewWillLoad(){
+          //recupera e inicializa os itens do banco //
+          this.recompensas = this.recompProvider.getAll();
+          this.obterUser();
+
+  } 
+
 }

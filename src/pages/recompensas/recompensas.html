@@ -3,8 +3,11 @@
 
         <ion-navbar>
                 <ion-row text-center>
+                  <ion-col col-2>
+                    {{user.pontos}} Pontos
+                  </ion-col>
                 
-                  <ion-col col-4 offset-6> Olá {{user.name}}
+                  <ion-col col-4 offset-4> Olá {{user.name}}
                     <br> Bem Vindo!!! </ion-col>
                   <ion-col col-2>
                     <ion-buttons end>
@@ -41,16 +44,19 @@
                
                   <ion-list>     
                              <ion-item-sliding *ngFor="let recompensa of recompensas | async">  
-                                 <ion-item (click)="abrirModal(recompensa)">
+                                 <ion-item >
                                     <ion-avatar item-start>
                                      <img src="">
                                     </ion-avatar>
                                      <h2>{{recompensa.nome}}</h2>
                                      <p>{{recompensa.pontos}} Pontos</p>
 
-                                     <button  color="secondary" ion-button  item-content clear>
-                                            <ion-icon name="cart"> Resgatar</ion-icon>
-                                          </button>
+                                 
+                                    
+<button  color="secondary" ion-button  item-content clear (click)="abrirModal(recompensa)">
+                                               <ion-icon item-content name="cart"> Resgatar</ion-icon>
+                                             </button>
+                                            
                                  </ion-item>
 
                                  <ion-item-options side="left"> 
@@ -110,3 +116,5 @@
       </ion-grid>
 
 </ion-content>
+
+<!--[disabled]="user.pontos < recompensa.pontos" -->
