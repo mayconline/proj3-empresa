@@ -46,7 +46,7 @@
                              <ion-item-sliding *ngFor="let recompensa of recompensas | async">  
                                  <ion-item >
                                     <ion-avatar item-start>
-                                     <img src="">
+                                      <img src="{{ recompensa.url }}" />
                                     </ion-avatar>
                                      <h2>{{recompensa.nome}}</h2>
                                      <p>{{recompensa.pontos}} Pontos</p>

@@ -10,7 +10,7 @@ import * as firebase from 'firebase';
 export class RecompensasProvider {
 
     private PATH = 'recompensas/';
-   
+    
   constructor( private afDb: AngularFireDatabase, private fb:FirebaseApp) {
     
     
@@ -62,7 +62,7 @@ export class RecompensasProvider {
 
 
 
-  save(recompensa:any){
+ private save(recompensa:any){
     return new Promise((resolve, reject) => {
 
       if(recompensa.key) {
@@ -83,20 +83,20 @@ export class RecompensasProvider {
 }
 
 
- uploadAndSave(recompensa: any) {
+public uploadAndSave(recompensa: any) {
  // let recompensa = { key: recompensa.key, nome: recompensa.nome, pontos: recompensa.pontos, destaque: recompensa.destaque, url:'', fullPath: '' };
-
+ return new Promise((resolve, reject) => {
   if (recompensa.key) {
     this.save(recompensa);
   } else {
     let storageRef = this.fb.storage().ref();
     let basePath = '/recompensas/';
     recompensa.fullPath = basePath + '/' + recompensa.name + '.jpg';
-    let uploadTask = storageRef.child(recompensa.fullPath).putString(recompensa.fileToUpload, 'base64');
+    let uploadTask = storageRef.child(recompensa.fullPath).putString(recompensa.photo, 'base64');
 
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
     (snapshot) => {
-      var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+       let progress = (uploadTask.snapshot.bytesTransferred / uploadTask.snapshot.totalBytes) * 100;
       console.log(progress + "% done");
     },
     (error) => {
@@ -107,8 +107,9 @@ export class RecompensasProvider {
       this.save(recompensa);
     });
   }
+});
 }
-
+ 
 
 
   remove(key:string){

@@ -23,7 +23,8 @@ export class UsuariosPage {
   constructor( private usuarioProvider:UsuariosProvider,
     public navCtrl: NavController, public navParams: NavParams) {
 
-    this.usuarios = this.usuarioProvider.getUserAll();
+   this.usuarios = this.usuarioProvider.getUserAll();
+  // this.usuarios = this.usuarioProvider.getUserCpf();
   }
 
 

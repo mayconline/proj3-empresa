@@ -124,6 +124,11 @@ export class VendasProvider {
   }
 
 
+  remove(key:string){
+    return this.afDb.list(this.PATH).remove(key)
+
+  } 
+
 
 //obtem os dados do usuario //
   obterUser(){
@@ -133,8 +138,7 @@ export class VendasProvider {
        this.user = userData;
       
       
-       usuarioLogado.unsubscribe();
- 
+      
      })
    }else {
      this.user = {};

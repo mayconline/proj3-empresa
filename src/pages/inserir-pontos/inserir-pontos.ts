@@ -19,28 +19,31 @@ export class InserirPontosPage {
   constructor( private formBuilder:FormBuilder, private pontosProvider:PontosProvider, private usuarioProvider:UsuariosProvider,
     public navCtrl: NavController, public navParams: NavParams, private toast:ToastController) {
 
-     
 
+      
     this.ponto = this.navParams.data.ponto || {};
     this.createForm();
+    
+    
   }
 
 
   private createForm() {
 
-    this.ponto.quantPontos = this.ponto.valor / 10;
-    
 
     this.form = this.formBuilder.group({
       key:[this.ponto.key],
       nota: [this.ponto.nota],
       valor: [this.ponto.valor],
       cpf: [this.ponto.cpf],
-      quantPontos:[this.ponto.quantPontos],
+      quantPontos:[this.ponto.valor /10],
       status:[this.ponto.status]
     });
   }
 
+  somaPonto(){
+    this.form.value.quantPontos
+  }
 
 
   onSubmit(){

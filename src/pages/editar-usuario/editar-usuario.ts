@@ -10,6 +10,7 @@ import { UsuariosProvider } from '../../providers/usuarios/usuarios';
 export class EditarUsuarioPage {
   usuario:any;
   form: FormGroup;
+ 
 
   constructor(private usuarioProvider:UsuariosProvider, private formBuilder:FormBuilder,
     public navCtrl: NavController, public navParams: NavParams, private toast:ToastController) {
@@ -26,8 +27,12 @@ export class EditarUsuarioPage {
         cpf: [this.usuario.cpf],
         pontos:[this.usuario.pontos]
       });
+
+     
     }
 
+
+  
 
     onSubmit(){
       if(this.form.valid){

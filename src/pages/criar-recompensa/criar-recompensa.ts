@@ -38,11 +38,13 @@ export class CriarRecompensaPage {
         key:[this.recompensa.key],
         nome:[this.recompensa.nome, Validators.required],
         pontos:[this.recompensa.pontos, Validators.required],
-        destaque:[this.recompensa.destaque]
+        destaque:[this.recompensa.destaque],
+        photo:[this.photo]
+        
       })
   }
 
-
+  
 //camera
   takePicture(type) {
     this.photo = ''; 
@@ -78,7 +80,7 @@ this.camera.getPicture(options)
 
   onSubmit(){
       if(this.form.valid){
-          this.recompProvider.save(this.form.value)
+          this.recompProvider.uploadAndSave(this.form.value)
             .then(()=> {
                 this.toast.create({ message: 'Recompensa Adicionada', duration: 3000}).present();
                 this.navCtrl.pop();

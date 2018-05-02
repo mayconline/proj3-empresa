@@ -43,12 +43,23 @@ updatePontos(usuario:any){
   return new Promise((resolve, reject) => {
 
           this.afDb.list(this.PATH)
-            .update(usuario.key, { cpf: usuario.cpf, pontos: usuario.pontos})
+            .update(usuario.key, { pontos: usuario.pontos})
             .then(()=> resolve())
             .catch((e)=> reject(e));
     
   });
 
+}
+
+getUserCpf(){
+    
+  return this.afDb.list(this.PATH)
+  .snapshotChanges()
+  .map(changes =>{
+      return changes.map(u =>({ key: u.payload.key,...u.payload.val().cpf }));
+
+
+  })
 }
 
 

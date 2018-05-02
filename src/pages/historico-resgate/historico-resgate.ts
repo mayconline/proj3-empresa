@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { VendasProvider } from '../../providers/vendas/vendas';
@@ -16,7 +16,7 @@ export class HistoricoResgatePage {
   entregues:any;
 
   constructor( private afAuth:AngularFireAuth, private resgateService:VendasProvider,
-    public authService:AuthServiceProvider, 
+    public authService:AuthServiceProvider, private toast:ToastController,
     public navCtrl: NavController, public navParams: NavParams) {
 
       //verifica os dados do usuario logado //
@@ -47,6 +47,23 @@ export class HistoricoResgatePage {
     this.navCtrl.push('EditarHistoricoPage',  {resgate:resgate})
 
   }
+
+
+  removerResgate(key:string){
+    this.resgateService.remove(key)
+      .then(()=>{
+
+        this.toast.create({ message: 'Removido com Sucesso', duration:3000}).present();
+        
+      })
+      .catch((e)=>{
+        
+        this.toast.create({ message: 'Falha ao remover ', duration:3000}).present();
+        console.error(e);
+
+      })
+ }
+  
 
 
   ionViewWillLoad(){

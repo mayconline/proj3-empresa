@@ -33,6 +33,7 @@
         <ion-row>
             <ion-col col-12>
                
+               
                   <ion-list>     
                              <ion-item-sliding *ngFor="let usuario of usuarios | async">  
                                  <ion-item >
@@ -41,6 +42,7 @@
                                     </ion-avatar>
                                      <h2>{{usuario.name}}</h2>
                                      <p>{{usuario.cpf}}</p>
+                                     <p>{{usuario.pontos}}</p>
 
                                      
                                  </ion-item>
