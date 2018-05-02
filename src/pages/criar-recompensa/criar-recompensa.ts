@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { RecompensasProvider } from '../../providers/recompensas/recompensas';
 import { FormBuilder, FormGroup,Validators} from '@angular/forms';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 
 @IonicPage()
@@ -14,8 +15,12 @@ export class CriarRecompensaPage {
   title:string;
   form:FormGroup;
   recompensa:any;
+  photo: string = '';
 
-  constructor( private formBuilder: FormBuilder,private toast: ToastController,
+  
+
+
+  constructor( private formBuilder: FormBuilder,private toast: ToastController, private camera:Camera,
     public navCtrl: NavController, public navParams: NavParams, private recompProvider:RecompensasProvider) {
 
       this.recompensa = this.navParams.data.recompensa || {};
@@ -37,6 +42,38 @@ export class CriarRecompensaPage {
       })
   }
 
+
+//camera
+  takePicture(type) {
+    this.photo = ''; 
+  
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      sourceType: type == "picture" ? this.camera.PictureSourceType.CAMERA : this.camera.PictureSourceType.SAVEDPHOTOALBUM,
+      correctOrientation: true,
+      allowEdit: true,
+      targetWidth: 100,
+      targetHeight: 100
+}
+  
+  
+this.camera.getPicture(options)
+.then((imageData) => {
+  let base64image = 'data:image/jpeg;base64,' + imageData;
+  this.photo = base64image;
+
+}, (error) => {
+  console.error(error);
+})
+.catch((error) => {
+  console.error(error);
+})
+
+  } //
+
 //metodo de criar / editar //
 
   onSubmit(){
@@ -52,5 +89,13 @@ export class CriarRecompensaPage {
             })
       }
   }  
+
+
+
+
+
+
+
+
 
 }

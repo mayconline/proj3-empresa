@@ -73,7 +73,7 @@ onSubmit(){
       this.resgateService.save(this.form.value)
         .then(()=> {
             this.toast.create({ message: 'Recompensa Adicionada', duration: 3000}).present();
-            this.navCtrl.pop();
+            this.navCtrl.push('TabsPage');
         })
         .catch((e)=>{
             this.toast.create({ message: 'Falha ao gravar os dados', duration:3000}).present();
