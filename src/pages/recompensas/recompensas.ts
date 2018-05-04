@@ -49,9 +49,7 @@ obterUser(){
    const usuarioLogado = this.authService.getUserInfo().subscribe(userData =>{
      this.user = userData;
     
-    
-     usuarioLogado.unsubscribe();
-
+  
    })
  }else {
    this.user = {};

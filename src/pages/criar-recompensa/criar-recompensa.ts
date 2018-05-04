@@ -15,7 +15,7 @@ export class CriarRecompensaPage {
   title:string;
   form:FormGroup;
   recompensa:any;
-  photo: string = '';
+  photo: string;
 
   
 
@@ -26,6 +26,7 @@ export class CriarRecompensaPage {
       this.recompensa = this.navParams.data.recompensa || {};
       this.createForm();
       this.modificarTitle();
+      this.photo = ''; 
   }
 
 
@@ -41,13 +42,16 @@ export class CriarRecompensaPage {
         destaque:[this.recompensa.destaque],
         photo:[this.photo]
         
+        
+        
+        
       })
   }
 
   
 //camera
   takePicture(type) {
-    this.photo = ''; 
+  
   
     const options: CameraOptions = {
       quality: 100,

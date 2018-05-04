@@ -55,7 +55,7 @@ export class ModalRecompensaPage {
         this.user = userData;
        
        
-        usuarioLogado.unsubscribe();
+       
   
       })
     }else {

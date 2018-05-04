@@ -1,5 +1,5 @@
 {
-  "name": "projeto3-empresa",
+  "name": "lineapp-empresa",
   "version": "0.0.1",
   "author": "Ionic Framework",
   "homepage": "http://ionicframework.com/",
@@ -27,11 +27,11 @@
     "@ionic-native/status-bar": "4.6.0",
     "@ionic/storage": "2.1.3",
     "angularfire2": "^5.0.0-rc.6.0",
-    "cordova-android": "~7.0.0",
+    "cordova-android": "7.0.0",
     "cordova-plugin-camera": "^4.0.3",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-ionic-keyboard": "^2.0.5",
-    "cordova-plugin-ionic-webview": "^1.2.0",
+    "cordova-plugin-ionic-webview": "^1.2.1",
     "cordova-plugin-splashscreen": "^5.0.2",
     "cordova-plugin-whitelist": "^1.3.3",
     "firebase": "^4.12.1",
@@ -67,5 +67,12 @@
     "platforms": [
       "android"
     ]
-  }
+  },
+  "keywords": [
+    "empresa",
+    "fidelidade",
+    "pontos",
+    "app",
+    "apk"
+  ]
 }

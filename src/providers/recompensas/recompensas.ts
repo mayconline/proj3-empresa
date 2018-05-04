@@ -91,8 +91,8 @@ public uploadAndSave(recompensa: any) {
   } else {
     let storageRef = this.fb.storage().ref();
     let basePath = '/recompensas/';
-    recompensa.fullPath = basePath + '/' + recompensa.name + '.jpg';
-    let uploadTask = storageRef.child(recompensa.fullPath).putString(recompensa.photo, 'base64');
+    recompensa.fullPath = basePath + 1 + '.jpg';
+    let uploadTask = storageRef.child(recompensa.fullPath).putString(recompensa.image, 'base64');
 
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
     (snapshot) => {
