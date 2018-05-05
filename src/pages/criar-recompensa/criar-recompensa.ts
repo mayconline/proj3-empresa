@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
 import { RecompensasProvider } from '../../providers/recompensas/recompensas';
 import { FormBuilder, FormGroup,Validators} from '@angular/forms';
 import { Camera, CameraOptions } from '@ionic-native/camera';
@@ -16,12 +16,14 @@ export class CriarRecompensaPage {
   form:FormGroup;
   recompensa:any;
   image: any;
+  
 
   
 
 
   constructor( private formBuilder: FormBuilder,private toast: ToastController, private camera:Camera,
-    public navCtrl: NavController, public navParams: NavParams, private recompProvider:RecompensasProvider) {
+    public navCtrl: NavController, public navParams: NavParams, private recompProvider:RecompensasProvider,
+      private loadingCtrl: LoadingController) {
 
       
       this.recompensa = this.navParams.data.recompensa || {};
@@ -41,7 +43,8 @@ export class CriarRecompensaPage {
         nome:[this.recompensa.nome, Validators.required],
         pontos:[this.recompensa.pontos, Validators.required],
         destaque:[this.recompensa.destaque],
-        url:[this.recompensa.url ]
+        url:[this.recompensa.url ],
+        fullPath:[this.recompensa.fullPath]
       
         
         
@@ -70,6 +73,9 @@ export class CriarRecompensaPage {
   
 this.camera.getPicture(options)
 .then((imageData) => {
+
+  
+
   this.image = 'data:image/jpeg;base64,' + imageData;
 
 
@@ -86,14 +92,32 @@ this.camera.getPicture(options)
 
   onSubmit(){
       if(this.form.valid){
-        
+       
+        this.loadCreate();
           this.recompProvider.uploadAndSave(this.form.value, this.image)
 
-          this.navCtrl.pop();
             
+          
+            this.navCtrl.pop();
+
+          
+            
+
       }
   }  
 
+
+loadCreate(){
+  let loading = this.loadingCtrl.create({
+    content:'Salvando ...'
+  });
+  loading.present();
+
+  setTimeout(()=>{
+    loading.dismiss();
+  },5000)
+
+}
 
 /*.then(()=> {
                            

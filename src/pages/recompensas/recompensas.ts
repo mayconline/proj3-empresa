@@ -73,8 +73,8 @@ obterUser(){
 
    }
 
-    removerRecomp(key:string){
-      this.recompProvider.remove(key)
+    removerRecomp(recompensa:any){
+      this.recompProvider.remove(recompensa)
         .then(()=>{
 
           this.toast.create({ message: 'Removido com Sucesso', duration:3000}).present();

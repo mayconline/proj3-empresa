@@ -12,6 +12,8 @@ export class RecompensasProvider {
 
     private PATH = 'recompensas/';
     
+    
+    
   constructor( private afDb: AngularFireDatabase, private fb:FirebaseApp,
   private toast:ToastController) {
     
@@ -42,39 +44,19 @@ export class RecompensasProvider {
 
   }
 
-/*  save(recompensa:any){
-      return new Promise((resolve, reject) => {
-
-        if(recompensa.key) {
-              this.afDb.list(this.PATH)
-                .update(recompensa.key, {nome: recompensa.nome, pontos: recompensa.pontos, destaque: recompensa.destaque})
-                .then(()=> resolve())
-                .catch((e)=> reject(e));
-        }else{
-              this.afDb.list(this.PATH)
-                .push({ nome: recompensa.nome, pontos: recompensa.pontos, destaque: recompensa.destaque})
-                .then(()=> resolve());
-                
-
-
-        }
-      });
-
-  } */
-
-
+// salvar e editar a recompensa //
 
  public save(recompensa:any){
     return new Promise((resolve, reject) => {
 
       if(recompensa.key) {
             this.afDb.list(this.PATH)
-              .update(recompensa.key, {nome: recompensa.nome, pontos: recompensa.pontos, destaque: recompensa.destaque, url:recompensa.url})
+              .update(recompensa.key, {nome: recompensa.nome, pontos: recompensa.pontos, destaque: recompensa.destaque, url:recompensa.url, fullPath:recompensa.fullPath})
               .then(()=> resolve())
               .catch((e)=> reject(e));
       }else{
             this.afDb.list(this.PATH)
-              .push({ nome: recompensa.nome, pontos: recompensa.pontos, destaque: recompensa.destaque, url:recompensa.url})
+              .push({ nome: recompensa.nome, pontos: recompensa.pontos, destaque: recompensa.destaque, url:recompensa.url, fullPath: recompensa.fullPath})
               .then(()=> resolve());
               
 
@@ -87,16 +69,23 @@ export class RecompensasProvider {
 //UP LOAD DA IMAGEM COM A RECOMPENSA //
 
 public uploadAndSave(recompensa: any, image:any) {
- // let recompensa = { key: recompensa.key, nome: recompensa.nome, pontos: recompensa.pontos, destaque: recompensa.destaque, url:'', fullPath: '' };
+  
+
  return new Promise((resolve, reject) => {
   if (recompensa.key) {
     this.save(recompensa);
   } else {
+
+  
+
     let storageRef = this.fb.storage().ref();
-    const filename = Math.floor(Date.now() / 1000);
+    const filename = recompensa.nome  
+    const basePath = `recompensas/${filename}.jpg`
+
+    recompensa.fullPath = basePath
+
+    const imageRef = storageRef.child(recompensa.fullPath)
     
-    const imageRef = storageRef.child(`recompensas/${filename}.jpg`)
-    //recompensa.fullPath = imageRef
 
     imageRef.putString(image,firebase.storage.StringFormat.DATA_URL)
     
@@ -108,11 +97,12 @@ public uploadAndSave(recompensa: any, image:any) {
      
 
      this.save(recompensa);
-
+     
+      
      this.toast.create({ message: 'Recompensa Adicionada', duration: 3000}).present();
      
-
-
+     
+     
 
      
       }) 
@@ -120,6 +110,8 @@ public uploadAndSave(recompensa: any, image:any) {
       .catch((e)=>{
         this.toast.create({ message: 'Falha ao gravar os dados', duration:3000}).present();
         console.error(e);
+
+        
     })
 
 
@@ -129,25 +121,23 @@ public uploadAndSave(recompensa: any, image:any) {
 });
 }
  
+// remover a recompensa e a foto do storage
 
-
-  remove(key:string){
-    return this.afDb.list(this.PATH).remove(key)
-
-  } 
-
- /* public remove(recompensa: any) {
-    return this.recompensa.remove(recompensa.key)
+  public remove( recompensa:any) {
+   
+  return this.afDb.list(this.PATH).remove(recompensa.key)
       .then(() => {
         this.removeFile(recompensa.fullPath)
       });
-  }*/
+  }
 
   public removeFile(fullPath: string) {
     let storageRef = this.fb.storage().ref();
     storageRef.child(fullPath).delete();
 }
 
+
+// colocar as recompensas em destaque //
 
   getDestaque(){
     
@@ -163,31 +153,3 @@ public uploadAndSave(recompensa: any, image:any) {
 
 }
 
-
-
-/*let basePath = '/recompensas/';
-    recompensa.fullPath = basePath + 'aaa.jpeg';
-    let uploadTask = storageRef.child(recompensa.fullPath).putString(image, 'base64');
-
-    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
-    (snapshot) => {
-       let progress = (uploadTask.snapshot.bytesTransferred / uploadTask.snapshot.totalBytes) * 100;
-      console.log(progress + "% done");
-    },
-    (error) => {
-      console.error(error);
-    },
-    () => {
-      recompensa.url = uploadTask.snapshot.downloadURL;
-      this.save(recompensa);
-    });*/ 
-
-
-    /* .then((snapshot)=>{
-  
-        
-
-
-
-      this.save(recompensa);
-      })*/
