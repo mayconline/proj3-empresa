@@ -15,7 +15,7 @@ export class CriarRecompensaPage {
   title:string;
   form:FormGroup;
   recompensa:any;
-  photo: string;
+  image: any;
 
   
 
@@ -23,10 +23,11 @@ export class CriarRecompensaPage {
   constructor( private formBuilder: FormBuilder,private toast: ToastController, private camera:Camera,
     public navCtrl: NavController, public navParams: NavParams, private recompProvider:RecompensasProvider) {
 
+      
       this.recompensa = this.navParams.data.recompensa || {};
       this.createForm();
       this.modificarTitle();
-      this.photo = ''; 
+      
   }
 
 
@@ -39,8 +40,8 @@ export class CriarRecompensaPage {
         key:[this.recompensa.key],
         nome:[this.recompensa.nome, Validators.required],
         pontos:[this.recompensa.pontos, Validators.required],
-        destaque:[this.recompensa.destaque],
-        photo:[this.photo]
+        destaque:[this.recompensa.destaque]
+      
         
         
         
@@ -68,8 +69,8 @@ export class CriarRecompensaPage {
   
 this.camera.getPicture(options)
 .then((imageData) => {
-  let base64image = 'data:image/jpeg;base64,' + imageData;
-  this.photo = base64image;
+  this.image = 'data:image/jpeg;base64,' + imageData;
+
 
 }, (error) => {
   console.error(error);
@@ -84,8 +85,10 @@ this.camera.getPicture(options)
 
   onSubmit(){
       if(this.form.valid){
-          this.recompProvider.uploadAndSave(this.form.value)
+        
+          this.recompProvider.uploadAndSave(this.form.value, this.image)
             .then(()=> {
+                           
                 this.toast.create({ message: 'Recompensa Adicionada', duration: 3000}).present();
                 this.navCtrl.pop();
             })

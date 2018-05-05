@@ -62,17 +62,17 @@ export class RecompensasProvider {
 
 
 
- private save(recompensa:any){
+ public save(recompensa:any){
     return new Promise((resolve, reject) => {
 
       if(recompensa.key) {
             this.afDb.list(this.PATH)
-              .update(recompensa.key, {nome: recompensa.nome, pontos: recompensa.pontos, destaque: recompensa.destaque})
+              .update(recompensa.key, {nome: recompensa.nome, pontos: recompensa.pontos, destaque: recompensa.destaque, url:recompensa.url})
               .then(()=> resolve())
               .catch((e)=> reject(e));
       }else{
             this.afDb.list(this.PATH)
-              .push({ nome: recompensa.nome, pontos: recompensa.pontos, destaque: recompensa.destaque, url:recompensa.url, fullPath:recompensa.fullPath})
+              .push({ nome: recompensa.nome, pontos: recompensa.pontos, destaque: recompensa.destaque, url:recompensa.url})
               .then(()=> resolve());
               
 
@@ -83,29 +83,33 @@ export class RecompensasProvider {
 }
 
 
-public uploadAndSave(recompensa: any) {
+public uploadAndSave(recompensa: any, image:any) {
  // let recompensa = { key: recompensa.key, nome: recompensa.nome, pontos: recompensa.pontos, destaque: recompensa.destaque, url:'', fullPath: '' };
  return new Promise((resolve, reject) => {
   if (recompensa.key) {
     this.save(recompensa);
   } else {
     let storageRef = this.fb.storage().ref();
-    let basePath = '/recompensas/';
-    recompensa.fullPath = basePath + 1 + '.jpg';
-    let uploadTask = storageRef.child(recompensa.fullPath).putString(recompensa.image, 'base64');
+    const filename = Math.floor(Date.now() / 1000);
+    
+    const imageRef = storageRef.child(`recompensas/${filename}.jpg`)
+    //recompensa.fullPath = imageRef
 
-    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
-    (snapshot) => {
-       let progress = (uploadTask.snapshot.bytesTransferred / uploadTask.snapshot.totalBytes) * 100;
-      console.log(progress + "% done");
-    },
-    (error) => {
-      console.error(error);
-    },
-    () => {
-      recompensa.url = uploadTask.snapshot.downloadURL;
-      this.save(recompensa);
-    });
+    imageRef.putString(image,firebase.storage.StringFormat.DATA_URL)
+    
+
+
+    .then((snapshot)=>{
+  
+     recompensa.url = snapshot.downloadURL
+     alert('concluido')
+
+     this.save(recompensa);
+      }) 
+
+
+    
+      
   }
 });
 }
@@ -143,3 +147,32 @@ public uploadAndSave(recompensa: any) {
 
 
 }
+
+
+
+/*let basePath = '/recompensas/';
+    recompensa.fullPath = basePath + 'aaa.jpeg';
+    let uploadTask = storageRef.child(recompensa.fullPath).putString(image, 'base64');
+
+    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+    (snapshot) => {
+       let progress = (uploadTask.snapshot.bytesTransferred / uploadTask.snapshot.totalBytes) * 100;
+      console.log(progress + "% done");
+    },
+    (error) => {
+      console.error(error);
+    },
+    () => {
+      recompensa.url = uploadTask.snapshot.downloadURL;
+      this.save(recompensa);
+    });*/ 
+
+
+    /* .then((snapshot)=>{
+  
+        
+
+
+
+      this.save(recompensa);
+      })*/
