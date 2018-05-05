@@ -47,7 +47,7 @@
                             <ion-item *ngFor="let recompensa of recompensas | async" class="card-background-page">
 
                                     <ion-card>
-                                            <img src="assets/imgs/produtos/iconProduto.png"/>
+                                            <img src="{{ recompensa.url }}"/>
                                             <div class="card-title">{{recompensa.nome}}</div>
                                             <div class="card-subtitle">{{recompensa.pontos}} Pontos</div>
                                  </ion-card>

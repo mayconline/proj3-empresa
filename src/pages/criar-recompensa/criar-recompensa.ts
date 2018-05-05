@@ -40,7 +40,8 @@ export class CriarRecompensaPage {
         key:[this.recompensa.key],
         nome:[this.recompensa.nome, Validators.required],
         pontos:[this.recompensa.pontos, Validators.required],
-        destaque:[this.recompensa.destaque]
+        destaque:[this.recompensa.destaque],
+        url:[this.recompensa.url ]
       
         
         
@@ -62,8 +63,8 @@ export class CriarRecompensaPage {
       sourceType: type == "picture" ? this.camera.PictureSourceType.CAMERA : this.camera.PictureSourceType.SAVEDPHOTOALBUM,
       correctOrientation: true,
       allowEdit: true,
-      targetWidth: 100,
-      targetHeight: 100
+     targetWidth: 500,
+     targetHeight: 500
 }
   
   
@@ -87,7 +88,14 @@ this.camera.getPicture(options)
       if(this.form.valid){
         
           this.recompProvider.uploadAndSave(this.form.value, this.image)
-            .then(()=> {
+
+          this.navCtrl.pop();
+            
+      }
+  }  
+
+
+/*.then(()=> {
                            
                 this.toast.create({ message: 'Recompensa Adicionada', duration: 3000}).present();
                 this.navCtrl.pop();
@@ -95,12 +103,7 @@ this.camera.getPicture(options)
             .catch((e)=>{
                 this.toast.create({ message: 'Falha ao gravar os dados', duration:3000}).present();
                 console.error(e);
-            })
-      }
-  }  
-
-
-
+            }) */
 
 
 

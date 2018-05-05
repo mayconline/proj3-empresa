@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import {AngularFireDatabase } from 'angularfire2/database';
 import { FirebaseApp } from 'angularfire2';
 import * as firebase from 'firebase';
+import { ToastController} from 'ionic-angular';
 
 
 
@@ -11,7 +12,8 @@ export class RecompensasProvider {
 
     private PATH = 'recompensas/';
     
-  constructor( private afDb: AngularFireDatabase, private fb:FirebaseApp) {
+  constructor( private afDb: AngularFireDatabase, private fb:FirebaseApp,
+  private toast:ToastController) {
     
     
   }
@@ -82,6 +84,7 @@ export class RecompensasProvider {
 
 }
 
+//UP LOAD DA IMAGEM COM A RECOMPENSA //
 
 public uploadAndSave(recompensa: any, image:any) {
  // let recompensa = { key: recompensa.key, nome: recompensa.nome, pontos: recompensa.pontos, destaque: recompensa.destaque, url:'', fullPath: '' };
@@ -102,10 +105,22 @@ public uploadAndSave(recompensa: any, image:any) {
     .then((snapshot)=>{
   
      recompensa.url = snapshot.downloadURL
-     alert('concluido')
+     
 
      this.save(recompensa);
+
+     this.toast.create({ message: 'Recompensa Adicionada', duration: 3000}).present();
+     
+
+
+
+     
       }) 
+
+      .catch((e)=>{
+        this.toast.create({ message: 'Falha ao gravar os dados', duration:3000}).present();
+        console.error(e);
+    })
 
 
     
