@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
-import { PontosProvider } from '../../providers/pontos/pontos';
+import { UsuariosProvider } from '../../providers/usuarios/usuarios';
 
 /**
  * Generated class for the PontosPage page.
@@ -17,26 +17,29 @@ import { PontosProvider } from '../../providers/pontos/pontos';
 })
 export class PontosPage {
 
-  pontos:Observable<any>;
+  usuarios:Observable<any>;
 
-  constructor( private pontosService:PontosProvider,private toast:ToastController,
+  constructor( private usuarioProvider: UsuariosProvider,private toast:ToastController,
     public navCtrl: NavController, public navParams: NavParams) {
 
-    this.pontos = this.pontosService.getAll();
+   
+      this.usuarios = this.usuarioProvider.getUserAll();
   }
+
 
 
 // crud //
+/*
   inserirPonto(){
     this.navCtrl.push('InserirPontosPage');
+  }*/
+
+
+inserirPonto(usuario:any){
+    this.navCtrl.push('InserirPontosPage', {usuario:usuario});
+
   }
-
-
-  editarPonto(ponto:any){
-    this.navCtrl.push('InserirPontosPage', {ponto:ponto});
-
-  }
-
+/*
    removerPonto(key:string){
      this.pontosService.remove(key)
        .then(()=>{
@@ -50,7 +53,7 @@ export class PontosPage {
          console.error(e);
 
        })
-  }
+  }*/
   
 
 }

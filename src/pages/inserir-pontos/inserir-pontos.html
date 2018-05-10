@@ -14,9 +14,16 @@
 
 
 <ion-content padding>
+    <h1 ion-text>Insira os Dados da Nota </h1>
 
     <form [formGroup]="form">
                
+
+      <ion-item>
+        <ion-label stacked>Usuario</ion-label>
+        <ion-input type="text" formControlName="NomeUser"></ion-input>
+      </ion-item>
+
         <ion-item>
           <ion-label stacked>Nota</ion-label>
           <ion-input type="tel" formControlName="nota"></ion-input>
@@ -26,28 +33,15 @@
           <ion-label stacked>valor</ion-label>
           <ion-input type="tel" formControlName="valor"></ion-input>
         </ion-item>
-    
-
-        <ion-item>
-            <ion-label stacked>cpf</ion-label>
-            <ion-input type="tel" formControlName="cpf"></ion-input>
-          </ion-item>
+     
 
           
-        <ion-item>
-          <ion-label stacked>pontos</ion-label>
-          <ion-input type="tel" formControlName="quantPontos"></ion-input>
-        </ion-item>
-
-
-        <ion-item>
-            <ion-label stacked>status</ion-label>
-
-            <ion-select formControlName="status">
-                <ion-option value="Solicitado">Solicitado</ion-option>
-                <ion-option value="Entregue">Entregue</ion-option>
-              </ion-select>
+          <ion-item>
+            <ion-label stacked>Status</ion-label>
+            <ion-input type="text" formControlName="status"></ion-input>
           </ion-item>
+
+       
     
         <div padding>
           <button ion-button block type="submit" [disabled]="!form.valid" (click)="onSubmit()">Salvar</button>
@@ -55,5 +49,5 @@
     </form>
 
 
-
+{{form.value | json}}
 </ion-content>

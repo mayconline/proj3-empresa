@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { PontosProvider } from '../../providers/pontos/pontos';
 import { UsuariosProvider } from '../../providers/usuarios/usuarios';
 import { Observable } from 'rxjs/Observable';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 @IonicPage()
 @Component({
@@ -14,30 +15,42 @@ export class InserirPontosPage {
 
   ponto:any;
   form:FormGroup;
+  usuario:any
   
 
   constructor( private formBuilder:FormBuilder, private pontosProvider:PontosProvider, private usuarioProvider:UsuariosProvider,
-    public navCtrl: NavController, public navParams: NavParams, private toast:ToastController) {
+    public navCtrl: NavController, public navParams: NavParams, private toast:ToastController,
+  private afDb:AngularFireDatabase) {
 
+      this.usuario = this.navParams.data.usuario || {};
 
       
-    this.ponto = this.navParams.data.ponto || {};
+      console.log(this.usuario)  
+  
     this.createForm();
     
     
   }
 
+ 
+
+    
+
 
   private createForm() {
-
+    
+   
 
     this.form = this.formBuilder.group({
-      key:[this.ponto.key],
-      nota: [this.ponto.nota],
-      valor: [this.ponto.valor],
-      cpf: [this.ponto.cpf],
-      quantPontos:[this.ponto.valor /10],
-      status:[this.ponto.status]
+
+      nota: [''],
+      valor: [''],
+      cpf: [this.usuario.cpf],
+      status:['Creditado'],
+      Userkey:[this.usuario.key],
+      NomeUser:[this.usuario.name],
+      quantPontos:[10]
+      
     });
   }
 
@@ -45,10 +58,36 @@ export class InserirPontosPage {
     this.form.value.quantPontos
   }
 
+  insertPontos(quantPontos){
+  
+
+    return this.usuario.pontos = this.usuario.pontos + quantPontos
+  
+  };
+
+  // atualiza pontos do usuario ao resgatar um produto 
+atualizaPonto(usuario){
+  return new Promise((resolve, reject) => {
+
+          this.afDb.list('userProfile/')
+            .update(this.usuario.key, {pontos: this.usuario.pontos})
+            .then(()=> resolve())
+            .catch((e)=> reject(e));
+    
+  });
+
+};
+
 
   onSubmit(){
     if(this.form.valid){
+
+    this.insertPontos(this.form.value.quantPontos)
+     
+     this.atualizaPonto(this.usuario)
+
         this.pontosProvider.save(this.form.value)
+       
           .then(()=> {
               this.toast.create({ message: 'Pontos inseridos', duration: 3000}).present();
               this.navCtrl.pop();

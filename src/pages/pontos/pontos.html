@@ -14,41 +14,33 @@
 
 
 <ion-content padding>
+   
     <ion-list>     
-        <ion-item-sliding *ngFor="let ponto of pontos | async">  
+        <ion-item-sliding *ngFor="let usuario of usuarios | async">  
             <ion-item >
-               
-                <h2>{{ponto.nota}}</h2>
-                <p>R$ {{ponto.valor}} </p>
-                <p>{{ponto.status}}</p>
-                <p> {{ponto.quantPontos}} Pontos</p>
-                <p>{{ponto.cpf}}</p>
+               <ion-avatar item-start>
+                <img src="">
+               </ion-avatar>
+                <h2>{{usuario.name}}</h2>
+                <p>{{usuario.cpf}}</p>
+                <p>{{usuario.pontos}} Pontos</p>
 
-                <button  color="secondary" ion-button  item-content clear>
-                       <ion-icon name="cart"> Resgatar</ion-icon>
-                     </button>
+                
             </ion-item>
 
             <ion-item-options side="left"> 
                
-               <button ion-button color="primary" (click)="editarPonto(ponto)">
-                   <ion-icon name="create"> Editar</ion-icon>
+               <button ion-button color="primary" (click)="inserirPonto(usuario)">
+                   <ion-icon name="create"> Inserir Pontos</ion-icon>
                </button>
 
-               <button ion-button color="danger" (click)="removerPonto(ponto.key)">
-                       <ion-icon name="trash"> Remover</ion-icon>
-                   </button>
-
-
+             
             </ion-item-options>
 
        </ion-item-sliding>
 </ion-list>
 
-<ion-fab right botton  (click)="inserirPonto()">
-    <button ion-fab color="secondary" item-content>
-        <ion-icon name="add"></ion-icon></button>
-        </ion-fab>      
+
 
   
 
