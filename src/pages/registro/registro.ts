@@ -26,6 +26,7 @@ export class RegistroPage {
   
   }
 
+
   private createForm() {
     this.form = this.formBuilder.group({
       
@@ -33,7 +34,7 @@ export class RegistroPage {
       cpf: [''],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
-      pontos:['']
+      pontos:[0]
     });
   }
 

@@ -7,6 +7,7 @@ import * as firebase from 'firebase/app';
 @Injectable()
 export class AuthServiceProvider {
 
+
   private PATH = 'userProfile/'
 
   constructor(private afAuth:AngularFireAuth, private afDb: AngularFireDatabase ) {
@@ -16,6 +17,7 @@ export class AuthServiceProvider {
 
 //criar usuario //
   registrar(user:any) {
+    
 
     return new Promise((resolve, reject) => {
       this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password)

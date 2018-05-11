@@ -28,8 +28,7 @@ export class InserirPontosPage {
       console.log(this.usuario)  
   
     this.createForm();
-    
-    
+  
   }
 
  
@@ -39,28 +38,29 @@ export class InserirPontosPage {
 
   private createForm() {
     
-   
+    
 
     this.form = this.formBuilder.group({
-
+     
+    
       nota: [''],
-      valor: [''],
+      valor: [0],
       cpf: [this.usuario.cpf],
       status:['Creditado'],
       Userkey:[this.usuario.key],
       NomeUser:[this.usuario.name],
-      quantPontos:[10]
+      quantPontos:[0]
       
     });
   }
 
-  somaPonto(){
-    this.form.value.quantPontos
+  somaPonto(valor){
+   return this.form.value.quantPontos = valor / 10
   }
 
   insertPontos(quantPontos){
   
-
+  
     return this.usuario.pontos = this.usuario.pontos + quantPontos
   
   };
@@ -81,7 +81,8 @@ atualizaPonto(usuario){
 
   onSubmit(){
     if(this.form.valid){
-
+     
+      this.somaPonto(this.form.value.valor);
     this.insertPontos(this.form.value.quantPontos)
      
      this.atualizaPonto(this.usuario)
