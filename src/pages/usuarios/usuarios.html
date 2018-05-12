@@ -37,12 +37,10 @@
                   <ion-list>     
                              <ion-item-sliding *ngFor="let usuario of usuarios | async">  
                                  <ion-item >
-                                    <ion-avatar item-start>
-                                     <img src="">
-                                    </ion-avatar>
-                                     <h2>{{usuario.name}}</h2>
-                                     <p>{{usuario.cpf}}</p>
-                                     <p>{{usuario.pontos}}</p>
+                                        <ion-icon item-start item-content name="person"></ion-icon>
+                                     <h2> Nome: {{usuario.name}}</h2>
+                                     <p>CPF : {{usuario.cpf}}</p>
+                                     <p>{{usuario.pontos}} Pontos Atuais</p>
 
                                      
                                  </ion-item>

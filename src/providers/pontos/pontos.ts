@@ -17,9 +17,9 @@ export class PontosProvider {
   }
 
 
-  getAll(){
+  getAllNome(){
     
-    return this.afDb.list(this.PATH, ref=> ref.orderByChild('cpf'))
+    return this.afDb.list(this.PATH, ref=> ref.orderByChild('nota'))
     .snapshotChanges()
     .map(changes =>{
         return changes.map(p =>({ key: p.payload.key,...p.payload.val() }));
@@ -31,7 +31,7 @@ export class PontosProvider {
 }
 
 
-// atualiza pontos do usuario ao resgatar um produto 
+/*// atualiza pontos do usuario ao resgatar um produto 
 atualizaPonto(user){
   return new Promise((resolve, reject) => {
 
@@ -42,7 +42,7 @@ atualizaPonto(user){
     
   });
 
-};
+};*/
 
 /*calcQuantPontos(valor){
   return this.ponto.quantPontos = this.valor / 10

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { UsuariosProvider } from '../../providers/usuarios/usuarios';
+import { PontosProvider } from '../../providers/pontos/pontos';
 
 /**
  * Generated class for the PontosPage page.
@@ -18,28 +19,27 @@ import { UsuariosProvider } from '../../providers/usuarios/usuarios';
 export class PontosPage {
 
   usuarios:Observable<any>;
-
-  constructor( private usuarioProvider: UsuariosProvider,private toast:ToastController,
+  notas:Observable<any>;
+  constructor( private usuarioProvider: UsuariosProvider,
+    private pontosProvider:PontosProvider,
+    private toast:ToastController,
     public navCtrl: NavController, public navParams: NavParams) {
 
    
-      this.usuarios = this.usuarioProvider.getUserAll();
   }
 
 
 
 // crud //
-/*
-  inserirPonto(){
-    this.navCtrl.push('InserirPontosPage');
-  }*/
+
 
 
 inserirPonto(usuario:any){
     this.navCtrl.push('InserirPontosPage', {usuario:usuario});
 
   }
-/*
+
+  /*
    removerPonto(key:string){
      this.pontosService.remove(key)
        .then(()=>{
@@ -54,6 +54,63 @@ inserirPonto(usuario:any){
 
        })
   }*/
+
+
+   // searchbar //
+
+   getItems(ev: any) {
+    // Reset items back to all of the items
+    this.usuarios = this.usuarioProvider.getUserAll();
+    
+
+    // set val to the value of the searchbar
+    let val = ev.target.value;
+
+    // if the value is an empty string don't filter the items
+    if (val && val.trim() != '') {
+      this.usuarios = this.usuarios
+        .map(pessoaList => pessoaList.filter((v) => {
+           
+               return v.cpf.toLowerCase().indexOf(val.toLowerCase()) !== -1;
+            
+        }));
+     
+    }
+  } // searchbar selecione user //
+
+  // searchbar historico//
+
+  getHist(ev: any) {
+    // Reset items back to all of the items
+    
+    this.notas = this.pontosProvider.getAllNome();
+
+    // set val to the value of the searchbar
+    let val = ev.target.value;
+
+    // if the value is an empty string don't filter the items
+    if (val && val.trim() != '') {
+      this.notas = this.notas
+        .map(notaList => notaList.filter((v) => {
+           
+               return v.cpf.toLowerCase().indexOf(val.toLowerCase()) !== -1;
+            
+        }));
+     
+    }
+  } // searchbar //
+
+
+
+ 
+  ionViewWillLoad(){
+          //recupera e inicializa os itens do banco //
+          
+      this.usuarios = this.usuarioProvider.getUserAll();
+      this.notas = this.pontosProvider.getAllNome();
+
+  } 
+
   
 
 }

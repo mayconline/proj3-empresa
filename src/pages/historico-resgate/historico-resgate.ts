@@ -14,11 +14,13 @@ export class HistoricoResgatePage {
   user:any = {};
   resgates:any;
   entregues:any;
+  
 
   constructor( private afAuth:AngularFireAuth, private resgateService:VendasProvider,
     public authService:AuthServiceProvider, private toast:ToastController,
     public navCtrl: NavController, public navParams: NavParams) {
 
+    
       //verifica os dados do usuario logado //
       
     this.afAuth.authState.subscribe(firebaseUser =>{
