@@ -14,7 +14,7 @@ export class HistoricoResgatePage {
   user:any = {};
   resgates:any;
   entregues:any;
-  
+  status:any = "solicitados"
 
   constructor( private afAuth:AngularFireAuth, private resgateService:VendasProvider,
     public authService:AuthServiceProvider, private toast:ToastController,

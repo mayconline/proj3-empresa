@@ -18,6 +18,8 @@ import { PontosProvider } from '../../providers/pontos/pontos';
 })
 export class PontosPage {
 
+  pontos:any = "Historico";
+
   usuarios:Observable<any>;
   notas:Observable<any>;
   constructor( private usuarioProvider: UsuariosProvider,
