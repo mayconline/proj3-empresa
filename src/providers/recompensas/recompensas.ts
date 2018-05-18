@@ -89,7 +89,7 @@ public uploadAndSave(recompensa: any, image:any) {
 
     imageRef.putString(image,firebase.storage.StringFormat.DATA_URL)
     
-
+    
 
     .then((snapshot)=>{
   
@@ -150,6 +150,8 @@ public uploadAndSave(recompensa: any, image:any) {
     })
   }
 
+
+  
 
 }
 

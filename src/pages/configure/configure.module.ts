@@ -4,6 +4,8 @@ import { ConfigurePage } from './configure';
 import { UsuariosPageModule } from '../usuarios/usuarios.module';
 import { PontosPageModule } from '../pontos/pontos.module';
 
+import { NoticiasPageModule } from '../noticias/noticias.module';
+
 
 
 @NgModule({
@@ -13,7 +15,8 @@ import { PontosPageModule } from '../pontos/pontos.module';
   imports: [
     IonicPageModule.forChild(ConfigurePage),
     UsuariosPageModule,
-    PontosPageModule
+    PontosPageModule,
+    NoticiasPageModule
   ],
 })
 export class ConfigurePageModule {}

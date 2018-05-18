@@ -59,6 +59,10 @@ irPontos(){
   this.navCtrl.push('PontosPage')
 }
 
+irNew(){
+  this.navCtrl.push('NoticiasPage')
+}
+
 }
 
 //data && data.email && data.uid

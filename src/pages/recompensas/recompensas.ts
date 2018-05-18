@@ -23,6 +23,7 @@ export class RecompensasPage {
  
   }
   
+  
   //navegação
  abrirModal(recompensa: Observable<any>){
    
@@ -72,6 +73,7 @@ obterUser(){
      this.navCtrl.push('CriarRecompensaPage', {recompensa:recompensa});
 
    }
+   
 
     removerRecomp(recompensa:any){
       this.recompProvider.remove(recompensa)

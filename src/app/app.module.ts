@@ -18,6 +18,7 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { UsuariosProvider } from '../providers/usuarios/usuarios';
 import { PontosProvider } from '../providers/pontos/pontos';
 import { VendasProvider } from '../providers/vendas/vendas';
+import { NewsProvider } from '../providers/news/news';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { VendasProvider } from '../providers/vendas/vendas';
     PontosProvider,
     VendasProvider,
     Camera,
-    LoadingController
+    LoadingController,
+    NewsProvider
 
   ]
 })
