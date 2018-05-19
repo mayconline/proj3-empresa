@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams} from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
-import { Observable } from 'rxjs/Observable';
+
 import { AngularFireAuth } from 'angularfire2/auth';
 
 
@@ -65,4 +65,3 @@ irNew(){
 
 }
 
-//data && data.email && data.uid

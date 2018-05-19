@@ -24,7 +24,7 @@
                   <ion-item>
                         <ion-label stacked >Titulo</ion-label>
                         <ion-input type="text" formControlName="titulo" ></ion-input>
-                        <ion-icon name="person" item-end></ion-icon>
+                        <ion-icon name="flame" item-end></ion-icon>
                     </ion-item>
                     <ion-item *ngIf="!form.controls.titulo.valid && (form.controls.titulo.dirty || form.controls.titulo.touched)" color="danger">
                       <div [hidden]="!form.controls.titulo.errors.required">
@@ -36,8 +36,8 @@
                    
                     <ion-item>
                         <ion-label stacked >Descrição</ion-label>
-                        <ion-input type="tel" formControlName="descricao"></ion-input>
-                        <ion-icon name="pricetag" item-end></ion-icon>
+                        <ion-textarea type="text" formControlName="descricao"></ion-textarea>
+                        <ion-icon name="megaphone" item-end></ion-icon>
                     </ion-item>
                     <ion-item *ngIf="!form.controls.descricao.valid && (form.controls.descricao.dirty || form.controls.descricao.touched)" color="danger">
                       <div [hidden]="!form.controls.descricao.errors.required">
@@ -47,13 +47,8 @@
                     </ion-item>
               
               
-                    <ion-item>
-                        <ion-label>Colocar em Destaque</ion-label>
-                        <ion-checkbox color="red" checked="true" formControlName="destaque"></ion-checkbox>
-                        <ion-icon name="star" item-end></ion-icon>
-                      </ion-item>
   
-                      <ion-item>
+                      <ion-item *ngIf="image">
                           <ion-avatar item-start>
                               <img src="{{ image }}">
                              </ion-avatar>
@@ -61,6 +56,7 @@
   
   
                       <ion-row no-padding>
+                        <ion-col col-12 text-center><p>Selecione uma Imagem</p></ion-col>
                           <ion-col col-6>
                             <button ion-button clear small color="primary" icon-left (click)="takePicture('picture')">
                               <ion-icon name='camera'></ion-icon>
@@ -77,6 +73,11 @@
                         </ion-row>
   
                      
+                    <ion-item>
+                        <ion-label>Colocar em Destaque</ion-label>
+                        <ion-checkbox color="red" checked="true" formControlName="destaque"></ion-checkbox>
+                        <ion-icon name="star" item-end></ion-icon>
+                      </ion-item>
               
                     <div padding>
                         <button ion-button block type="submit" [disabled]="!image" (click)="onSubmit()">Salvar</button>
@@ -122,30 +123,9 @@
                         <ion-icon name="star" item-end></ion-icon>
                       </ion-item>
   
-                      <ion-item>
-                          <ion-avatar item-start>
-                              <img src="{{ image }}">
-                             </ion-avatar>
-                      </ion-item>
   
   
-                      <ion-row no-padding>
-                          <ion-col col-6>
-                            <button ion-button clear small color="primary" icon-left (click)="takePicture('picture')">
-                              <ion-icon name='camera'></ion-icon>
-                              Câmera
-                            </button>
-                          </ion-col>
-                          <ion-col text-center col-6>
-                            <button ion-button clear small color="primary" icon-left (click)="takePicture('gallery')">
-                              <ion-icon name='albums'></ion-icon>
-                              Galeria
-                            </button>
-                          </ion-col>
-                    
-                        </ion-row>
-  
-                     
+                      
               
                     <div padding>
                         <button ion-button block type="submit" [disabled]="!form.value" (click)="onSubmit()">Salvar</button>

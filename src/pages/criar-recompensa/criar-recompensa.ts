@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { RecompensasProvider } from '../../providers/recompensas/recompensas';
 import { FormBuilder, FormGroup,Validators} from '@angular/forms';
 import { Camera, CameraOptions } from '@ionic-native/camera';
@@ -21,7 +21,7 @@ export class CriarRecompensaPage {
   
 
 
-  constructor( private formBuilder: FormBuilder,private toast: ToastController, private camera:Camera,
+  constructor( private formBuilder: FormBuilder,private camera:Camera,
     public navCtrl: NavController, public navParams: NavParams, private recompProvider:RecompensasProvider,
       private loadingCtrl: LoadingController) {
 
@@ -119,15 +119,6 @@ loadCreate(){
 
 }
 
-/*.then(()=> {
-                           
-                this.toast.create({ message: 'Recompensa Adicionada', duration: 3000}).present();
-                this.navCtrl.pop();
-            })
-            .catch((e)=>{
-                this.toast.create({ message: 'Falha ao gravar os dados', duration:3000}).present();
-                console.error(e);
-            }) */
 
 
 

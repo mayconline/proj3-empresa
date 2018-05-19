@@ -41,9 +41,9 @@ inserirPonto(usuario:any){
 
   }
 
-  /*
+  
    removerPonto(key:string){
-     this.pontosService.remove(key)
+     this.pontosProvider.remove(key)
        .then(()=>{
 
          this.toast.create({ message: 'Removido com Sucesso', duration:3000}).present();
@@ -55,8 +55,9 @@ inserirPonto(usuario:any){
          console.error(e);
 
        })
-  }*/
+  }
 
+  
 
    // searchbar //
 

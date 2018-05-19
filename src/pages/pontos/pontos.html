@@ -103,14 +103,24 @@
                             
                         </ion-item>
             
-                       <!-- <ion-item-options side="left"> 
-                           
-                           <button ion-button color="primary" (click)="inserirPonto(usuario)">
-                               <ion-icon name="create"> Inserir Pontos</ion-icon>
-                           </button>
             
-                         
-                        </ion-item-options> -->
+                        <ion-item-options side="left"> 
+                                    
+                              <!--  <button ion-button color="primary" (click)="editarRecomp(recompensa)">
+                                    <ion-icon name="create"> Editar</ion-icon>
+                                </button> -->
+
+                                
+
+                                <button ion-button color="danger" (click)="removerPonto(nota.key)">
+                                        <ion-icon name="trash"> Remover</ion-icon>
+                                    </button>
+
+                             </ion-item-options>
+             
+
+                             
+            
             
                    </ion-item-sliding>
                   

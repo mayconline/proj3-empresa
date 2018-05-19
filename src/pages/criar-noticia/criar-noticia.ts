@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { FormBuilder, FormGroup,Validators} from '@angular/forms';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { NewsProvider } from '../../providers/news/news';
@@ -24,7 +24,7 @@ export class CriarNoticiaPage {
   image: any;
   
   constructor(public navCtrl: NavController, public navParams: NavParams,
-  private formBuilder:FormBuilder, private toast:ToastController, private camera:Camera,
+  private formBuilder:FormBuilder,  private camera:Camera,
 private newservice:NewsProvider, private loadingCtrl:LoadingController) {
 
   this.noticia = this.navParams.data.noticia || {};
@@ -65,8 +65,8 @@ private newservice:NewsProvider, private loadingCtrl:LoadingController) {
       sourceType: type == "picture" ? this.camera.PictureSourceType.CAMERA : this.camera.PictureSourceType.SAVEDPHOTOALBUM,
       correctOrientation: true,
       allowEdit: true,
-     targetWidth: 500,
-     targetHeight: 500
+     targetWidth: 300,
+     targetHeight: 150
 }
   
   

@@ -88,7 +88,7 @@ public uploadAndSave(noticia: any, image:any) {
    
  
      let storageRef = this.fb.storage().ref();
-     const filename = noticia.nome  
+     const filename = noticia.titulo 
      const basePath = `news/${filename}.jpg`
  
      noticia.fullPath = basePath

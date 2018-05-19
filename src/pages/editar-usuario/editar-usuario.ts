@@ -23,12 +23,12 @@ export class EditarUsuarioPage {
     private createForm() {
       this.form = this.formBuilder.group({
         key:[this.usuario.key],
-        name: [this.usuario.name],
-        cpf: [this.usuario.cpf],
+        name: [this.usuario.name, [Validators.required] ],
+        cpf: [this.usuario.cpf, [Validators.required] ],
         pontos:[this.usuario.pontos]
       });
 
-     
+      
     }
 
 

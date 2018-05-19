@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { PontosProvider } from '../../providers/pontos/pontos';
-import { UsuariosProvider } from '../../providers/usuarios/usuarios';
-import { Observable } from 'rxjs/Observable';
+
+
 import { AngularFireDatabase } from 'angularfire2/database';
 
 @IonicPage()
@@ -18,7 +18,7 @@ export class InserirPontosPage {
   usuario:any
   
 
-  constructor( private formBuilder:FormBuilder, private pontosProvider:PontosProvider, private usuarioProvider:UsuariosProvider,
+  constructor( private formBuilder:FormBuilder, private pontosProvider:PontosProvider, 
     public navCtrl: NavController, public navParams: NavParams, private toast:ToastController,
   private afDb:AngularFireDatabase) {
 

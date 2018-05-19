@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, Thumbnail, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController,ToastController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { FormBuilder, FormGroup,Validators} from '@angular/forms';
@@ -39,7 +39,7 @@ export class ModalRecompensaPage {
     this.form = this.formBuilder.group({
 
       prodKey:[this.prod.key],
-      prodNome:[this.prod.nome],
+      prodNome:[this.prod.nome, [Validators.required]],
       status:['Solicitado'],
       pontosProd: [this.prod.pontos]
 
