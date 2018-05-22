@@ -27,7 +27,7 @@ export class AuthServiceProvider {
             
             name: user.name,
             cpf: user.cpf,
-            email:user,
+            email:user.email,
             pontos: user.pontos
 
           });
