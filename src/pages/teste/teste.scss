@@ -1,0 +1,41 @@
+page-teste {
+ .barraCinza {
+     width: 70px;
+     height:5px;
+     background-color: grey;   
+     float: left;
+     margin:20px 0 0 0
+ }
+ .barraVerde {
+    width: 70px;
+    height:5px;
+    background-color: green;   
+    float: left;
+    margin:20px 0 0 0
+}
+
+
+ .iconeVerde{
+    font-size: 40px; //Preferred size here
+    float: left;
+    color:green;
+   
+    
+}
+.iconePreto {
+    font-size: 40px; //Preferred size here
+    float: left;
+    color: grey;
+   
+}
+
+.item1{
+    text-align: center;
+    margin: auto;
+}
+.texto{
+    font-size: 1rem;
+}
+
+
+}
