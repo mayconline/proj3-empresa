@@ -4,16 +4,25 @@ page-teste {
      height:5px;
      background-color: grey;   
      float: left;
-     margin:20px 0 0 0
+     margin:20px 5px 5px 0;
+
  }
  .barraVerde {
     width: 70px;
     height:5px;
     background-color: green;   
     float: left;
-    margin:20px 0 0 0
-}
+    margin:20px 5px 5px 0;
 
+}
+.barraVerde2 {
+    width: 70px;
+    height:5px;
+    background-color: green;   
+    float: left;
+    margin:20px 5px 5px 0;
+
+}
 
  .iconeVerde{
     font-size: 40px; //Preferred size here
@@ -22,7 +31,22 @@ page-teste {
    
     
 }
+
+
+.iconeVerde2{
+    font-size: 40px; //Preferred size here
+    float: left;
+    color:green;
+   
+    
+}
 .iconePreto {
+    font-size: 40px; //Preferred size here
+    float: left;
+    color: grey;
+   
+}
+.iconePreto2 {
     font-size: 40px; //Preferred size here
     float: left;
     color: grey;

@@ -16,22 +16,38 @@
 <ion-content padding>
 
 
+
    
+
+    <ion-select #status>
+        <ion-option [value]="Solicitado" >Solicitado</ion-option>
+        <ion-option [value]="Aguardando">Aguardando</ion-option>
+        <ion-option [value]="Entregue">Entregue</ion-option>
+      </ion-select>
+    <div class="iconeVerde"><ion-icon item-content item-start  name='paper-plane'><p class="texto">Solicitado</p></ion-icon></div>     
+    <div class="barraVerde"></div>
+    <div [ngClass]="{'iconePreto':status.value === 'Solicitado','iconeVerde':status.value === 'Aguardando',  'iconeVerde2':status.value === 'Entregue'}"><ion-icon item-content item-start  name='clock'><p class="texto">Aguardando</p></ion-icon></div>
+    <div [ngClass]="{'barraCinza': status.value ==='Solicitado','barraVerde2': status.value ==='Entregue','barraVerde': status.value ==='Aguardando' }"></div>
+    <div [ngClass]="{'iconePreto':status.value === 'Solicitado', 'iconePreto2':status.value === 'Aguardando','iconeVerde':status.value === 'Entregue'}" ><ion-icon item-content item-start  name='checkmark-circle'><p class="texto">Finalizado</p></ion-icon></div>
+     
+ 
+  
+
    <!-- <ion-icon  item-start  name='camera'></ion-icon> -->
-   <ion-grid>
+  <!-- <ion-grid>
      <ion-row justify-content-center>
        <ion-col col-12 >
-         <div class="item1">
-          <div class="iconeVerde">
+         
+          <div class="iconePreto">
               <ion-icon item-content item-start  name='paper-plane'><p class="texto">Solicitado</p></ion-icon></div>     
           <div class="barraVerde"></div>
-          <div class="iconeVerde"><ion-icon item-content item-start  name='clock'><p class="texto">Aguardando</p></ion-icon></div>
+          <div class="iconePreto"><ion-icon item-content item-start  name='clock'><p class="texto">Aguardando</p></ion-icon></div>
           <div class="barraCinza"></div>
           <div class="iconePreto"><ion-icon item-content item-start  name='checkmark-circle'><p class="texto">Finalizado</p></ion-icon></div>
-        </div>
+        
        </ion-col>
      </ion-row>
-   </ion-grid>
+   </ion-grid> -->
 
   
 
