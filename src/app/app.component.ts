@@ -10,17 +10,17 @@ import { AngularFireAuth } from 'angularfire2/auth';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = 'TestePage'
+  rootPage:any
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, afAuth: AngularFireAuth) {
 
-    /*afAuth.authState.subscribe(user=>{
+    afAuth.authState.subscribe(user=>{
         if(user){
           this.rootPage = 'TabsPage'
         } else{
           this.rootPage = 'LoginPage'
         }
-    }); */
+    }); 
 
     
     platform.ready().then(() => {

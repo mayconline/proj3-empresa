@@ -19,7 +19,6 @@ import { UsuariosProvider } from '../providers/usuarios/usuarios';
 import { PontosProvider } from '../providers/pontos/pontos';
 import { VendasProvider } from '../providers/vendas/vendas';
 import { NewsProvider } from '../providers/news/news';
-import { TestePageModule } from '../pages/teste/teste.module';
 
 @NgModule({
   declarations: [
@@ -32,8 +31,8 @@ import { TestePageModule } from '../pages/teste/teste.module';
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    LoginPageModule,
-    TestePageModule
+    LoginPageModule
+  
   ],
   bootstrap: [IonicApp],
   entryComponents: [

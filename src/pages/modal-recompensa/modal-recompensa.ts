@@ -4,6 +4,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { FormBuilder, FormGroup,Validators} from '@angular/forms';
 import { VendasProvider } from '../../providers/vendas/vendas';
+import * as moment from 'moment';
 
 
 
@@ -27,13 +28,31 @@ export class ModalRecompensaPage {
   user:any = {}; 
   form:FormGroup;
   status:any;
+  date:any;
+  dateEntrega:any;
+
   constructor( private toast: ToastController,
     private afAuth:AngularFireAuth, private authService:AuthServiceProvider, private formBuilder:FormBuilder,
-    public navCtrl: NavController, public navParams: NavParams, public view: ViewController, private resgateService:VendasProvider) {
+    public navCtrl: NavController, public navParams: NavParams, 
+    public view: ViewController, 
+    private resgateService:VendasProvider) {
+      
+      this.formDate();
+     this.formDateEntrega();
 
-    
   }
 
+
+  formDate(){
+    this.date = moment.locale('pt-br');
+    this.date = moment().format('L, h:mm a');
+
+  }
+
+  formDateEntrega(){
+    this.dateEntrega = moment.locale('pt-br');
+    this.dateEntrega = moment().add(2, 'days').format('L, h:mm a');
+  }
   
   createForm(){
     this.form = this.formBuilder.group({
@@ -41,8 +60,10 @@ export class ModalRecompensaPage {
       prodKey:[this.prod.key],
       prodNome:[this.prod.nome, [Validators.required]],
       status:['Solicitado'],
-      pontosProd: [this.prod.pontos]
-
+      pontosProd: [this.prod.pontos],
+      dataResgate:[this.date],
+      dataEntrega:[this.dateEntrega],
+      url:[this.prod.url] 
     }); 
    }
 
@@ -98,6 +119,7 @@ onSubmit(){
   
 this.prod = this.navParams.data.recompensa || {};
 this.createForm();
+
 
 
 

@@ -1,3 +1,46 @@
 page-modal-recompensa {
+    .barraVerde {
+        width: 70px;
+        height:5px;
+        background-color: green;   
+        float: left;
+        margin:20px 5px 5px 0;
+    
+    }
+  
+
+    .barraCinza {
+        width: 70px;
+        height:5px;
+        background-color: grey;   
+        float: left; 
+        margin:20px 5px 5px 0;
+   
+    }
+
+    .iconeVerde{
+        font-size: 40px; //Preferred size here
+        float: left;
+        color:green;
+       
+        
+    }
+    
+  
+    .iconePreto {
+        font-size: 40px; //Preferred size here
+        float: left;
+        color: grey;
+       
+    }
+  
+  .alinha{
+      text-align: center;
+      margin: 0 auto;
+  }
+    .texto{
+        font-size: 1rem;
+    }
+    
 
 }

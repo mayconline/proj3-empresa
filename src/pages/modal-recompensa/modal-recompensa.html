@@ -28,7 +28,7 @@
        
       <ion-row>
         <ion-col col-6>
-          
+           
           <ion-item>
               <ion-label>Produto</ion-label>
               <ion-input type="text" formControlName="prodNome"></ion-input>
@@ -45,29 +45,48 @@
 
         </ion-col>
       </ion-row>
-      
-    <!--    <ion-item>
-            <ion-label> Key Produto</ion-label>
-            <ion-input type="text" formControlName="prodKey" ></ion-input>
-        </ion-item> -->
-          
-       
-       <!--  
-        <ion-item>
-            <ion-label> Status</ion-label>
-            <ion-input type="text" formControlName="status" ></ion-input>
-        </ion-item> -->
        
 
-        <ion-row>
-            <ion-col col-8 offset-4 >  
+        <ion-row >
+            
+          <ion-col col-12>
+            <ion-item>
+                <ion-thumbnail item-start>
+                    <img src="{{ prod.url }}" />
+                  </ion-thumbnail>
+                  <p>Data: {{form.value.dataResgate}}</p>
                   <p>Meus Pontos : {{user.pontos}} </p>
                   <p>Pontos Necessarios: {{prod.pontos}}</p>
-                  <p >Total de Pontos Restantes: {{user.pontos - prod.pontos}}</p>
-                  
+                  <p >Pontos Restantes: {{user.pontos - prod.pontos}}</p>
     
-            </ion-col>
+            </ion-item>
+             
+
+         </ion-col>
+         
           </ion-row>
+ 
+
+
+          <ion-row align-items-center>
+              <ion-col col-12> <h6 text-center>Status do Resgate</h6> </ion-col>
+
+            
+
+              <ion-col col-12 col-sm  align-self-center>
+                  <div class="alinha" text-center>
+                  <div class="iconeVerde"><ion-icon item-content item-start  name='paper-plane'><p class="texto">Solicitado</p></ion-icon></div>     
+                  <div class="barraVerde"></div>
+                  <div class="iconePreto"><ion-icon item-content item-start  name='clock'><p class="texto">Aguardando</p></ion-icon></div>
+                  <div class="barraCinza"></div>
+                  <div class="iconePreto"><ion-icon item-content item-start  name='checkmark-circle'><p class="texto">Finalizado</p></ion-icon></div>
+                </div>
+               
+              </ion-col>
+
+            
+            </ion-row>
+          
 
  <ion-row>
   <ion-col col-12>
@@ -83,7 +102,7 @@
       <ion-row>
           <ion-col col-6>
               <ion-buttons start>
-                  <button (click)="fechar()" ion-button icon-left> 
+                  <button (click)="fechar()"  color="danger" ion-button icon-left> 
                       <ion-icon name="close"></ion-icon>
                     
                     Cancelar</button>
@@ -95,7 +114,7 @@
           <ion-col col-6>
             
               <ion-buttons end>
-                  <button ion-button icon-left type="submit" [disabled]="user.pontos - prod.pontos < 0" (click)="onSubmit()">
+                  <button color="secondary" ion-button icon-left type="submit" [disabled]="user.pontos - prod.pontos < 0" (click)="onSubmit()">
                    
                       <ion-icon name="checkmark"></ion-icon>
                     
@@ -109,8 +128,6 @@
 
 
     </form> 
-
-
 
 </ion-content>
 

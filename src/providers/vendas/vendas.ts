@@ -5,12 +5,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 
 import { AuthServiceProvider } from '../auth-service/auth-service';
 
-/*
-  Generated class for the VendasProvider provider.
 
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class VendasProvider {
 
@@ -112,6 +107,11 @@ export class VendasProvider {
                 userNome: this.user.name,
                 status: resgate.status,
                 pontosProd: resgate.pontosProd,
+                dataResgate: resgate.date, 
+                dataEntrega: resgate.dateEntrega,
+                url: resgate.url
+         
+
                  
                                 
 
