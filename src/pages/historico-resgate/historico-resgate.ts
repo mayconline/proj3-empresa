@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, ModalController } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { VendasProvider } from '../../providers/vendas/vendas';
-
+import { Observable } from 'rxjs/Observable';
 
 @IonicPage()
 @Component({
@@ -12,13 +12,15 @@ import { VendasProvider } from '../../providers/vendas/vendas';
 })
 export class HistoricoResgatePage {
   user:any = {};
-  resgates:any;
+  //resgates:any;
+  resgates: Observable<any>;
   entregues:any;
   status:any = "solicitados"
 
   constructor( private afAuth:AngularFireAuth, private resgateService:VendasProvider,
     public authService:AuthServiceProvider, private toast:ToastController,
-    public navCtrl: NavController, public navParams: NavParams) {
+    public navCtrl: NavController, public navParams: NavParams,
+  public modal: ModalController) {
 
     
       //verifica os dados do usuario logado //
@@ -36,7 +38,14 @@ export class HistoricoResgatePage {
       }
   })
   }
+ 
 
+  abrirModal(resgate: Observable<any>){
+   
+    const meuModal = this.modal.create('ModalResgatePage', {resgate:resgate})
+    meuModal.present();
+    
+ }
 
 
   sair(){

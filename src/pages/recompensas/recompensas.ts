@@ -31,7 +31,7 @@ export class RecompensasPage {
     meuModal.present();
     
  }
-
+ 
 
  irHistoricoResgate(){
    this.navCtrl.push('HistoricoResgatePage');

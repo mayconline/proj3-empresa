@@ -29,8 +29,10 @@ export class ModalRecompensaPage {
   form:FormGroup;
   status:any;
   dataResgate:string;
+  ptbr = moment.locale('pt-br');
+  data =  moment().format('L, LTS');
 
-  data:string ;
+
 
   constructor( private toast: ToastController,
     private afAuth:AngularFireAuth, private authService:AuthServiceProvider, private formBuilder:FormBuilder,
@@ -38,7 +40,6 @@ export class ModalRecompensaPage {
     public view: ViewController, 
     private resgateService:VendasProvider) {
  
-     this.datatemplate();
      this.formDate();
 
   }
@@ -50,12 +51,8 @@ export class ModalRecompensaPage {
   }
 
 
-     datatemplate(){
-    this.data = moment.locale('pt-br');
-    this.data = moment().format('L, h:mm a');
-
-  }
-
+ 
+ 
   
   
   createForm(){
@@ -116,6 +113,11 @@ onSubmit(){
     this.navCtrl.setRoot('HistoricoResgatePage');
   };
   
+
+
+  
+
+
   ionViewWillLoad() {
 
    this.obterUser();      
@@ -123,7 +125,7 @@ onSubmit(){
 this.prod = this.navParams.data.recompensa || {};
 this.createForm();
 
-
+ 
 
 
 
