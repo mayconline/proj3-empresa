@@ -107,8 +107,7 @@ export class VendasProvider {
                 userNome: this.user.name,
                 status: resgate.status,
                 pontosProd: resgate.pontosProd,
-                dataResgate: resgate.date, 
-                dataEntrega: resgate.dateEntrega,
+                dataResgate: resgate.dataResgate, 
                 url: resgate.url
          
 

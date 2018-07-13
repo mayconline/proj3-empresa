@@ -28,31 +28,35 @@ export class ModalRecompensaPage {
   user:any = {}; 
   form:FormGroup;
   status:any;
-  date:any;
-  dateEntrega:any;
+  dataResgate:string;
+
+  data:string ;
 
   constructor( private toast: ToastController,
     private afAuth:AngularFireAuth, private authService:AuthServiceProvider, private formBuilder:FormBuilder,
     public navCtrl: NavController, public navParams: NavParams, 
     public view: ViewController, 
     private resgateService:VendasProvider) {
-      
-      this.formDate();
-     this.formDateEntrega();
+ 
+     this.datatemplate();
+     this.formDate();
 
   }
 
 
   formDate(){
-    this.date = moment.locale('pt-br');
-    this.date = moment().format('L, h:mm a');
+    this.dataResgate = moment.locale('pt-br');
+   this.dataResgate = moment().format('L');
+  }
+
+
+     datatemplate(){
+    this.data = moment.locale('pt-br');
+    this.data = moment().format('L, h:mm a');
 
   }
 
-  formDateEntrega(){
-    this.dateEntrega = moment.locale('pt-br');
-    this.dateEntrega = moment().add(2, 'days').format('L, h:mm a');
-  }
+  
   
   createForm(){
     this.form = this.formBuilder.group({
@@ -61,8 +65,7 @@ export class ModalRecompensaPage {
       prodNome:[this.prod.nome, [Validators.required]],
       status:['Solicitado'],
       pontosProd: [this.prod.pontos],
-      dataResgate:[this.date],
-      dataEntrega:[this.dateEntrega],
+      dataResgate:[this.dataResgate],
       url:[this.prod.url] 
     }); 
    }
