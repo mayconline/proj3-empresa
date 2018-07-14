@@ -4,6 +4,7 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { VendasProvider } from '../../providers/vendas/vendas';
 import { Observable } from 'rxjs/Observable';
+import * as moment from 'moment';
 
 @IonicPage()
 @Component({
@@ -11,78 +12,98 @@ import { Observable } from 'rxjs/Observable';
   templateUrl: 'historico-resgate.html',
 })
 export class HistoricoResgatePage {
-  user:any = {};
-  //resgates:any;
+  user: any = {};
+
   resgates: Observable<any>;
-  entregues:any;
-  status:any = "solicitados"
+  entregues: any;
+  status: any = "solicitados"
 
-  constructor( private afAuth:AngularFireAuth, private resgateService:VendasProvider,
-    public authService:AuthServiceProvider, private toast:ToastController,
+  ptbr = moment.locale('pt-br');
+  dataHoje: any;
+
+  constructor(private afAuth: AngularFireAuth, private resgateService: VendasProvider,
+    public authService: AuthServiceProvider, private toast: ToastController,
     public navCtrl: NavController, public navParams: NavParams,
-  public modal: ModalController) {
+    public modal: ModalController) {
 
-    
-      //verifica os dados do usuario logado //
-      
-    this.afAuth.authState.subscribe(firebaseUser =>{
-      if(firebaseUser){
-        const usuarioLogado = authService.getUserInfo().subscribe(userData =>{
-          this.user = userData;
 
-          usuarioLogado.unsubscribe();
+    this.dataAtual();
 
-        })
-      }else {
-        this.user = {};
-      }
-  })
   }
+
+
+  dataAtual() {
+
+    this.dataHoje = moment.locale('pt-br');
+
+    this.dataHoje =  moment().toJSON();
+  
+  }
+
  
 
-  abrirModal(resgate: Observable<any>){
-   
-    const meuModal = this.modal.create('ModalResgatePage', {resgate:resgate})
+  abrirModal(resgate: Observable<any>) {
+
+    const meuModal = this.modal.create('ModalResgatePage', { resgate: resgate })
     meuModal.present();
-    
- }
+
+  }
 
 
-  sair(){
+  sair() {
     this.authService.logout();
   }
 
 
 
-  editHist(resgate){
-    this.navCtrl.push('EditarHistoricoPage',  {resgate:resgate})
+  editHist(resgate) {
+    this.navCtrl.push('EditarHistoricoPage', { resgate: resgate })
 
   }
 
 
-  removerResgate(key:string){
+  removerResgate(key: string) {
     this.resgateService.remove(key)
-      .then(()=>{
+      .then(() => {
 
-        this.toast.create({ message: 'Removido com Sucesso', duration:3000}).present();
-        
+        this.toast.create({ message: 'Removido com Sucesso', duration: 3000 }).present();
+
       })
-      .catch((e)=>{
-        
-        this.toast.create({ message: 'Falha ao remover ', duration:3000}).present();
+      .catch((e) => {
+
+        this.toast.create({ message: 'Falha ao remover ', duration: 3000 }).present();
         console.error(e);
 
       })
- }
-  
+  }
 
 
-  ionViewWillLoad(){
-    this.resgates = this.resgateService.getUserAll();
-    this.entregues = this.resgateService.getUserAllEntregue();
-    
+  obterUser() {
+    this.afAuth.authState.subscribe(firebaseUser => {
+      if (firebaseUser) {
+        const usuarioLogado = this.authService.getUserInfo().subscribe(userData => {
+          this.user = userData;
+
+
+        })
+      } else {
+        this.user = {};
+      }
+    })
 
   }
 
- //
+
+
+
+  ionViewWillLoad() {
+    this.resgates = this.resgateService.getUserAll();
+    console.log(this.resgates)
+    this.entregues = this.resgateService.getUserAllEntregue();
+    this.obterUser();
+
+
+  }
+
+  //
 }

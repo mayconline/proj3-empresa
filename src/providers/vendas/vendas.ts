@@ -108,7 +108,8 @@ export class VendasProvider {
                 status: resgate.status,
                 pontosProd: resgate.pontosProd,
                 dataResgate: resgate.dataResgate, 
-                url: resgate.url
+                url: resgate.url,
+                dias:resgate.dias
          
 
                  

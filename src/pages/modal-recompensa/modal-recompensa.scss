@@ -1,46 +1,30 @@
 page-modal-recompensa {
-    .barraVerde {
-        width: 70px;
-        height:5px;
-        background-color: green;   
-        float: left;
-        margin:20px 5px 5px 0;
-    
-    }
-  
 
-    .barraCinza {
-        width: 70px;
-        height:5px;
-        background-color: grey;   
-        float: left; 
-        margin:20px 5px 5px 0;
-   
+
+    background-color: rgba(0,0,0,0.5);
+
+    #header{
+        top:8%
     }
 
-    .iconeVerde{
-        font-size: 40px; //Preferred size here
-        float: left;
-        color:green;
-       
+    #content{
+        top:8%;
+        width: 100%;
+        height: 80%;
+    }
+
+    .card {
+        width: 100%;
+        margin: auto 0 ;
         
+
     }
-    
+
+
+ 
+ 
   
-    .iconePreto {
-        font-size: 40px; //Preferred size here
-        float: left;
-        color: grey;
-       
-    }
-  
-  .alinha{
-      text-align: center;
-      margin: 0 auto;
-  }
-    .texto{
-        font-size: 1rem;
-    }
-    
+
+     
 
 }

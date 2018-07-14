@@ -6,7 +6,7 @@ import { FormBuilder, FormGroup,Validators} from '@angular/forms';
 import { VendasProvider } from '../../providers/vendas/vendas';
 import * as moment from 'moment';
 
-
+ 
 
 /**
  * Generated class for the ModalRecompensaPage page.
@@ -28,9 +28,9 @@ export class ModalRecompensaPage {
   user:any = {}; 
   form:FormGroup;
   status:any;
-  dataResgate:string;
+  dataResgate:any;
   ptbr = moment.locale('pt-br');
-  data =  moment().format('L, LTS');
+ 
 
 
 
@@ -47,7 +47,7 @@ export class ModalRecompensaPage {
 
   formDate(){
     this.dataResgate = moment.locale('pt-br');
-   this.dataResgate = moment().format('L');
+   this.dataResgate = moment().toJSON();
   }
 
 
@@ -63,7 +63,8 @@ export class ModalRecompensaPage {
       status:['Solicitado'],
       pontosProd: [this.prod.pontos],
       dataResgate:[this.dataResgate],
-      url:[this.prod.url] 
+      url:[this.prod.url],
+      dias:[3]
     }); 
    }
 

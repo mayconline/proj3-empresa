@@ -1,8 +1,8 @@
 <ion-header>
     <ion-navbar>
         <ion-row text-center>
-
-            <ion-col col-4 offset-6> Olá {{user.name}}
+            <ion-col col-2> <!-- {{dataHoje}}--> </ion-col>
+            <ion-col col-4 offset-4> Olá {{user.name}}
                 <br> Bem Vindo!!! </ion-col>
             <ion-col col-2>
                 <ion-buttons end>
@@ -47,21 +47,21 @@
                 <div [ngSwitch]="status">
 
                     <ion-list *ngSwitchCase="'solicitados'">
-
-                        <ion-item-sliding *ngFor="let resgate of resgates | async">
-
-
-
+                           
+                        <ion-item-sliding *ngFor="let resgate of resgates | async let i=index">
+                               
                             <ion-item>
-
-
-
+                      
+                      
+                                 
                                 <ion-avatar item-start>
                                     <img src="{{ resgate.url }}" />
                                 </ion-avatar>
-                                <h3> Produto: {{resgate.prodNome}}</h3>
-                                <h3> Usuario: {{resgate.userNome}} </h3>
-
+                                <h2>{{resgate.prodNome}}</h2>
+                                <p> {{resgate.userNome}} </p>
+                             <!--  <p *ngIf="resgate.dataResgate === dataHoje">{{resgate.dataResgate}}</p> -->
+                              
+                               
 
 
                                 <button color="secondary" ion-button item-content clear (click)="abrirModal(resgate)">
