@@ -59,12 +59,13 @@
                                 </ion-avatar>
                                 <h2>{{resgate.prodNome}}</h2>
                                 <p> {{resgate.userNome}} </p>
-                                <p>{{resgate.dataResgate |date: 'dd/MM/yyyy'}}</p>
+                                <p >{{resgate.dataResgate |date: 'dd/MM/yyyy'}}</p>
                                
 
 
-                                <button color="secondary" ion-button item-content clear (click)="abrirModal(resgate)">
-                                    <ion-icon item-content name="clock"> Acompanhe</ion-icon>
+                                <button  ion-button item-content clear (click)="abrirModal(resgate)">
+                                 <ion-icon *ngIf="resgate.status === 'Aguardando'" class="iconeA" item-content name="clock"> Aguardando</ion-icon>
+                                 <ion-icon *ngIf="resgate.status === 'Solicitado'" class="iconeS" item-content name="paper-plane"> Solicitado</ion-icon>
                                 </button>
 
 
@@ -99,7 +100,7 @@
                            
                                 <ion-item-sliding *ngFor="let entregue of entregues | async let i=index">
                                        
-                                    <ion-item>
+                                    <ion-item >
                               
                               
                                          
@@ -107,13 +108,13 @@
                                             <img src="{{ entregue.url }}" />
                                         </ion-avatar>
                                         <h2>{{entregue.prodNome}}</h2>
-                                        <p> {{entregue.userNome}} </p>
-                                        <p>Entregue</p>
+                                        <p > {{entregue.userNome}} </p>
+                                     
                                        
         
         
                                         <button color="secondary" ion-button item-content clear (click)="abrirModal(entregue)">
-                                            <ion-icon item-content name="clock"> Acompanhe</ion-icon>
+                                            <ion-icon class="icone" item-content name="checkmark-circle-outline"> Entregue</ion-icon>
                                         </button>
         
         
