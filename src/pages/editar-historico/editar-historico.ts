@@ -27,8 +27,8 @@ form:FormGroup;
     this.form = this.formBuilder.group({
       key:[this.resgate.key],
     status:[this.resgate.status],
-    prodNome:[this.resgate.prodNome]
-
+    dias:[this.resgate.dias]
+ 
     }); 
    }
 
@@ -38,7 +38,7 @@ onSubmit(){
   if(this.form.valid){
       this.resgateService.trocarStatus(this.form.value)
         .then(()=> {
-            this.toast.create({ message: 'Recompensa Adicionada', duration: 3000}).present();
+            this.toast.create({ message: 'Status Alterado', duration: 3000}).present();
             this.navCtrl.pop();
         })
         .catch((e)=>{

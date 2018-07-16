@@ -30,7 +30,6 @@ export class ModalRecompensaPage {
   status:any;
   dataResgate:any;
   ptbr = moment.locale('pt-br');
- 
 
 
 
@@ -39,8 +38,10 @@ export class ModalRecompensaPage {
     public navCtrl: NavController, public navParams: NavParams, 
     public view: ViewController, 
     private resgateService:VendasProvider) {
- 
+   
      this.formDate();
+   
+     
 
   }
 
@@ -65,8 +66,11 @@ export class ModalRecompensaPage {
       dataResgate:[this.dataResgate],
       url:[this.prod.url],
       dias:[3]
+      
     }); 
    }
+
+
 
   
 
@@ -92,6 +96,7 @@ export class ModalRecompensaPage {
 
 onSubmit(){
   if(this.form.valid){
+    
       this.resgateService.save(this.form.value)
         .then(()=> {
             this.toast.create({ message: 'Recompensa Adicionada', duration: 3000}).present();

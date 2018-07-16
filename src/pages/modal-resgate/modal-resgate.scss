@@ -5,7 +5,7 @@ page-modal-resgate {
     #header{
         top:8%
     }
-
+ 
     #content{
         top:8%;
         width: 100%;
@@ -30,7 +30,14 @@ page-modal-resgate {
         margin:20px 5px 5px 0;
     
     }
-  
+    .barraVerde2 {
+        width: 4rem;
+        height:5px;
+        background-color: green;   
+        float: left;
+        margin:20px 5px 5px 0;
+    
+    }
 
     .barraCinza {
         width: 4rem;
@@ -48,6 +55,14 @@ page-modal-resgate {
        
         
     }
+
+    .iconeVerde2{
+        font-size: 4rem; //Preferred size here
+        float: left;
+        color:green;
+       
+        
+    }
     
   
     .iconePreto {
@@ -56,6 +71,19 @@ page-modal-resgate {
         color: grey;
        
     }
+
+    
+    .iconePreto2 {
+        font-size: 4rem; //Preferred size here
+        float: left;
+        color: grey;
+       
+    }
+
+
+
+
+
   
   .alinha{
       text-align: center;

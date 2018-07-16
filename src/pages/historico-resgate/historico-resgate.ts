@@ -20,6 +20,7 @@ export class HistoricoResgatePage {
 
   ptbr = moment.locale('pt-br');
   dataHoje: any;
+  dataFinal:any;
 
   constructor(private afAuth: AngularFireAuth, private resgateService: VendasProvider,
     public authService: AuthServiceProvider, private toast: ToastController,
@@ -94,7 +95,7 @@ export class HistoricoResgatePage {
   }
 
 
-
+ 
 
   ionViewWillLoad() {
     this.resgates = this.resgateService.getUserAll();

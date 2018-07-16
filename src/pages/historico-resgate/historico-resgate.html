@@ -50,7 +50,7 @@
                            
                         <ion-item-sliding *ngFor="let resgate of resgates | async let i=index">
                                
-                            <ion-item>
+                            <ion-item *ngIf="resgate.status==='Aguardando' || resgate.status==='Solicitado'">
                       
                       
                                  
@@ -59,8 +59,7 @@
                                 </ion-avatar>
                                 <h2>{{resgate.prodNome}}</h2>
                                 <p> {{resgate.userNome}} </p>
-                             <!--  <p *ngIf="resgate.dataResgate === dataHoje">{{resgate.dataResgate}}</p> -->
-                              
+                                <p>{{resgate.dataResgate |date: 'dd/MM/yyyy'}}</p>
                                
 
 
@@ -91,42 +90,67 @@
                         </ion-item-sliding>
 
 
-
-
-                    </ion-list>
-
-                    <ion-list *ngSwitchCase="'finalizados'">
-
-                        <ion-item *ngFor="let entregue of entregues | async">
-
-
-
-                            <ion-row>
-                                <ion-col col-5>
-
-                                    <h3> Produto: {{entregue.prodNome}}</h3>
-                                    <p>{{entregue.pontosProd}} Pontos</p>
-
-                                </ion-col>
-
-
-                                <ion-col col-7>
-                                    <h3> Usuario: {{entregue.userNome}} </h3>
-                                    <p>Status: {{entregue.status}}</p>
-
-                                </ion-col>
-
-
-                            </ion-row>
-
-
-
-                            <ion-icon item-content name="checkmark-circle-outline"></ion-icon>
-
-                        </ion-item>
-
+  
 
                     </ion-list>
+
+<!--finalizados-->
+                            <ion-list *ngSwitchCase="'finalizados'">
+                           
+                                <ion-item-sliding *ngFor="let entregue of entregues | async let i=index">
+                                       
+                                    <ion-item>
+                              
+                              
+                                         
+                                        <ion-avatar item-start>
+                                            <img src="{{ entregue.url }}" />
+                                        </ion-avatar>
+                                        <h2>{{entregue.prodNome}}</h2>
+                                        <p> {{entregue.userNome}} </p>
+                                        <p>Entregue</p>
+                                       
+        
+        
+                                        <button color="secondary" ion-button item-content clear (click)="abrirModal(entregue)">
+                                            <ion-icon item-content name="clock"> Acompanhe</ion-icon>
+                                        </button>
+        
+        
+                                    </ion-item>
+        
+        
+        
+                                    <!---->
+        
+                                    <ion-item-options side="left">
+        
+                                        <button ion-button color="primary" (click)="editHist(entregue)">
+                                            <ion-icon name="create"> Editar</ion-icon>
+                                        </button>
+                                        <button ion-button color="danger" (click)="removerResgate(entregue.key)">
+                                            <ion-icon name="trash"> Remover</ion-icon>
+                                        </button>
+        
+        
+        
+                                    </ion-item-options>
+        
+                                </ion-item-sliding>
+        
+        
+         
+        
+                            </ion-list>
+
+                           
+ <!---->
+
+
+                            
+
+                     
+
                 </div>
 
 
@@ -141,134 +165,3 @@
 
 </ion-content>
 
-
-<!--
-
-     <ion-grid>
-
-          
-
-
-        <ion-row>
-          <ion-col col-12>
-              <div padding>
-                  <ion-segment [(ngModel)]="status" color="primary" >
-                    <ion-segment-button value="solicitados">
-                        <ion-icon name="clock"></ion-icon>
-                      Solicitados
-                    </ion-segment-button>
-                    <ion-segment-button value="finalizados">
-                        <ion-icon name="checkmark-circle-outline"></ion-icon>
-                      Finalizados
-                    </ion-segment-button>
-                  </ion-segment>
-                </div>
-
-          </ion-col>
-        </ion-row>
-          
-        <ion-row>
-          <ion-col col-12>
-              <div [ngSwitch]="status">
-
-                  <ion-list *ngSwitchCase="'solicitados'">
-  
-                      <ion-item>
-                          <ion-icon name="clock" item-content> </ion-icon>
-                           <h2>Produto 1 - Solicitado</h2>
-                          <h3> CPF: 999.999.999-99</h3>
-                          <p>Data: 08/04/2018 - 100 Pontos</p>
-                          
-                        </ion-item>
-  
-                    
-                  </ion-list>
-                
-                  <ion-list *ngSwitchCase="'finalizados'">
-  
-                      <ion-item>
-                          <ion-icon name="checkmark-circle-outline" item-content> </ion-icon>
-                           <h2>Produto 2 - Entregue</h2>
-                          <h3> CPF: 999.999.999-99</h3>
-                          <p>Data: 20/03/2018 - 50 Pontos</p>
-                          
-                        </ion-item>
-  
-                        <ion-item>
-                            <ion-icon name="close-circle" item-content> </ion-icon>
-                             <h2>Produto 1 - Cancelado</h2>
-                            <h3> CPF: 999.999.999-99</h3>
-                            <p>Data: 07/04/2018 - 100 Pontos</p>
-                            
-                          </ion-item>
-                    
-                  </ion-list>
-                </div>
-          
-
-          </ion-col>
-        </ion-row>
-
-           
-        
-        <!-- <ion-row>
-            <ion-col col-12> <h4 text-center >Filtros</h4> </ion-col>
-        </ion-row>
-        <ion-row>
-            <ion-col col-12> 
-                <ion-item >   
-                <ion-icon name="search" item-content ></ion-icon>
-                <ion-input type="search" placeholder="Filtre por CPF ou Status"></ion-input>             
-              </ion-item>
-            </ion-col>
-        </ion-row>
-        
-        <ion-row>
-            <ion-col col-12> <h4 text-center> Resgates Gerais</h4> </ion-col>
-        </ion-row>
-  
-        <ion-row>
-            <ion-col col-12>
-             
-                <ion-list>  
-                    <ion-item>
-                      <ion-icon name="clock" item-content> </ion-icon>
-                       <h2>Produto 1 - Solicitado</h2>
-                      <h3> CPF: 999.999.999-99</h3>
-                      <p>Data: 08/04/2018 - 100 Pontos</p>
-                      
-                    </ion-item>
- 
-  
-                      <ion-item>
-                          <ion-icon name="close-circle" item-content> </ion-icon>
-                           <h2>Produto 1 - Cancelado</h2>
-                          <h3> CPF: 999.999.999-99</h3>
-                          <p>Data: 07/04/2018 - 100 Pontos</p>
-                          
-                        </ion-item>
-
-
-                         
-                    <ion-item>
-                        <ion-icon name="checkmark-circle-outline" item-content> </ion-icon>
-                         <h2>Produto 2 - Entregue</h2>
-                        <h3> CPF: 999.999.999-99</h3>
-                        <p>Data: 20/03/2018 - 50 Pontos</p>
-                        
-                      </ion-item>
-                  </ion-list>
-            
-            </ion-col>
-        </ion-row>
-          
-        <ion-row>
-            <ion-col>
-              <h3 text-center> Total Acumulado: 550 Pontos</h3>
-            </ion-col>
-        </ion-row> 
-  
-  
-      </ion-grid> 
-  
-  -->

@@ -21,7 +21,7 @@ export class VendasProvider {
 
     getUserAll(){
     
-      return this.afDb.list(this.PATH,  ref=> ref.orderByChild('status').equalTo('Solicitado'))
+      return this.afDb.list(this.PATH,  ref=> ref.orderByChild('dataResgate'))
       .snapshotChanges()
       .map(changes =>{
           return changes.map(u =>({ key: u.payload.key,...u.payload.val() }));
@@ -54,13 +54,13 @@ export class VendasProvider {
       })
     }
 
-
+ 
 
     trocarStatus(resgate:any){
       return new Promise((resolve, reject) => {
     
               this.afDb.list(this.PATH)
-                .update(resgate.key, {status: resgate.status})
+                .update(resgate.key, {status: resgate.status, dias:resgate.dias})
                 .then(()=> resolve())
                 .catch((e)=> reject(e));
         
@@ -110,6 +110,7 @@ export class VendasProvider {
                 dataResgate: resgate.dataResgate, 
                 url: resgate.url,
                 dias:resgate.dias
+              
          
 
                  
@@ -131,7 +132,7 @@ export class VendasProvider {
 
 
 //obtem os dados do usuario //
-  obterUser(){
+ obterUser(){
     this.afAuth.authState.subscribe(firebaseUser =>{
    if(firebaseUser){
      const usuarioLogado = this.authService.getUserInfo().subscribe(userData =>{
