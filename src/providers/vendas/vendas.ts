@@ -1,10 +1,12 @@
 
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 import { AuthServiceProvider } from '../auth-service/auth-service';
-
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
+import { tap, map, take } from 'rxjs/operators'
 
 @Injectable()
 export class VendasProvider {
@@ -13,7 +15,14 @@ export class VendasProvider {
   user:any;
   private PATH = 'resgates/';
 
-  constructor( private afDb: AngularFireDatabase, private afAuth: AngularFireAuth, private authService: AuthServiceProvider) {
+  constructor( private afDb: AngularFireDatabase, private afAuth: AngularFireAuth,
+     private authService: AuthServiceProvider) {
+       // chamada inicial para buscar dados no firebase      
+     this.nextPage()
+     .pipe(take(2))
+     .subscribe();
+
+
     this.obterUser();
     }
 
@@ -149,10 +158,72 @@ export class VendasProvider {
 } 
   
   
+
+  // infity scroll
   
-  
+  private _movies$ = new BehaviorSubject<any[]>([]); // 1
+   batch = 2; 
+   lastKey = ''; 
+   finished = false; 
 
 
+   get movies$(): Observable<any[]> {
+    return this._movies$.asObservable();
+ }
+
+ mapListKeys<T>(list: AngularFireList<T>): Observable<T[]> {
+  return list
+     .snapshotChanges()
+     .map(actions => 
+        actions.map(action => 
+           ({ key: action.key, ...action.payload.val() })
+        )
+     );
+}
+
+private getMovies(batch: number, lastKey: string): // 1 e 2
+Observable<any[]> 
+{
+
+   return this.mapListKeys<any>( // 3
+      this.afDb.list<any>(this.PATH, ref => { // 4
+         const query = ref
+            .orderByKey()
+            .limitToFirst(batch);
+
+         return (this.lastKey) // 5
+            ? query.startAt(this.lastKey) 
+            : query;
+       })
+   );
+
+}
+
+nextPage(): Observable<any[]> {
+  if (this.finished) { return this.movies$; } // 1
+
+  return this.getMovies(this.batch + 1, this.lastKey) // 2
+     .pipe(
+        tap(movies => {
+
+           this.lastKey = movies[movies.length-1]['key']; // 3
+
+           const newMovies = movies.slice(0, this.batch); // 4
+
+           const currentMovies = this._movies$.getValue(); // 5
+
+           if ( this.lastKey == newMovies[newMovies.length-1]['key']) 
+           { 
+                this.finished = true;
+           }
+
+           this._movies$.next(currentMovies.concat(newMovies)) }
+        )
+     )
+}
+
+
+//
 }
 
 

@@ -5,6 +5,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { VendasProvider } from '../../providers/vendas/vendas';
 import { Observable } from 'rxjs/Observable';
 import * as moment from 'moment';
+import { tap, map, take } from 'rxjs/operators'
 
 @IonicPage()
 @Component({
@@ -26,6 +27,8 @@ export class HistoricoResgatePage {
     public authService: AuthServiceProvider, private toast: ToastController,
     public navCtrl: NavController, public navParams: NavParams,
     public modal: ModalController) {
+
+      
 
 
     this.dataAtual();
@@ -99,12 +102,34 @@ export class HistoricoResgatePage {
 
   ionViewWillLoad() {
     this.resgates = this.resgateService.getUserAll();
-    console.log(this.resgates)
+    
     this.entregues = this.resgateService.getUserAllEntregue();
     this.obterUser();
 
+    this.movies$ = this.resgateService.movies$
+    console.log(this.movies$)
 
   }
+
+
+
+  // infinity scroll
+  movies$: Observable<any[]>;
+
+  doInfinite(infiniteScroll): Promise<void> { // 1
+    if (!this.resgateService.finished) { // 2
+       return new Promise((resolve, reject) => {
+          this.resgateService.nextPage() // 3
+             .pipe(take(2))
+             .subscribe(movies => {
+                console.log('Movies:', movies);
+                resolve();
+             });
+       });
+    }
+    return Promise.resolve();
+ }
+
 
   //
 }
