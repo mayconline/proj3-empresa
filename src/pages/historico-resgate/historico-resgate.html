@@ -19,10 +19,40 @@
 
 <ion-content padding>
 
-        <ion-list>
-                <ion-item *ngFor="let movie of movies$ | async">
-                   {{ movie.prodNome }} | {{ movie.userNome}}
+     <!--
+             <ion-list >
+            <ion-item-sliding *ngFor="let resgate of resgates | async">
+
+                <ion-item *ngIf="resgate.status==='Aguardando' || resgate.status==='Solicitado'" >
+                   
+                   
+                    <ion-avatar item-start>
+                        <img src="{{ resgate.url }}" />
+                    </ion-avatar>
+                    <h2>{{resgate.prodNome}}</h2>
+                    <p> {{resgate.userNome}} </p>
+                    <p >{{resgate.dataResgate |date: 'dd/MM/yyyy'}}</p>
+
+                    <button  ion-button item-content clear (click)="abrirModal(resgate)">
+                            <ion-icon *ngIf="resgate.status === 'Aguardando'" class="iconeA" item-content name="clock"> Aguardando</ion-icon>
+                            <ion-icon *ngIf="resgate.status === 'Solicitado'" class="iconeS" item-content name="paper-plane"> Solicitado</ion-icon>
+                           </button>
                 </ion-item>
+
+                <ion-item-options side="left">
+
+                        <button ion-button color="primary" (click)="editHist(resgate)">
+                            <ion-icon name="create"> Editar</ion-icon>
+                        </button>
+                        <button ion-button color="danger" (click)="removerResgate(resgate.key)">
+                            <ion-icon name="trash"> Remover</ion-icon>
+                        </button>
+
+
+
+                    </ion-item-options>
+
+            </ion-item-sliding>
              </ion-list>
           
              <ion-infinite-scroll 
@@ -30,13 +60,13 @@
                 (ionInfinite)="$event.waitFor(doInfinite())">
                 <ion-infinite-scroll-content></ion-infinite-scroll-content>   
              </ion-infinite-scroll>
+            -->
 
 
 
 
 
-
-  <!--  <ion-grid>
+   <ion-grid>
         <ion-row>
             <ion-col col-12>
                 <h4 text-center> Resgates Gerais</h4>
@@ -113,7 +143,8 @@
 
                     </ion-list>
 
-<!--finalizados-
+                    
+<!--finalizados-->
                             <ion-list *ngSwitchCase="'finalizados'">
                            
                                 <ion-item-sliding *ngFor="let entregue of entregues | async let i=index">
@@ -180,7 +211,11 @@
 
 
     </ion-grid> 
--->
+    <ion-infinite-scroll 
+    threshold="20%" 
+    (ionInfinite)="$event.waitFor(doInfinite())">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>   
+ </ion-infinite-scroll>
 
 </ion-content>
 

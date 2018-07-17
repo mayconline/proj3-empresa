@@ -19,7 +19,7 @@ export class VendasProvider {
      private authService: AuthServiceProvider) {
        // chamada inicial para buscar dados no firebase      
      this.nextPage()
-     .pipe(take(2))
+     .pipe(take(1))
      .subscribe();
 
 
@@ -28,7 +28,7 @@ export class VendasProvider {
 
 
 
-    getUserAll(){
+   /* getUserAll(){
     
       return this.afDb.list(this.PATH,  ref=> ref.orderByChild('dataResgate'))
       .snapshotChanges()
@@ -37,7 +37,7 @@ export class VendasProvider {
     
     
       })
-    }
+    } */
 
     getUserAllEntregue(){
     
@@ -159,16 +159,16 @@ export class VendasProvider {
   
   
 
-  // infity scroll
+  // infity scroll historico de resgates //
   
-  private _movies$ = new BehaviorSubject<any[]>([]); // 1
-   batch = 2; 
+  private _historicos$ = new BehaviorSubject<any[]>([]); // 1
+   batch = 5; 
    lastKey = ''; 
    finished = false; 
 
 
-   get movies$(): Observable<any[]> {
-    return this._movies$.asObservable();
+   get historicos$(): Observable<any[]> {
+    return this._historicos$.asObservable();
  }
 
  mapListKeys<T>(list: AngularFireList<T>): Observable<T[]> {
@@ -198,9 +198,9 @@ Observable<any[]>
    );
 
 }
-
+ 
 nextPage(): Observable<any[]> {
-  if (this.finished) { return this.movies$; } // 1
+  if (this.finished) { return this.historicos$; } // 1
 
   return this.getMovies(this.batch + 1, this.lastKey) // 2
      .pipe(
@@ -210,14 +210,14 @@ nextPage(): Observable<any[]> {
 
            const newMovies = movies.slice(0, this.batch); // 4
 
-           const currentMovies = this._movies$.getValue(); // 5
+           const currentMovies = this._historicos$.getValue(); // 5
 
            if ( this.lastKey == newMovies[newMovies.length-1]['key']) 
            { 
                 this.finished = true;
            }
 
-           this._movies$.next(currentMovies.concat(newMovies)) }
+           this._historicos$.next(currentMovies.concat(newMovies)) }
         )
      )
 }

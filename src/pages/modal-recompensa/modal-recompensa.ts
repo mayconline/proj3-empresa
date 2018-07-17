@@ -99,11 +99,12 @@ onSubmit(){
     
       this.resgateService.save(this.form.value)
         .then(()=> {
-            this.toast.create({ message: 'Recompensa Adicionada', duration: 3000}).present();
-            this.navCtrl.push('TabsPage');
+            this.toast.create({ message: 'Resgate Efetuado com Sucesso', duration: 3000}).present();
+            //this.navCtrl.push('TabsPage');
+            this.navCtrl.pop();
         })
         .catch((e)=>{
-            this.toast.create({ message: 'Falha ao gravar os dados', duration:3000}).present();
+            this.toast.create({ message: 'Ocorreu um erro, favor tentar novamente', duration:3000}).present();
             console.error(e);
         })
   }

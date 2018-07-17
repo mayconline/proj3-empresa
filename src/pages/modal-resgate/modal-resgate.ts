@@ -52,7 +52,7 @@ export class ModalResgatePage {
 
   ionViewWillLoad() { 
     this.resgate = this.navParams.data.resgate || {};
-    console.log(this.resgate)
+    //console.log(this.resgate)
   }
 
 }

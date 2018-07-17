@@ -101,28 +101,29 @@ export class HistoricoResgatePage {
  
 
   ionViewWillLoad() {
-    this.resgates = this.resgateService.getUserAll();
+   // this.resgates = this.resgateService.getUserAll();
     
     this.entregues = this.resgateService.getUserAllEntregue();
     this.obterUser();
-
-    this.movies$ = this.resgateService.movies$
-    console.log(this.movies$)
+    this.resgates = this.resgateService.historicos$
 
   }
 
+ 
+    
+
+ 
 
 
   // infinity scroll
-  movies$: Observable<any[]>;
-
-  doInfinite(infiniteScroll): Promise<void> { // 1
-    if (!this.resgateService.finished) { // 2
+  
+  doInfinite(infiniteScroll): Promise<void> { 
+    if (!this.resgateService.finished) { 
        return new Promise((resolve, reject) => {
-          this.resgateService.nextPage() // 3
-             .pipe(take(2))
+          this.resgateService.nextPage() 
+             .pipe(take(1))
              .subscribe(movies => {
-                console.log('Movies:', movies);
+             
                 resolve();
              });
        });
