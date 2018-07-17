@@ -54,7 +54,7 @@ onSubmit(){
  
  this.resgate = this.navParams.data.resgate || {};
  this.createForm();
- console.log(this.resgate)
+ //console.log(this.resgate)
 
    }
  

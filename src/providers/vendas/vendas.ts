@@ -1,12 +1,12 @@
 
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { AngularFireDatabase /*, AngularFireList */} from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 import { AuthServiceProvider } from '../auth-service/auth-service';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Observable } from 'rxjs/Observable';
-import { tap, map, take } from 'rxjs/operators'
+//import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+//import { Observable } from 'rxjs/Observable';
+//import { tap, map, take } from 'rxjs/operators'
 
 @Injectable()
 export class VendasProvider {
@@ -17,18 +17,20 @@ export class VendasProvider {
 
   constructor( private afDb: AngularFireDatabase, private afAuth: AngularFireAuth,
      private authService: AuthServiceProvider) {
-       // chamada inicial para buscar dados no firebase      
-     this.nextPage()
-     .pipe(take(1))
-     .subscribe();
-
-
+        
     this.obterUser();
     }
 
 
+   /* ionViewDidEnter(){
+      this.nextPage()
+      .pipe(take(1))
+      .subscribe();
 
-   /* getUserAll(){
+    } */
+
+
+    getUserAll(){
     
       return this.afDb.list(this.PATH,  ref=> ref.orderByChild('dataResgate'))
       .snapshotChanges()
@@ -37,7 +39,7 @@ export class VendasProvider {
     
     
       })
-    } */
+    } 
 
     getUserAllEntregue(){
     
@@ -158,11 +160,11 @@ export class VendasProvider {
 } 
   
   
-
+/*
   // infity scroll historico de resgates //
   
   private _historicos$ = new BehaviorSubject<any[]>([]); // 1
-   batch = 5; 
+   batch = 2; 
    lastKey = ''; 
    finished = false; 
 
@@ -222,8 +224,7 @@ nextPage(): Observable<any[]> {
      )
 }
 
+*/
 
-//
 }
-
 

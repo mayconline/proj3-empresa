@@ -101,21 +101,26 @@ export class HistoricoResgatePage {
  
 
   ionViewWillLoad() {
-   // this.resgates = this.resgateService.getUserAll();
+   this.resgates = this.resgateService.getUserAll();
     
     this.entregues = this.resgateService.getUserAllEntregue();
     this.obterUser();
-    this.resgates = this.resgateService.historicos$
-
+    
   }
 
- 
+
+
+ // infinity scroll
+
+  /*
+  ionViewDidEnter() {
+  this.resgates = this.resgateService.historicos$
+  this.resgateService.nextPage().pipe(take(1)).subscribe();
+    
+  
+  }
     
 
- 
-
-
-  // infinity scroll
   
   doInfinite(infiniteScroll): Promise<void> { 
     if (!this.resgateService.finished) { 
@@ -131,6 +136,19 @@ export class HistoricoResgatePage {
     return Promise.resolve();
  }
 
+
+ doRefresh(refresher) {
+ 
+  
+  
+
+  setTimeout(() => {
+    
+   
+    refresher.complete();
+  }, 2000);
+}
+*/
 
   //
 }

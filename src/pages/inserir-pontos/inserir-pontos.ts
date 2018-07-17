@@ -58,10 +58,10 @@ export class InserirPontosPage {
    return this.form.value.quantPontos = valor / 10
   }
 
-  insertPontos(quantPontos){
+  insertPontos(quantPontos:number){
   
   
-    return this.usuario.pontos = this.usuario.pontos + quantPontos
+    return this.usuario.pontos = Number(this.usuario.pontos) + Number(quantPontos)
   
   };
 
