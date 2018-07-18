@@ -1,18 +1,36 @@
-<ion-header>
-    <ion-navbar>
+<ion-header no-border>
+    <ion-navbar color="violet">
         <ion-row text-center>
-            <ion-col col-2> <!-- {{dataHoje}}--> </ion-col>
-            <ion-col col-4 offset-4> Olá {{user.name}}
-                <br> Bem Vindo!!! </ion-col>
+                <ion-col col-4>
+                <p ion-text color="light">   {{user.pontos}} <br> Pontos </p>
+            </ion-col>
+                    
+           
+            <ion-col col-4 offset-2 >  <p ion-text color="light"> Olá {{user.name}} <br>Bem Vindo!!! </p></ion-col> 
             <ion-col col-2>
                 <ion-buttons end>
-                    <button ion-button icon-only (click)="sair()">
-                        <ion-icon name="exit"></ion-icon>
+                        <br>  <button ion-button icon-only (click)="sair()">
+                      <ion-icon name="exit"></ion-icon>
                     </button>
                 </ion-buttons>
             </ion-col>
+            <ion-col col-12></ion-col>
         </ion-row>
     </ion-navbar>
+
+    <ion-toolbar color="violet">
+            <ion-title text-center>Resgates</ion-title>
+            <ion-segment [(ngModel)]="status" color="light">
+                    <ion-segment-button value="solicitados">
+                        <ion-icon name="clock"></ion-icon>
+                        Solicitados
+                    </ion-segment-button>
+                    <ion-segment-button value="finalizados">
+                        <ion-icon name="checkmark-circle-outline"></ion-icon>
+                        Finalizados
+                    </ion-segment-button>
+                </ion-segment>
+          </ion-toolbar>
 
 </ion-header>
 
@@ -67,29 +85,7 @@
 
 
    <ion-grid>
-        <ion-row>
-            <ion-col col-12>
-                <h4 text-center> Resgates Gerais</h4>
-            </ion-col>
-        </ion-row>
-        <ion-row>
-            <ion-col col-12>
-                <div padding>
-                    <ion-segment [(ngModel)]="status" color="primary">
-                        <ion-segment-button value="solicitados">
-                            <ion-icon name="clock"></ion-icon>
-                            Solicitados
-                        </ion-segment-button>
-                        <ion-segment-button value="finalizados">
-                            <ion-icon name="checkmark-circle-outline"></ion-icon>
-                            Finalizados
-                        </ion-segment-button>
-                    </ion-segment>
-                </div>
-
-            </ion-col>
-        </ion-row>
-
+        
         <ion-row>
             <ion-col col-12>
                 <div [ngSwitch]="status">
