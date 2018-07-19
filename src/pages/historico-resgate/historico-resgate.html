@@ -1,12 +1,13 @@
 <ion-header no-border>
-    <ion-navbar color="violet">
+    <ion-navbar >
         <ion-row text-center>
                 <ion-col col-4>
-                <p ion-text color="light">   {{user.pontos}} <br> Pontos </p>
+                <p ion-text class="ptitle">   {{user.pontos}} <br> Pontos </p>
+               
             </ion-col>
-                    
+              
            
-            <ion-col col-4 offset-2 >  <p ion-text color="light"> Olá {{user.name}} <br>Bem Vindo!!! </p></ion-col> 
+            <ion-col col-4 offset-2 >  <p class="ptitle" > Olá {{user.name}} <br>Bem Vindo!!! </p></ion-col> 
             <ion-col col-2>
                 <ion-buttons end>
                         <br>  <button ion-button icon-only (click)="sair()">
@@ -18,9 +19,9 @@
         </ion-row>
     </ion-navbar>
 
-    <ion-toolbar color="violet">
+    <ion-toolbar >
             <ion-title text-center>Resgates</ion-title>
-            <ion-segment [(ngModel)]="status" color="light">
+            <ion-segment [(ngModel)]="status" >
                     <ion-segment-button value="solicitados">
                         <ion-icon name="clock"></ion-icon>
                         Solicitados
@@ -94,7 +95,7 @@
                            
                         <ion-item-sliding *ngFor="let resgate of resgates | async let i=index">
                                
-                            <ion-item *ngIf="resgate.status==='Aguardando' || resgate.status==='Solicitado'">
+                            <ion-item text-wrap *ngIf="resgate.status==='Aguardando' || resgate.status==='Solicitado'">
                        
                       
                                  
@@ -103,14 +104,40 @@
                                 </ion-avatar>
                                 <h2>{{resgate.prodNome}}</h2>
                                 <p> {{resgate.userNome}} </p>
-                                <p >{{resgate.dataResgate |date: 'dd/MM/yyyy'}}</p>
+                                <span >{{resgate.dataResgate |date: 'dd/MM/yyyy'}}</span>
+
+                                
                                
 
 
                                 <button  ion-button item-content clear (click)="abrirModal(resgate)">
-                                 <ion-icon *ngIf="resgate.status === 'Aguardando'" class="iconeA" item-content name="clock"> Aguardando</ion-icon>
-                                 <ion-icon *ngIf="resgate.status === 'Solicitado'" class="iconeS" item-content name="paper-plane"> Solicitado</ion-icon>
+                                 <ion-icon *ngIf="resgate.status === 'Aguardando'" class="iconeA" item-content item-end name="clock"> Aguardando</ion-icon>
+                                 <ion-icon *ngIf="resgate.status === 'Solicitado'" class="iconeS" item-content item-end name="paper-plane"> Solicitado</ion-icon>
                                 </button>
+
+                                <!--teste
+                                <ion-row>
+                                    <ion-col col-12>
+                                        <div class="iconeVerde"><ion-icon item-content item-start  name='paper-plane'><p class="texto">Solicitado</p></ion-icon></div>     
+                                <div class="barraVerde"></div>
+                                <div [ngClass]="{'iconePreto':resgate.status === 'Solicitado','iconeVerde':resgate.status === 'Aguardando',  'iconeVerde2':resgate.status === 'Entregue'}"><ion-icon item-content item-start  name='clock'><p class="texto">Aguardando</p></ion-icon></div>
+                                <div [ngClass]="{'barraCinza': resgate.status ==='Solicitado','barraVerde2': resgate.status ==='Entregue','barraVerde': resgate.status ==='Aguardando' }"></div>
+                                <div [ngClass]="{'iconePreto':resgate.status === 'Solicitado','iconePreto2':resgate.status === 'Aguardando',  'iconeVerde2':resgate.status === 'Entregue'}"><ion-icon item-content item-start  name='checkmark-circle'><p class="texto">Finalizado</p></ion-icon></div>
+                              
+                                    </ion-col>
+                                </ion-row> -->
+
+                               
+                                  
+                                
+                                   
+                                
+                                   
+                                       
+                                       
+                                     
+                                  
+                                
 
 
                             </ion-item>

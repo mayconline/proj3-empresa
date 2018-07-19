@@ -3,11 +3,11 @@
 
         <ion-navbar>
                 <ion-row text-center>
-                  <ion-col col-2>
+                  <ion-col col-2 class="ptitle">
                     {{user.pontos}} Pontos
                   </ion-col>
                 
-                  <ion-col col-4 offset-4> Olá {{user.name}}
+                  <ion-col col-4 offset-4 class="ptitle"> Olá {{user.name}}
                     <br> Bem Vindo!!! </ion-col>
                   
                 </ion-row>
@@ -91,19 +91,7 @@
                 </ion-row>
 
 
-          <ion-row>
-              <ion-col col-12>
-                  
-                    <ion-buttons item-start>
-                        <button (click)="irHistoricoResgate()" ion-button round outline icon-left>
-                            <ion-icon name="list-box"></ion-icon>
-                          Histórico de Resgates </button>  
-                    </ion-buttons>                
-                  
-    
-                 
-              </ion-col>
-            </ion-row>
+        
 
            
       
@@ -111,5 +99,3 @@
 
 </ion-content>
 
-
-<!--[disabled]="user.pontos < recompensa.pontos" -->

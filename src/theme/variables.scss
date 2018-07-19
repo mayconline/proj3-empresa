@@ -54,8 +54,20 @@ $colors: (
 // --------------------------------------------------
 // Material Design only Sass variables can go here
 
+//ion-toolbar
+$toolbar-background: #8A2BE2;
+$toolbar-text-color: #ffffff;
+$toolbar-active-color: #ffffff;
+//$toolbar-inactive-color: #FFFFFF;
+//$tabs-md-tab-text-color: #8A2BE2;
 
+//ion-tabs
+$tabs-md-tab-text-color-active:#8A2BE2;
+$tabs-md-tab-icon-color-active:#8A2BE2;
 
+//ion-item
+$item-md-paragraph-text-color:#FF7F50;
+$item-md-avatar-size:5rem;
 
 // App Windows Variables
 // --------------------------------------------------
