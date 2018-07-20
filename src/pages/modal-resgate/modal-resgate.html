@@ -19,7 +19,7 @@
 
   <ion-card class="card" padding>
 
-      <img src="{{ resgate.url }}" />
+      <img *ngIf="resgate.url" src="{{ resgate.url }}" />
     <ion-card-content>
       <h4 text-center>{{resgate.prodNome}}</h4>
       <span> Data de Solicitação: {{dataSolicitacao}}</span>  

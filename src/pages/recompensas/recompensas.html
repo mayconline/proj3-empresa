@@ -38,8 +38,8 @@
                
                   <ion-list>     
                              <ion-item-sliding *ngFor="let recompensa of recompensas | async">  
-                                 <ion-item >
-                                    <ion-avatar item-start>
+                                 <ion-item (click)="abrirModal(recompensa)" text-wrap>
+                                    <ion-avatar item-start >
                                       <img src="{{ recompensa.url }}" />
                                     </ion-avatar>
                                      <h2>{{recompensa.nome}}</h2>
@@ -47,8 +47,8 @@
 
                                   
                                     
-<button  color="secondary" ion-button  item-content clear (click)="abrirModal(recompensa)">
-                                               <ion-icon item-content name="cart"> Resgatar</ion-icon>
+<button  color="secondary" ion-button  item-content item-end icon-only clear >
+                                               <ion-icon  class="icone"  name="cart"></ion-icon>
                                              </button>
                                             
                                  </ion-item>

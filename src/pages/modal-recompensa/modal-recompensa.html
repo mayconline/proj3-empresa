@@ -21,7 +21,7 @@
 
 
     <ion-card padding>
-      <img src="{{ prod.url }}" />
+      <img *ngIf="prod.url" src="{{ prod.url }}" />
 
       <ion-card-content>
 

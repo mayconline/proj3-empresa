@@ -97,9 +97,9 @@
                                
                             <ion-item (click)="abrirModal(resgate)" text-wrap *ngIf="resgate.status==='Aguardando' || resgate.status==='Solicitado'">
                        
-                      
+                       
                                  
-                                <ion-avatar item-start  >
+                                <ion-avatar item-start >
                                     <img src="{{ resgate.url }}" />
                                 </ion-avatar>
                                 <h2>{{resgate.prodNome}}</h2>
@@ -173,11 +173,11 @@
                            
                                 <ion-item-sliding *ngFor="let entregue of entregues | async let i=index">
                                        
-                                    <ion-item (click)="abrirModal(entregue)">
+                                    <ion-item text-wrap (click)="abrirModal(entregue)">
                               
                               
                                          
-                                        <ion-avatar item-start>
+                                        <ion-avatar item-start >
                                             <img src="{{ entregue.url }}" />
                                         </ion-avatar>
                                         <h2>{{entregue.prodNome}}</h2>
