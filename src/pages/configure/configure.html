@@ -1,32 +1,71 @@
 <ion-header>
 
-    <ion-navbar>
-      <ion-row text-center>
-      
-        <ion-col col-4 offset-6 class="ptitle"> Olá 
-            {{user.name}}
-          
-          <br> Bem Vindo!!! </ion-col>
-        <ion-col col-2>
-          <ion-buttons end>
-            <button ion-button icon-only (click)="sair()">
-              <ion-icon name="exit"></ion-icon>
-            </button>
-          </ion-buttons>
-        </ion-col>
-      </ion-row>
-    </ion-navbar>
-  
-  </ion-header>
-  
-  
-  <ion-content padding>
- 
+  <ion-navbar>
+    <ion-row text-center>
 
-    <button ion-button (click)="irUsuarios()" > Usuarios </button>
+      <ion-col col-4 offset-6 class="ptitle"> Olá {{user.name}}
+
+        <br> Bem Vindo!!! </ion-col>
+      <ion-col col-2>
+        <ion-buttons end>
+          <button ion-button icon-only (click)="sair()">
+            <ion-icon name="exit"></ion-icon>
+          </button>
+        </ion-buttons>
+      </ion-col>
+    </ion-row>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-grid>
+   
+    <ion-row>
+       
+      <ion-col col-6>
+         
+            <div class="cmenu" text-center (click)="irUsuarios()"><ion-icon icon-only name="star"></ion-icon>
+              <h4>USUARIOS</h4>
+          </div>
+      </ion-col>
+      <ion-col col-6>
+         
+          <div class="cmenu" text-center (click)="irRecompensas()"><ion-icon icon-only name="star"></ion-icon>
+            <h4>RECOMPENSAS</h4>
+        </div>
+    </ion-col>
+      
+      
+    </ion-row>
+
+    <ion-row>
+       
+        <ion-col col-6>
+           
+              <div class="cmenu" text-center (click)="irPontos()"><ion-icon icon-only name="star"></ion-icon>
+                <h4>PONTOS</h4>
+            </div>
+        </ion-col>
+        <ion-col col-6>
+           
+            <div class="cmenu" text-center (click)="irNew()"><ion-icon icon-only name="star"></ion-icon>
+              <h4>NOTICIAS</h4>
+          </div>
+      </ion-col>
+        
+        
+      </ion-row>
+  </ion-grid>
+
+
+</ion-content>
+
+<!-- <button ion-button (click)="irUsuarios()" > Usuarios </button>
   
     <button ion-button (click)="irRecompensas()" > Recompensas </button>
 
     <button ion-button (click)="irPontos()" > Pontos </button>
-    <button ion-button (click)="irNew()" > Noticias </button>
-  </ion-content>
+    <button ion-button (click)="irNew()" > Noticias </button>-->

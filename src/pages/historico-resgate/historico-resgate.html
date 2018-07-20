@@ -95,11 +95,11 @@
                            
                         <ion-item-sliding *ngFor="let resgate of resgates | async let i=index">
                                
-                            <ion-item text-wrap *ngIf="resgate.status==='Aguardando' || resgate.status==='Solicitado'">
+                            <ion-item (click)="abrirModal(resgate)" text-wrap *ngIf="resgate.status==='Aguardando' || resgate.status==='Solicitado'">
                        
                       
                                  
-                                <ion-avatar item-start>
+                                <ion-avatar item-start  >
                                     <img src="{{ resgate.url }}" />
                                 </ion-avatar>
                                 <h2>{{resgate.prodNome}}</h2>
@@ -109,10 +109,11 @@
                                 
                                
 
+                              
+                                <button  ion-button item-content  item-end icon-only clear>
+                                 <ion-icon *ngIf="resgate.status === 'Aguardando'" class="iconeA"  name="clock"> </ion-icon>
 
-                                <button  ion-button item-content clear (click)="abrirModal(resgate)">
-                                 <ion-icon *ngIf="resgate.status === 'Aguardando'" class="iconeA" item-content item-end name="clock"> Aguardando</ion-icon>
-                                 <ion-icon *ngIf="resgate.status === 'Solicitado'" class="iconeS" item-content item-end name="paper-plane"> Solicitado</ion-icon>
+                                 <ion-icon *ngIf="resgate.status === 'Solicitado'" class="iconeS" name="paper-plane"> </ion-icon>
                                 </button>
 
                                 <!--teste
@@ -172,7 +173,7 @@
                            
                                 <ion-item-sliding *ngFor="let entregue of entregues | async let i=index">
                                        
-                                    <ion-item >
+                                    <ion-item (click)="abrirModal(entregue)">
                               
                               
                                          
@@ -185,8 +186,8 @@
                                        
         
         
-                                        <button color="secondary" ion-button item-content clear (click)="abrirModal(entregue)">
-                                            <ion-icon class="icone" item-content name="checkmark-circle-outline"> Entregue</ion-icon>
+                                        <button color="secondary" ion-button item-content  item-end icon-only clear >
+                                            <ion-icon class="icone"  name="checkmark-circle-outline"> </ion-icon>
                                         </button>
         
         
