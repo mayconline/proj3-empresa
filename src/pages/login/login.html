@@ -1,14 +1,16 @@
 
 
 
-<ion-content padding>
+<ion-content padding class="clogin"> 
 
-    <img class="banner" src="assets/imgs/logoempresa.png"   />
-
+    <!--<img class="banner" src="assets/imgs/logoempresa.png"   /> -->
+    <h1>LineApp</h1>
+    
+    <h5 text-center>Modo Empresa</h5>
     <ion-card class="card">
         <ion-card-header  >
             <img class="logo" src="assets/imgs/logo.png"/>
-            <h1 ion-text>Faça seu Login </h1>
+          <h2 ion-text color="violet">Faça seu Login</h2>
           </ion-card-header>
 
           <ion-card-content>
@@ -37,24 +39,27 @@
                   </ion-item>
               
                   <div padding>
-                    <button ion-button block type="submit" [disabled]="!form.valid" (click)="onSubmit()">Entrar</button>
+                    <button color="violet" ion-button block type="submit" [disabled]="!form.valid" (click)="onSubmit()">Entrar</button>
                   </div>
               </form>
 
               <ion-item (click)="irResetPage()">
-                  <button ion-button clear item-right >
+                  <button color="laranja" ion-button clear item-right >
                       Recuperar senha?
                   </button>
               </ion-item>
 
               <ion-item> 
-                  <ion-label>Não tem conta ?</ion-label>
-                  <button (click)="registrese()" ion-button clear item-right> Registre-se </button>
+                  <ion-label ion-text color="violet">Não tem conta ?</ion-label>
+                  <button color="laranja" (click)="registrese()" ion-button clear item-right> Registre-se </button>
               </ion-item>
 
 
           </ion-card-content>
 
     </ion-card>
+
+    
+    <div class="copyright" text-center ion-text>© LineApp - aplicativo fidelidade</div>
 
 </ion-content>
