@@ -16,6 +16,11 @@ page-login {
             padding: 15px;
            
         }
+        h1::after{
+            content: "App";
+            color: #FF7F50;
+            
+        }
     
         h2{
             text-align: center;

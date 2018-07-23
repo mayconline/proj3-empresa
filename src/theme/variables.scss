@@ -59,7 +59,7 @@ $colors: (
 $toolbar-background: #8A2BE2;
 $toolbar-text-color: #ffffff;
 $toolbar-active-color: #ffffff;
-//$toolbar-inactive-color: #FFFFFF;
+$toolbar-inactive-color: #FFFFFF;
 //$tabs-md-tab-text-color: #8A2BE2;
 
 //ion-tabs 
@@ -70,6 +70,10 @@ $tabs-md-tab-icon-color-active:#8A2BE2;
 $item-md-paragraph-text-color:#FF7F50;
 $item-md-avatar-size:5rem;
 
+//imput
+
+$text-input-placeholder-color:#8A2BE2;
+$text-input-md-highlight-color:#8A2BE2;
 // App Windows Variables
 // --------------------------------------------------
 // Windows only Sass variables can go here
