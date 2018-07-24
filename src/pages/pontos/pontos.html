@@ -1,13 +1,18 @@
 
-<ion-header>
+<ion-header no-border>
 
-  <ion-navbar><ion-title >Pontos</ion-title>
-   
+  <ion-navbar>
+       <ion-title>Pontos</ion-title>
+       
   </ion-navbar>
 
   <ion-toolbar >
-    <ion-title *ngIf="pontos==='Historico'" text-center>Histórico</ion-title>
-    <ion-title *ngIf="pontos==='Inserir'" text-center>Inserir Pontos</ion-title>
+       
+
+        <ion-title *ngIf="pontos==='Historico'" text-center>Histórico</ion-title>
+        <ion-title *ngIf="pontos==='Inserir'" text-center>Inserir Pontos</ion-title>
+   
+    
     <ion-segment  [(ngModel)]="pontos" color="primary" >
         <ion-segment-button   value="Inserir">
             <ion-icon name="add-circle"></ion-icon>
@@ -18,7 +23,11 @@
           Histórico
         </ion-segment-button>
       </ion-segment>
-  </ion-toolbar>
+      
+      <ion-searchbar  *ngIf="pontos==='Historico'" (ionInput)="getHist($event)"  placeholder="Filtre pelo CPF" [brmasker]="{mask:'000.000.000-00', len:14}"></ion-searchbar>
+      <ion-searchbar *ngIf="pontos==='Inserir'" (ionInput)="getItems($event)"  placeholder="Filtre pelo CPF" [brmasker]="{mask:'000.000.000-00', len:14}"></ion-searchbar>
+    
+    </ion-toolbar>
 
 </ion-header>
 
@@ -56,12 +65,12 @@
                   
                     
 
-                  <h3>Selecione o Usuário</h3>
+                
                   
   <ion-row>
 
       <ion-col col-12>
-          <ion-searchbar (ionInput)="getItems($event)"  placeholder="Filtre pelo CPF"></ion-searchbar>
+         
       </ion-col>
   </ion-row>
 
@@ -91,25 +100,26 @@
             
               
                 <ion-list *ngSwitchCase="'Historico'">
-                  <h3>Histórico de Pontos</h3>
+             
 
 
 
   <ion-row>
 
       <ion-col col-12>
-          <ion-searchbar (ionInput)="getHist($event)"  placeholder="Filtre pelo CPF"></ion-searchbar>
+         
       </ion-col>
   </ion-row>
                     <ion-item-sliding *ngFor="let nota of notas | async">  
                         <ion-item >
-                            <ion-icon item-content item-start name="list-box"></ion-icon>
-                            <h2>Id Nota: {{nota.nota}}</h2> 
-                            <p>R$ {{nota.valor}}</p>
-                            <p>Usuario: {{nota.NomeUser}}</p>
-                            <p>CPF: {{nota.cpf}}</p>
-                            <p>{{nota.quantPontos}} Pontos</p>
-                            <p>Status: {{nota.status}}</p>  
+                            <ion-icon  color="violet" item-content item-start name="list-box"></ion-icon>
+                            <h2> #{{nota.nota}}</h2> 
+                            <p ion-text color="dark">Usuario: {{nota.NomeUser}}</p>
+                            <p >CPF: {{nota.cpf}}</p>
+                            <p>{{nota.quantPontos}} pontos {{nota.status | lowercase}}</p>
+                            <button color="secondary" ion-button item-content  item-end icon-only clear >
+                            <ion-icon class="icone"  name="checkmark-circle-outline"> </ion-icon>
+                                </button> 
                             
                         </ion-item>
             
