@@ -22,6 +22,7 @@ export class AuthServiceProvider {
     return new Promise((resolve, reject) => {
       this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password)
         .then((firebaseUser: firebase.User) => {
+          
           // Criando o profile do usuario
           this.afDb.object(this.PATH + firebaseUser.uid).set({
             

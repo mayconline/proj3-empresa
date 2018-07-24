@@ -30,8 +30,8 @@ export class RegistroPage {
   private createForm() {
     this.form = this.formBuilder.group({
       
-      name: [''],
-      cpf: [''],
+      name: ['', Validators.required],
+      cpf: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
       pontos:[0]
@@ -45,6 +45,7 @@ export class RegistroPage {
       this.authService.registrar(this.form.value)
 
         .then((user:any) => {
+          
           user.sendEmailVerification();
 
           toast.setMessage('Usuário criado com sucesso.');
