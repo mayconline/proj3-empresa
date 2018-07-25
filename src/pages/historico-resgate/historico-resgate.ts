@@ -21,6 +21,7 @@ export class HistoricoResgatePage {
 
   ptbr = moment.locale('pt-br');
   dataHoje: any;
+  mesHoje:any;
   dataFinal:any;
 
   constructor(private afAuth: AngularFireAuth, private resgateService: VendasProvider,
@@ -41,6 +42,9 @@ export class HistoricoResgatePage {
     this.dataHoje = moment.locale('pt-br');
 
     this.dataHoje =  moment().toJSON();
+    this.mesHoje = moment().format('MMMM YYYY');
+    //console.log(this.mesHoje)
+
   
   }
 

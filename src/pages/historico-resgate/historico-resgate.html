@@ -15,7 +15,28 @@
                     </button>
                 </ion-buttons>
             </ion-col>
-            <ion-col col-12></ion-col>
+            <ion-col col-12>
+
+                <ion-item>
+                    <ion-label>Selecione o Mês</ion-label>
+                    <ion-select [(ngModel)]="mesHoje">
+                      <ion-option value="janeiro 2018">JANEIRO</ion-option>
+                      <ion-option value="fevereiro 2018">FEVEREIRO</ion-option>
+                      <ion-option value="março 2018">MARÇO</ion-option>
+                      <ion-option value="abril 2018">ABRIL</ion-option>
+                      <ion-option value="maio 2018">MAIO</ion-option>
+                      <ion-option value="junho 2018">JUNHO</ion-option>
+                      <ion-option value="julho 2018">JULHO</ion-option>
+                      <ion-option value="agosto 2018">AGOSTO</ion-option>
+                      <ion-option value="setembro 2018">SETEMBRO</ion-option>
+                      <ion-option value="outubro 2018">OUTUBRO</ion-option>
+                      <ion-option value="novembro 2018">NOVEMBRO</ion-option>
+                      <ion-option value="dezembro 2018">DEZEMBRO</ion-option>
+
+                    </ion-select>
+                  </ion-item>
+
+            </ion-col>
         </ion-row>
     </ion-navbar>
 
@@ -95,10 +116,10 @@
                            
                         <ion-item-sliding *ngFor="let resgate of resgates | async let i=index">
                                
-                            <ion-item (click)="abrirModal(resgate)" text-wrap *ngIf="resgate.status==='Aguardando' || resgate.status==='Solicitado'">
+                            <ion-item (click)="abrirModal(resgate)" text-wrap *ngIf="resgate.status==='Aguardando' && resgate.mesResgate===mesHoje || resgate.status==='Solicitado' && resgate.mesResgate===mesHoje " >
                        
-                       
-                                 
+                       <!--*ngIf="resgate.status==='Aguardando'  || resgate.status==='Solicitado'"-->
+                                 <!--*ngIf="resgate.mesResgate===mesHoje"-->
                                 <ion-avatar item-start >
                                     <img src="{{ resgate.url }}" />
                                 </ion-avatar>
@@ -173,7 +194,7 @@
                            
                                 <ion-item-sliding *ngFor="let entregue of entregues | async let i=index">
                                        
-                                    <ion-item text-wrap (click)="abrirModal(entregue)">
+                                    <ion-item text-wrap (click)="abrirModal(entregue)"  *ngIf="entregue.mesResgate===mesHoje" >
                               
                               
                                          

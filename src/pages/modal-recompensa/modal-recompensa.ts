@@ -30,6 +30,7 @@ export class ModalRecompensaPage {
   status:any;
   dataResgate:any;
   ptbr = moment.locale('pt-br');
+  mesResgate:any;
 
 
 
@@ -49,6 +50,7 @@ export class ModalRecompensaPage {
   formDate(){
     this.dataResgate = moment.locale('pt-br');
    this.dataResgate = moment().toJSON();
+   this.mesResgate = moment().format('MMMM YYYY')
   }
 
 
@@ -65,7 +67,8 @@ export class ModalRecompensaPage {
       pontosProd: [this.prod.pontos],
       dataResgate:[this.dataResgate],
       url:[this.prod.url],
-      dias:[3]
+      dias:[3],
+      mesResgate:[this.mesResgate]
       
     }); 
    }

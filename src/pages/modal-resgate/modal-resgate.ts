@@ -20,9 +20,12 @@ export class ModalResgatePage {
   public view: ViewController) {
     this.dataEntrega();
     this.dataSoli();
+    this.mesGo();
+  //  console.log(this.mes);
   }
 
   dias:number = this.navParams.data.resgate.dias;
+  mes:any;
 
   dataEntrega(){
    
@@ -31,6 +34,11 @@ export class ModalResgatePage {
    this.dataEntre =   moment(this.navParams.data.resgate.dataResgate).add(this.dias,'days').calendar();
    
   
+  }
+
+  mesGo(){
+    this.mes = moment(this.navParams.data.resgate.dataResgate).format('MMMM');
+   
   }
 
    

@@ -120,7 +120,8 @@ export class VendasProvider {
                 pontosProd: resgate.pontosProd,
                 dataResgate: resgate.dataResgate, 
                 url: resgate.url,
-                dias:resgate.dias
+                dias:resgate.dias,
+                mesResgate: resgate.mesResgate
               
          
 
