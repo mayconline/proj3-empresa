@@ -50,7 +50,7 @@ export class HistoricoResgatePage {
 
     const meuModal = this.modal.create('ModalResgatePage', { resgate: resgate })
     meuModal.present();
-
+ 
   }
 
 

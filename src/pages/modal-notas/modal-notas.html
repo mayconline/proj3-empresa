@@ -1,8 +1,9 @@
 
+
 <ion-header id="header">
  
   <ion-navbar>
-    <ion-title text-center>Status do Pedido</ion-title>
+    <ion-title text-center>Nota Fiscal</ion-title>
             <ion-buttons end>
               <button ion-button icon-only (click)="fechar()">
                 <ion-icon name="close"></ion-icon> 
@@ -14,18 +15,25 @@
 
 </ion-header>
 
-
 <ion-content padding id="content">
 
   <ion-card class="card" padding>
 
-      <img *ngIf="resgate.url" src="{{ resgate.url }}" />
+     
     <ion-card-content>
-      <h4 text-center>{{resgate.prodNome}}</h4>
-      <span> Data de Solicitação: {{dataSolicitacao}}</span>  
-      <h6>Pontos Gastos: {{resgate.pontosProd}} pontos</h6>
-<br>
-<ion-row align-items-center>
+      <h4 text-center>Nota Fiscal: #{{nota.nota}}</h4>
+      <h4 text-center>Usuario: {{nota.NomeUser}}</h4>
+      <h4 ion-text color="laranja" text-center>CPF: {{nota.cpf}}</h4>
+      <h4 text-center>R$ {{nota.valor}} Gastos</h4>
+      <p ion-text color="laranja" text-center>{{nota.quantPontos}} Pontos {{nota.status}}</p>
+      <div  class="icone"><ion-icon color="secondary" class="icone"  name="checkmark-circle-outline" icon-only> </ion-icon></div>
+      
+
+
+      <!--<span> Data de Solicitação: {{dataSolicitacao}}</span> -->
+      
+
+<!--<ion-row align-items-center>
     <ion-col col-12> <h6 text-center>Status do Resgate</h6> </ion-col>
 
    
@@ -44,12 +52,12 @@
    
     
   
-  </ion-row>
+  </ion-row> -->
 
     </ion-card-content>
 
   </ion-card>
 
-
-
+ 
 </ion-content>
+

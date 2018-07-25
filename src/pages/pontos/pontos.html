@@ -111,7 +111,7 @@
       </ion-col>
   </ion-row>
                     <ion-item-sliding *ngFor="let nota of notas | async">  
-                        <ion-item >
+                        <ion-item  (click)="viewNota(nota)">
                             <ion-icon  color="violet" item-content item-start name="list-box"></ion-icon>
                             <h2> #{{nota.nota}}</h2> 
                             <p ion-text color="dark">Usuario: {{nota.NomeUser}}</p>
@@ -126,9 +126,7 @@
             
                         <ion-item-options side="left"> 
                                     
-                              <!--  <button ion-button color="primary" (click)="editarRecomp(recompensa)">
-                                    <ion-icon name="create"> Editar</ion-icon>
-                                </button> -->
+                              
 
                                 
 

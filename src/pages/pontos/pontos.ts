@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, ModalController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { UsuariosProvider } from '../../providers/usuarios/usuarios';
 import { PontosProvider } from '../../providers/pontos/pontos';
@@ -25,7 +25,9 @@ export class PontosPage {
   constructor( private usuarioProvider: UsuariosProvider,
     private pontosProvider:PontosProvider,
     private toast:ToastController,
-    public navCtrl: NavController, public navParams: NavParams) {
+    public navCtrl: NavController,
+     public navParams: NavParams,
+    public modal:ModalController) {
 
    
   }
@@ -33,6 +35,13 @@ export class PontosPage {
 
 
 // crud //
+
+viewNota(nota: Observable<any>) {
+
+  const meuModal = this.modal.create('ModalNotasPage', { nota:nota })
+  meuModal.present();
+
+}
 
 
 

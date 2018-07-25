@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams} from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 
@@ -14,54 +14,56 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class ConfigurePage {
 
-  user:any = {}; 
+  user: any = {};
 
-  constructor( private afAuth:AngularFireAuth,
+  constructor(private afAuth: AngularFireAuth,
     public navCtrl: NavController, public navParams: NavParams, private authService: AuthServiceProvider) {
-  
-      //verifica os dados do usuario logado //
-      
-    this.afAuth.authState.subscribe(firebaseUser =>{
-        if(firebaseUser){
-          const usuarioLogado = authService.getUserInfo().subscribe(userData =>{
-            this.user = userData;
 
-            usuarioLogado.unsubscribe();
 
-          })
-        }else {
-          this.user = {};
-        }
+  }
+
+
+  obterUser() {
+    this.afAuth.authState.subscribe(firebaseUser => {
+      if (firebaseUser) {
+        const usuarioLogado = this.authService.getUserInfo().subscribe(userData => {
+          this.user = userData;
+
+
+        })
+      } else {
+        this.user = {};
+      }
     })
+
+  }
+
+  ionViewWillLoad() {
+    this.obterUser();
   }
 
 
 
+  //Navegar entre Paginas//
+  irRecompensas() {
+    this.navCtrl.push('RecompensasPage')
+  }
 
-ionViewDidLoad(){
-  console.log(this.user);
-}
+  sair() {
+    this.authService.logout();
+  }
 
-//Navegar entre Paginas//
-irRecompensas(){
-  this.navCtrl.push('RecompensasPage')
-}
+  irUsuarios() {
+    this.navCtrl.push('UsuariosPage')
+  }
 
-sair(){
-  this.authService.logout();
-}
+  irPontos() {
+    this.navCtrl.push('PontosPage')
+  }
 
-irUsuarios(){
-  this.navCtrl.push('UsuariosPage')
-}
-
-irPontos(){
-  this.navCtrl.push('PontosPage')
-}
-
-irNew(){
-  this.navCtrl.push('NoticiasPage')
-}
+  irNew() {
+    this.navCtrl.push('NoticiasPage')
+  }
 
 }
 
