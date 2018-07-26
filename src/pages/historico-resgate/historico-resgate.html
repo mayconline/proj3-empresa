@@ -1,65 +1,82 @@
 <ion-header no-border>
-    <ion-navbar >
+    <ion-navbar>
         <ion-row text-center>
-                <ion-col col-4>
-                <p ion-text class="ptitle">   {{user.pontos}} <br> Pontos </p>
-               
+            <ion-col col-4>
+                <p ion-text class="ptitle"> {{user.pontos}}
+                    <br> Pontos </p>
+
             </ion-col>
-              
-           
-            <ion-col col-4 offset-2 >  <p class="ptitle" > Olá {{user.name}} <br>Bem Vindo!!! </p></ion-col> 
+
+
+            <ion-col col-4 offset-2>
+                <p class="ptitle"> Olá {{user.name}}
+                    <br>Bem Vindo!!! </p>
+            </ion-col>
             <ion-col col-2>
                 <ion-buttons end>
-                        <br>  <button ion-button icon-only (click)="sair()">
-                      <ion-icon name="exit"></ion-icon>
+                    <br>
+                    <button ion-button icon-only (click)="sair()">
+                        <ion-icon name="exit"></ion-icon>
                     </button>
                 </ion-buttons>
             </ion-col>
-            <ion-col col-12>
 
-                <ion-item>
-                    <ion-label>Selecione o Mês</ion-label>
-                    <ion-select [(ngModel)]="mesHoje">
-                      <ion-option value="janeiro 2018">JANEIRO</ion-option>
-                      <ion-option value="fevereiro 2018">FEVEREIRO</ion-option>
-                      <ion-option value="março 2018">MARÇO</ion-option>
-                      <ion-option value="abril 2018">ABRIL</ion-option>
-                      <ion-option value="maio 2018">MAIO</ion-option>
-                      <ion-option value="junho 2018">JUNHO</ion-option>
-                      <ion-option value="julho 2018">JULHO</ion-option>
-                      <ion-option value="agosto 2018">AGOSTO</ion-option>
-                      <ion-option value="setembro 2018">SETEMBRO</ion-option>
-                      <ion-option value="outubro 2018">OUTUBRO</ion-option>
-                      <ion-option value="novembro 2018">NOVEMBRO</ion-option>
-                      <ion-option value="dezembro 2018">DEZEMBRO</ion-option>
-
-                    </ion-select>
-                  </ion-item>
-
-            </ion-col>
         </ion-row>
     </ion-navbar>
 
-    <ion-toolbar >
-            <ion-title text-center>Resgates</ion-title>
-            <ion-segment [(ngModel)]="status" >
-                    <ion-segment-button value="solicitados">
-                        <ion-icon name="clock"></ion-icon>
-                        Solicitados
-                    </ion-segment-button>
-                    <ion-segment-button value="finalizados">
-                        <ion-icon name="checkmark-circle-outline"></ion-icon>
-                        Finalizados
-                    </ion-segment-button>
-                </ion-segment>
-          </ion-toolbar>
+    <ion-toolbar>
+        <ion-title text-center>Resgates</ion-title>
+        <ion-segment [(ngModel)]="status">
+            <ion-segment-button value="solicitados">
+                <ion-icon name="clock"></ion-icon>
+                Solicitados
+            </ion-segment-button>
+            <ion-segment-button value="finalizados">
+                <ion-icon name="checkmark-circle-outline"></ion-icon>
+                Finalizados
+            </ion-segment-button>
+        </ion-segment>
+
+        <ion-grid>
+            <ion-row>
+                <ion-col col-12>
+
+                    <ion-item>
+                        <ion-label>Selecione o Mês</ion-label>
+                        <ion-select [(ngModel)]="mesHoje" interface="popover">
+                            <ion-option *ngFor="let mesHoje of armeses " [value]="mesHoje" >{{mesHoje | uppercase}}</ion-option>
+
+                        </ion-select>
+                    </ion-item>
+
+{{mesHoje}}
+
+                    <!-- <ion-item>
+                                        <ion-label>Date</ion-label>
+                                        <ion-datetime displayFormat="MMMM YYYY" pickerFormat="MMMM YYYY"
+                                         min="2018" max="2100" [(ngModel)]="mesHoje"
+                                         
+                                         monthNames="janeiro, fevereiro, março, abril, maio, junho, julho, agosto, setembro, outubro, novembro, dezembro"
+                                         
+                                         ></ion-datetime>
+                                       
+                                    </ion-item> -->
+
+
+                </ion-col>
+
+            </ion-row>
+        </ion-grid>
+
+    </ion-toolbar>
+
 
 </ion-header>
 
 
 <ion-content padding>
 
-     <!--
+    <!--
              <ion-list >
             <ion-item-sliding *ngFor="let resgate of resgates | async">
 
@@ -106,35 +123,35 @@
 
 
 
-   <ion-grid>
-        
+    <ion-grid>
+
         <ion-row>
             <ion-col col-12>
                 <div [ngSwitch]="status">
 
                     <ion-list *ngSwitchCase="'solicitados'">
-                           
+
                         <ion-item-sliding *ngFor="let resgate of resgates | async let i=index">
-                               
-                            <ion-item (click)="abrirModal(resgate)" text-wrap *ngIf="resgate.status==='Aguardando' && resgate.mesResgate===mesHoje || resgate.status==='Solicitado' && resgate.mesResgate===mesHoje " >
-                       
-                       <!--*ngIf="resgate.status==='Aguardando'  || resgate.status==='Solicitado'"-->
-                                 <!--*ngIf="resgate.mesResgate===mesHoje"-->
-                                <ion-avatar item-start >
+
+                            <ion-item (click)="abrirModal(resgate)" text-wrap *ngIf="resgate.status==='Aguardando' && resgate.mesResgate===mesHoje || resgate.status==='Solicitado' && resgate.mesResgate===mesHoje ">
+
+                                <!--*ngIf="resgate.status==='Aguardando'  || resgate.status==='Solicitado'"-->
+                                <!--*ngIf="resgate.mesResgate===mesHoje"-->
+                                <ion-avatar item-start>
                                     <img src="{{ resgate.url }}" />
                                 </ion-avatar>
                                 <h2>{{resgate.prodNome}}</h2>
                                 <p> {{resgate.userNome}} </p>
-                                <span >{{resgate.dataResgate |date: 'dd/MM/yyyy'}}</span>
+                                <span>{{resgate.dataResgate |date: 'dd/MM/yyyy'}}</span>
 
-                                
-                               
 
-                              
-                                <button  ion-button item-content  item-end icon-only clear>
-                                 <ion-icon *ngIf="resgate.status === 'Aguardando'" class="iconeA"  name="clock"> </ion-icon>
 
-                                 <ion-icon *ngIf="resgate.status === 'Solicitado'" class="iconeS" name="paper-plane"> </ion-icon>
+
+
+                                <button ion-button item-content item-end icon-only clear>
+                                    <ion-icon *ngIf="resgate.status === 'Aguardando'" class="iconeA" name="clock"> </ion-icon>
+
+                                    <ion-icon *ngIf="resgate.status === 'Solicitado'" class="iconeS" name="paper-plane"> </ion-icon>
                                 </button>
 
                                 <!--teste
@@ -149,24 +166,24 @@
                                     </ion-col>
                                 </ion-row> -->
 
-                               
-                                  
-                                
-                                   
-                                
-                                   
-                                       
-                                       
-                                     
-                                  
-                                
+
+
+
+
+
+
+
+
+
+
+
 
 
                             </ion-item>
 
 
 
-                            
+
 
                             <ion-item-options side="left">
 
@@ -184,67 +201,67 @@
                         </ion-item-sliding>
 
 
-  
+
 
                     </ion-list>
 
-                    
-<!--finalizados-->
-                            <ion-list *ngSwitchCase="'finalizados'">
-                           
-                                <ion-item-sliding *ngFor="let entregue of entregues | async let i=index">
-                                       
-                                    <ion-item text-wrap (click)="abrirModal(entregue)"  *ngIf="entregue.mesResgate===mesHoje" >
-                              
-                              
-                                         
-                                        <ion-avatar item-start >
-                                            <img src="{{ entregue.url }}" />
-                                        </ion-avatar>
-                                        <h2>{{entregue.prodNome}}</h2>
-                                        <p > {{entregue.userNome}} </p>
-                                     
-                                       
-        
-        
-                                        <button color="secondary" ion-button item-content  item-end icon-only clear >
-                                            <ion-icon class="icone"  name="checkmark-circle-outline"> </ion-icon>
-                                        </button>
-        
-        
-                                    </ion-item>
-        
-        
-        
-                                    
-        
-                                    <ion-item-options side="left">
-        
-                                        <button ion-button color="primary" (click)="editHist(entregue)">
-                                            <ion-icon name="create"> Editar</ion-icon>
-                                        </button>
-                                        <button ion-button color="danger" (click)="removerResgate(entregue.key)">
-                                            <ion-icon name="trash"> Remover</ion-icon>
-                                        </button>
-        
-        
-        
-                                    </ion-item-options>
-        
-                                </ion-item-sliding>
-        
-        
-         
-        
-                            </ion-list>
 
-                           
- 
+                    <!--finalizados-->
+                    <ion-list *ngSwitchCase="'finalizados'">
+
+                        <ion-item-sliding *ngFor="let entregue of entregues | async let i=index">
+
+                            <ion-item text-wrap (click)="abrirModal(entregue)" *ngIf="entregue.mesResgate===mesHoje">
 
 
-                            
 
-                     
+                                <ion-avatar item-start>
+                                    <img src="{{ entregue.url }}" />
+                                </ion-avatar>
+                                <h2>{{entregue.prodNome}}</h2>
+                                <p> {{entregue.userNome}} </p>
+
+
+
+
+                                <button color="secondary" ion-button item-content item-end icon-only clear>
+                                    <ion-icon class="icone" name="checkmark-circle-outline"> </ion-icon>
+                                </button>
+
+
+                            </ion-item>
+
+
+
+
+
+                            <ion-item-options side="left">
+
+                                <button ion-button color="primary" (click)="editHist(entregue)">
+                                    <ion-icon name="create"> Editar</ion-icon>
+                                </button>
+                                <button ion-button color="danger" (click)="removerResgate(entregue.key)">
+                                    <ion-icon name="trash"> Remover</ion-icon>
+                                </button>
+
+
+
+                            </ion-item-options>
+
+                        </ion-item-sliding>
+
+
+
+
+                    </ion-list>
+
+
+
+
+
+
+
+
 
                 </div>
 
@@ -255,8 +272,8 @@
 
 
 
-    </ion-grid> 
- <!--   <ion-infinite-scroll 
+    </ion-grid>
+    <!--   <ion-infinite-scroll 
     threshold="20%" 
     (ionInfinite)="$event.waitFor(doInfinite())">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>   
@@ -272,4 +289,3 @@
   </ion-refresher> -->
 
 </ion-content>
-

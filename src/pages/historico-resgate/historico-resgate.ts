@@ -48,6 +48,8 @@ export class HistoricoResgatePage {
   
   }
 
+  armeses = ['janeiro 2018', 'fevereiro 2018', 'março 2018','abril 2018', 'maio 2018',
+  'junho 2018','julho 2018', 'agosto 2018', 'setembro 2018', 'outubro 2018', 'novembro 2018', 'dezembro 2018'];
  
 
   abrirModal(resgate: Observable<any>) {
