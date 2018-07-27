@@ -79,8 +79,8 @@
 
 
                     <!--searchbar-->
-                    <ion-searchbar   *ngIf="status==='solicitados' && searchBarOpen " showCancelButton="true" (ionCancel)="barClick()" (ionInput)="getHist($event)"  placeholder="Filtre pelo CPF" [brmasker]="{mask:'000.000.000-00', len:14}"></ion-searchbar>
-                    <ion-searchbar *ngIf="status==='finalizados' && searchBarOpen " showCancelButton="true" (ionCancel)="barClick()" (ionInput)="getItems($event)"  placeholder="Filtre pelo CPF" [brmasker]="{mask:'000.000.000-00', len:14}"></ion-searchbar>
+                    <ion-searchbar   *ngIf="status==='solicitados' && searchBarOpen " showCancelButton="true" (ionCancel)="barClick()" (ionInput)="getRes($event)"  placeholder="Filtre pelo CPF" [brmasker]="{mask:'000.000.000-00', len:14}"></ion-searchbar>
+                   <ion-searchbar *ngIf="status==='finalizados' && searchBarOpen " showCancelButton="true" (ionCancel)="barClick()" (ionInput)="getFim($event)"  placeholder="Filtre pelo CPF" [brmasker]="{mask:'000.000.000-00', len:14}"></ion-searchbar>
                   
 
             </ion-row>

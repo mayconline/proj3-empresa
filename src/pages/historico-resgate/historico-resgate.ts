@@ -5,7 +5,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { VendasProvider } from '../../providers/vendas/vendas';
 import { Observable } from 'rxjs/Observable';
 import * as moment from 'moment';
-import { tap, map, take } from 'rxjs/operators'
+//import { tap, map, take } from 'rxjs/operators'
 
 @IonicPage()
 @Component({
@@ -128,9 +128,9 @@ export class HistoricoResgatePage {
     
   }
 
-  // searchbar //
+   // searchbar solicitado//
 
-  getItems(ev: any) {
+   getRes(ev: any) {
     // Reset items back to all of the items
     this.resgates = this.resgateService.getUserAll();
     
@@ -141,21 +141,22 @@ export class HistoricoResgatePage {
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
       this.resgates = this.resgates
-        .map(resgateList => resgateList.filter((v) => {
+        .map(pessoaList => pessoaList.filter((v) => {
            
-               return v.cpf.toLowerCase().indexOf(val.toLowerCase()) !== -1;
+               return v.cpfUser.toLowerCase().indexOf(val.toLowerCase())!== -1;
+              
             
         }));
      
     }
-  } // searchbar selecione user //
+  } // searchbar selecione solicitado //
 
-  // searchbar historico//
+   // searchbar  finalizados//
 
-  getHist(ev: any) {
+   getFim(ev: any) {
     // Reset items back to all of the items
-    
     this.entregues = this.resgateService.getUserAllEntregue();
+    
 
     // set val to the value of the searchbar
     let val = ev.target.value;
@@ -163,14 +164,15 @@ export class HistoricoResgatePage {
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
       this.entregues = this.entregues
-        .map(entregueList => entregueList.filter((v) => {
+        .map(entrelist => entrelist.filter((v) => {
            
-               return v.cpf.toLowerCase().indexOf(val.toLowerCase()) !== -1;
+               return v.cpfUser.toLowerCase().indexOf(val.toLowerCase())!== -1;
+              
             
         }));
      
     }
-  } // searchbar //
+  } // searchbar selecione user //
 
 
 
