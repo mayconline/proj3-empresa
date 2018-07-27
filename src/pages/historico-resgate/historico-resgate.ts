@@ -36,6 +36,17 @@ export class HistoricoResgatePage {
 
   }
 
+  date:boolean = false;
+  clickDate(){
+    this.date = !this.date;
+  }
+
+  searchBarOpen:boolean = false;
+
+  barClick(){
+    this.searchBarOpen = !this.searchBarOpen;
+   
+  }
 
   dataAtual() {
 
@@ -116,6 +127,50 @@ export class HistoricoResgatePage {
     this.obterUser();
     
   }
+
+  // searchbar //
+
+  getItems(ev: any) {
+    // Reset items back to all of the items
+    this.resgates = this.resgateService.getUserAll();
+    
+
+    // set val to the value of the searchbar
+    let val = ev.target.value;
+
+    // if the value is an empty string don't filter the items
+    if (val && val.trim() != '') {
+      this.resgates = this.resgates
+        .map(resgateList => resgateList.filter((v) => {
+           
+               return v.cpf.toLowerCase().indexOf(val.toLowerCase()) !== -1;
+            
+        }));
+     
+    }
+  } // searchbar selecione user //
+
+  // searchbar historico//
+
+  getHist(ev: any) {
+    // Reset items back to all of the items
+    
+    this.entregues = this.resgateService.getUserAllEntregue();
+
+    // set val to the value of the searchbar
+    let val = ev.target.value;
+
+    // if the value is an empty string don't filter the items
+    if (val && val.trim() != '') {
+      this.entregues = this.entregues
+        .map(entregueList => entregueList.filter((v) => {
+           
+               return v.cpf.toLowerCase().indexOf(val.toLowerCase()) !== -1;
+            
+        }));
+     
+    }
+  } // searchbar //
 
 
 

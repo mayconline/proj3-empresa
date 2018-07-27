@@ -113,6 +113,7 @@ export class VendasProvider {
               
               .push({
                 Userkey:this.user.key,
+                cpfUser:this.user.cpf,
                 prodNome: resgate.prodNome,
                 prodKey: resgate.prodKey,
                 userNome: this.user.name,

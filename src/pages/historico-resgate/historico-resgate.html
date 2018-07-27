@@ -1,9 +1,11 @@
 <ion-header no-border>
     <ion-navbar>
+
         <ion-row text-center>
             <ion-col col-4>
                 <p ion-text class="ptitle"> {{user.pontos}}
                     <br> Pontos </p>
+
 
             </ion-col>
 
@@ -22,10 +24,71 @@
             </ion-col>
 
         </ion-row>
+
+
+
     </ion-navbar>
 
     <ion-toolbar>
         <ion-title text-center>Resgates</ion-title>
+
+
+        <ion-grid>
+            <ion-row>
+                <ion-col col-4>
+                    <ion-buttons start>
+
+                        <button clear ion-button icon-left *ngIf="!date && !searchBarOpen" (click)="clickDate()">
+
+                            <ion-icon  name="calendar"></ion-icon>
+                           <p ion-text >Data</p>
+                        </button>
+                    </ion-buttons>
+
+                    </ion-col>
+                    <ion-col col-4 *ngIf="!date && !searchBarOpen ">
+                        <h5 (click)="clickDate()" ion-text text-center color="laranja">{{mesHoje | uppercase}}</h5>
+                    </ion-col>
+                    <ion-col col-4>
+                    <ion-buttons end>
+
+                            <button clear ion-button icon-left *ngIf="!date && !searchBarOpen" (click)="barClick()">
+    
+                                <ion-icon  name="search"></ion-icon>
+                                <p ion-text >Filtrar</p>
+                            </button>
+                        </ion-buttons>
+                    </ion-col>
+
+                    <ion-item class="datepicker" *ngIf="date" (click)="clickDate()">
+                      
+                        <ion-icon  name="calendar" item-content item-start></ion-icon>
+                 
+                      
+                        <ion-select [(ngModel)]="mesHoje" interface="popover">
+                            <ion-option *ngFor="let mesHoje of armeses " [value]="mesHoje">{{mesHoje | uppercase}}</ion-option>
+
+                        </ion-select>
+                        <ion-select [(ngModel)]="anoHoje" interface="popover">
+                            <ion-option *ngFor="let ano of anos " [value]="ano">{{ano | uppercase}}</ion-option>
+                        </ion-select>
+
+                        <ion-icon  name="close" item-end></ion-icon>
+                    </ion-item>
+
+
+
+                    <!--searchbar-->
+                    <ion-searchbar   *ngIf="status==='solicitados' && searchBarOpen " showCancelButton="true" (ionCancel)="barClick()" (ionInput)="getHist($event)"  placeholder="Filtre pelo CPF" [brmasker]="{mask:'000.000.000-00', len:14}"></ion-searchbar>
+                    <ion-searchbar *ngIf="status==='finalizados' && searchBarOpen " showCancelButton="true" (ionCancel)="barClick()" (ionInput)="getItems($event)"  placeholder="Filtre pelo CPF" [brmasker]="{mask:'000.000.000-00', len:14}"></ion-searchbar>
+                  
+
+            </ion-row>
+        </ion-grid>
+
+
+
+
         <ion-segment [(ngModel)]="status">
             <ion-segment-button value="solicitados">
                 <ion-icon name="clock"></ion-icon>
@@ -37,21 +100,12 @@
             </ion-segment-button>
         </ion-segment>
 
-        <ion-item class="datepicker">
-            <ion-label>Filtro por Data:</ion-label>
-            <ion-select [(ngModel)]="mesHoje" interface="popover">
-                <ion-option *ngFor="let mesHoje of armeses " [value]="mesHoje" >{{mesHoje | uppercase}}</ion-option>
-              
-            </ion-select>
-            <ion-select  [(ngModel)]="anoHoje" interface="popover">
-                <ion-option *ngFor="let ano of anos " [value]="ano" >{{ano | uppercase}}</ion-option>
-            </ion-select>
-         
-        </ion-item>
 
-                   
 
-                    <!-- <ion-item>
+
+
+
+        <!-- <ion-item>
                                         <ion-label>Date</ion-label>
                                         <ion-datetime displayFormat="MMMM YYYY" pickerFormat="MMMM YYYY"
                                          min="2018" max="2100" [(ngModel)]="mesHoje"
@@ -63,7 +117,7 @@
                                     </ion-item> -->
 
 
-             
+
 
     </ion-toolbar>
 
@@ -139,9 +193,10 @@
                                 </ion-avatar>
                                 <h2>{{resgate.prodNome}}</h2>
                                 <p> {{resgate.userNome}} </p>
+                                <p> CPF: {{resgate.cpfUser}} </p>
                                 <span>{{resgate.dataResgate |date: 'dd/MM/yyyy'}}</span>
 
-
+                                 
 
 
 
@@ -217,6 +272,7 @@
                                 </ion-avatar>
                                 <h2>{{entregue.prodNome}}</h2>
                                 <p> {{entregue.userNome}} </p>
+                                <p> CPF: {{entregue.cpfUser}} </p>
 
 
 

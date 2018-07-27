@@ -3,6 +3,7 @@ import { IonicPageModule } from 'ionic-angular';
 import { HistoricoResgatePage } from './historico-resgate';
 import { EditarHistoricoPageModule } from '../editar-historico/editar-historico.module';
 import { ModalResgatePageModule } from '../modal-resgate/modal-resgate.module';
+import { BrMaskerModule } from 'brmasker-ionic-3';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { ModalResgatePageModule } from '../modal-resgate/modal-resgate.module';
   imports: [
     IonicPageModule.forChild(HistoricoResgatePage),
     EditarHistoricoPageModule,
-   ModalResgatePageModule
+   ModalResgatePageModule,
+   BrMaskerModule
   ],
 })
 export class HistoricoResgatePageModule {}

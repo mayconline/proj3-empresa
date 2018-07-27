@@ -42,6 +42,7 @@ export class PontosPage {
     this.hideBackButton = !this.hideBackButton;
   }
 
+  
 // crud //
 
 viewNota(nota: Observable<any>) {
