@@ -42,15 +42,18 @@ export class HistoricoResgatePage {
     this.dataHoje = moment.locale('pt-br');
 
     this.dataHoje =  moment().toJSON();
-    this.mesHoje = moment().format('MMMM YYYY');
+    this.mesHoje = moment().format('MMMM');
+    this.anoHoje = moment().format('YYYY');
     //console.log(this.mesHoje)
 
   
   }
 
-  armeses = ['janeiro 2018', 'fevereiro 2018', 'março 2018','abril 2018', 'maio 2018',
-  'junho 2018','julho 2018', 'agosto 2018', 'setembro 2018', 'outubro 2018', 'novembro 2018', 'dezembro 2018'];
- 
+  armeses = ['janeiro', 'fevereiro', 'março','abril', 'maio',
+  'junho','julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
+  
+  anoHoje:any;
+  anos =['2018', '2019', '2020','2021'];
 
   abrirModal(resgate: Observable<any>) {
 

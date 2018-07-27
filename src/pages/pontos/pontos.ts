@@ -34,6 +34,14 @@ export class PontosPage {
 
 
 
+  searchBarOpen:boolean = false;
+  hideBackButton:boolean = false;
+
+  barClick(){
+    this.searchBarOpen = !this.searchBarOpen;
+    this.hideBackButton = !this.hideBackButton;
+  }
+
 // crud //
 
 viewNota(nota: Observable<any>) {

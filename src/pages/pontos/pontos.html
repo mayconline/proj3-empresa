@@ -1,9 +1,17 @@
 
-<ion-header no-border>
+<ion-header no-border no-padding >
 
-  <ion-navbar>
-       <ion-title>Pontos</ion-title>
+  <ion-navbar [hideBackButton]='hideBackButton' no-border no-padding>
+       <ion-title *ngIf="!searchBarOpen">Pontos</ion-title>
        
+       <ion-searchbar   *ngIf="pontos==='Historico' && searchBarOpen" showCancelButton="true" (ionCancel)="barClick()" (ionInput)="getHist($event)"  placeholder="Filtre pelo CPF" [brmasker]="{mask:'000.000.000-00', len:14}"></ion-searchbar>
+      <ion-searchbar *ngIf="pontos==='Inserir' && searchBarOpen" showCancelButton="true" (ionCancel)="barClick()" (ionInput)="getItems($event)"  placeholder="Filtre pelo CPF" [brmasker]="{mask:'000.000.000-00', len:14}"></ion-searchbar>
+    
+      <ion-buttons end>
+        <button ion-button icon-only *ngIf="!searchBarOpen" (click)="barClick()">
+            <ion-icon name="search" ></ion-icon>
+        </button>
+      </ion-buttons>
   </ion-navbar>
 
   <ion-toolbar >
@@ -24,9 +32,7 @@
         </ion-segment-button>
       </ion-segment>
       
-      <ion-searchbar  *ngIf="pontos==='Historico'" (ionInput)="getHist($event)"  placeholder="Filtre pelo CPF" [brmasker]="{mask:'000.000.000-00', len:14}"></ion-searchbar>
-      <ion-searchbar *ngIf="pontos==='Inserir'" (ionInput)="getItems($event)"  placeholder="Filtre pelo CPF" [brmasker]="{mask:'000.000.000-00', len:14}"></ion-searchbar>
-    
+      
     </ion-toolbar>
 
 </ion-header>

@@ -121,7 +121,8 @@ export class VendasProvider {
                 dataResgate: resgate.dataResgate, 
                 url: resgate.url,
                 dias:resgate.dias,
-                mesResgate: resgate.mesResgate
+                mesResgate: resgate.mesResgate,
+                anoResgate: resgate.anoResgate
               
          
 
