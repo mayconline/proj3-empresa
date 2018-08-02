@@ -23,6 +23,7 @@ export class DestaquesPage {
   recompensas: Observable <any>;
   user:any ={};
 
+
   constructor( private afAuth:AngularFireAuth,
      private recompProvider:RecompensasProvider, private authService:AuthServiceProvider,
     public navCtrl: NavController, public navParams: NavParams, public app: App,
