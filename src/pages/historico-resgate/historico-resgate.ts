@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, ModalController, LoadingController } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { VendasProvider } from '../../providers/vendas/vendas';
@@ -23,11 +23,12 @@ export class HistoricoResgatePage {
   dataHoje: any;
   mesHoje:any;
   dataFinal:any;
+ 
 
   constructor(private afAuth: AngularFireAuth, private resgateService: VendasProvider,
     public authService: AuthServiceProvider, private toast: ToastController,
     public navCtrl: NavController, public navParams: NavParams,
-    public modal: ModalController) {
+    public modal: ModalController, private loadingCtrl: LoadingController) {
 
       
 
@@ -117,6 +118,19 @@ export class HistoricoResgatePage {
 
   }
 
+  /*loadCreate(){
+    let loading = this.loadingCtrl.create({
+      content:'Carregando ...'
+    });
+    loading.present();
+  
+  /* setTimeout(()=>{
+      loading.dismiss();
+    },5000) 
+  
+}  */
+  
+
 
  
 
@@ -125,7 +139,13 @@ export class HistoricoResgatePage {
     
     this.entregues = this.resgateService.getUserAllEntregue();
     this.obterUser();
-    
+
+  //this.loadCreate(); 
+  }
+
+  ionViewDidLoad(){
+   // loading.dismiss();
+
   }
 
    // searchbar solicitado//

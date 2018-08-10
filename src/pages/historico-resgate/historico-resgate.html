@@ -126,7 +126,7 @@
 
 
 <ion-content padding>
-
+    
     <!--
              <ion-list >
             <ion-item-sliding *ngFor="let resgate of resgates | async">
@@ -178,16 +178,28 @@
 
         <ion-row>
             <ion-col col-12>
+                  
+              <!--  pega tamanho do array {{(resgates | async)?.length}} -->
+              
                 <div [ngSwitch]="status">
 
                     <ion-list *ngSwitchCase="'solicitados'">
 
                         <ion-item-sliding *ngFor="let resgate of resgates | async let i=index">
-
+                            
                             <ion-item (click)="abrirModal(resgate)" text-wrap *ngIf="resgate.status==='Aguardando' && resgate.mesResgate===mesHoje && resgate.anoResgate===anoHoje || resgate.status==='Solicitado' && resgate.mesResgate===mesHoje && resgate.anoResgate===anoHoje">
 
                                 <!--*ngIf="resgate.status==='Aguardando'  || resgate.status==='Solicitado'"-->
                                 <!--*ngIf="resgate.mesResgate===mesHoje"-->
+
+                               <!-- <div text-center *ngIf=" i > 0" >
+                                        <ion-spinner name="bubbles"> </ion-spinner>
+                                    <p>Carregando...</p>
+                                    </div> -->
+                                   
+                          
+                                
+                    
                                 <ion-avatar item-start>
                                     <img src="{{ resgate.url }}" />
                                 </ion-avatar>
