@@ -22,7 +22,14 @@ export class RecompensasPage {
     public navCtrl: NavController, public navParams: NavParams, public app: App, public modal: ModalController) {
  
   }
-  
+   
+  searchBarOpen:boolean = false;
+  hideBackButton:boolean = false;
+
+  barClick(){
+    this.searchBarOpen = !this.searchBarOpen;
+    this.hideBackButton = !this.hideBackButton;
+  }
   
   //navegação
  abrirModal(recompensa: Observable<any>){

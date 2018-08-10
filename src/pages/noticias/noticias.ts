@@ -25,6 +25,14 @@ export class NoticiasPage {
   }
 
 
+     
+  searchBarOpen:boolean = false;
+  hideBackButton:boolean = false;
+
+  barClick(){
+    this.searchBarOpen = !this.searchBarOpen;
+    this.hideBackButton = !this.hideBackButton;
+  }
 
 //metodos de crud //
 

@@ -5,12 +5,7 @@ import { FirebaseApp } from 'angularfire2';
 import { ToastController } from 'ionic-angular';
 import * as firebase from 'firebase';
 
-/*
-  Generated class for the NewsProvider provider.
 
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class NewsProvider {
 
@@ -108,7 +103,7 @@ public uploadAndSave(noticia: any, image:any) {
       this.save(noticia);
       
        
-      this.toast.create({ message: 'Recompensa Adicionada', duration: 3000}).present();
+      this.toast.create({ message: 'Noticia Adicionada', duration: 3000}).present();
       
       
       

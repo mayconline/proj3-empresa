@@ -4,12 +4,6 @@ import { Observable } from 'rxjs/Observable';
 
 import { UsuariosProvider } from '../../providers/usuarios/usuarios';
 
-/**
- * Generated class for the UsuariosPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -28,6 +22,14 @@ export class UsuariosPage {
   }
 
 
+     
+  searchBarOpen:boolean = false;
+  hideBackButton:boolean = false;
+
+  barClick(){
+    this.searchBarOpen = !this.searchBarOpen;
+    this.hideBackButton = !this.hideBackButton;
+  }
 
 
   editarUser(usuario:any){

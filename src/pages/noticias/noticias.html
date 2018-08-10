@@ -6,9 +6,20 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>noticias</ion-title>
+  <ion-navbar [hideBackButton]='hideBackButton'  no-border no-padding>
+        <ion-title text-center *ngIf="!searchBarOpen">Crie suas Noticias</ion-title>
+
+        <ion-buttons end>
+                <button ion-button icon-only *ngIf="!searchBarOpen" (click)="barClick()">
+                    <ion-icon name="search" ></ion-icon>
+                </button>
+              </ion-buttons>
+        <ion-searchbar  *ngIf="searchBarOpen" showCancelButton="true" (ionCancel)="barClick()" (ionInput)="getItems($event)"  placeholder="Filtre pelo Nome"></ion-searchbar>
+   
+    
   </ion-navbar>
+
+  
 
 </ion-header>
 
@@ -16,19 +27,8 @@
 <ion-content padding>
   <ion-grid>
     
-      
-      <ion-row>
-          <ion-col col-12> 
-            <ion-searchbar (ionInput)="getItems($event)"  placeholder="Filtre pelo Nome"></ion-searchbar>
-          </ion-col>
-      </ion-row>
-      
-      <ion-row>
-          <ion-col col-12> <h4 text-center>Troque seus Pontos
-
-             
-          </h4> </ion-col>
-      </ion-row>
+       
+    
 
       <ion-row>
           <ion-col col-12>
