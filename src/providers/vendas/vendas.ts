@@ -105,8 +105,8 @@ export class VendasProvider {
 //resgata o produto //
     save(resgate:any){
       return new Promise((resolve, reject) => {
-        this.calcPontos(resgate.pontosProd);
-        this.atualizaPonto(this.user);
+       // this.calcPontos(resgate.pontosProd);
+      //  this.atualizaPonto(this.user);
 
               this.afDb.list(this.PATH)
                
@@ -130,7 +130,12 @@ export class VendasProvider {
                  
                                 
 
-               }) .then(()=> resolve())
+               }) .then(()=> {
+                 
+                this.calcPontos(resgate.pontosProd);
+                this.atualizaPonto(this.user);
+                resolve()
+              })
             
              
                
