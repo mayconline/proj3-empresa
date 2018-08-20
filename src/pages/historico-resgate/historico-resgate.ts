@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, ModalController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, ModalController } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { VendasProvider } from '../../providers/vendas/vendas';
@@ -28,7 +28,7 @@ export class HistoricoResgatePage {
   constructor(private afAuth: AngularFireAuth, private resgateService: VendasProvider,
     public authService: AuthServiceProvider, private toast: ToastController,
     public navCtrl: NavController, public navParams: NavParams,
-    public modal: ModalController, private loadingCtrl: LoadingController) {
+    public modal: ModalController) {
 
       
 
@@ -106,7 +106,7 @@ export class HistoricoResgatePage {
   obterUser() {
     this.afAuth.authState.subscribe(firebaseUser => {
       if (firebaseUser) {
-        const usuarioLogado = this.authService.getUserInfo().subscribe(userData => {
+          this.authService.getUserInfo().subscribe(userData => {
           this.user = userData;
 
 

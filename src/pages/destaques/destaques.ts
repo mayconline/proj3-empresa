@@ -35,7 +35,7 @@ export class DestaquesPage {
 obterUser(){
   this.afAuth.authState.subscribe(firebaseUser =>{
  if(firebaseUser){
-   const usuarioLogado = this.authService.getUserInfo().subscribe(userData =>{
+  this.authService.getUserInfo().subscribe(userData =>{
      this.user = userData;
     
   

@@ -54,7 +54,7 @@ export class RecompensasPage {
 obterUser(){
   this.afAuth.authState.subscribe(firebaseUser =>{
  if(firebaseUser){
-   const usuarioLogado = this.authService.getUserInfo().subscribe(userData =>{
+    this.authService.getUserInfo().subscribe(userData =>{
      this.user = userData;
     
   
@@ -94,7 +94,7 @@ obterUser(){
           this.toast.create({ message: 'Falha ao remover ', duration:3000}).present();
           console.error(e);
 
-        })
+        }) 
    }
     
 
