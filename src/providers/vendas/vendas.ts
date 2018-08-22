@@ -80,6 +80,9 @@ export class VendasProvider {
     }
 
 
+
+
+
 // atualiza pontos do usuario ao resgatar um produto 
     atualizaPonto(user:any){
       return new Promise((resolve, reject) => {
@@ -167,6 +170,11 @@ export class VendasProvider {
  })
 
 } 
+
+
+
+
+
   
   
 /*

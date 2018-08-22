@@ -1,5 +1,14 @@
 <ion-header no-border>
     <ion-navbar>
+        
+   
+Solicitado:{{resultS }} <br> 
+Aguardando:{{resultA }} <br>
+Entregue:{{resultE }}
+
+
+
+
 
         <ion-row text-center>
             <ion-col col-4>
@@ -44,7 +53,7 @@
                            <p ion-text >Data</p>
                         </button>
                     </ion-buttons>
-
+ 
                     </ion-col>
                     <ion-col col-4 *ngIf="!date && !searchBarOpen ">
                         <h5 (click)="clickDate()" ion-text text-center color="laranja">{{mesHoje | uppercase}}</h5>
@@ -352,5 +361,7 @@
       refreshingText="Refreshing...">
     </ion-refresher-content>
   </ion-refresher> -->
+
+
 
 </ion-content>

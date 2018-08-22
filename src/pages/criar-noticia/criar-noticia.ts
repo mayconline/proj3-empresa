@@ -65,8 +65,8 @@ private newservice:NewsProvider, private loadingCtrl:LoadingController) {
       sourceType: type == "picture" ? this.camera.PictureSourceType.CAMERA : this.camera.PictureSourceType.SAVEDPHOTOALBUM,
       correctOrientation: true,
       allowEdit: true,
-     targetWidth: 300,
-     targetHeight: 150
+     targetWidth: 500,
+     targetHeight: 500
 }
   
   

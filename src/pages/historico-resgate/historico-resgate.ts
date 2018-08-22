@@ -5,6 +5,8 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { VendasProvider } from '../../providers/vendas/vendas';
 import { Observable } from 'rxjs/Observable';
 import * as moment from 'moment';
+import { map } from 'rxjs/operators';
+
 //import { tap, map, take } from 'rxjs/operators'
 
 @IonicPage()
@@ -60,6 +62,8 @@ export class HistoricoResgatePage {
 
   
   }
+
+  
 
   armeses = ['janeiro', 'fevereiro', 'março','abril', 'maio',
   'junho','julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
@@ -131,15 +135,51 @@ export class HistoricoResgatePage {
 }  */
   
 
+// funcao pra contar quantos tem status igual a valor //
 
+contarSolicitado(input){
+  const ent = this.resgates = this.resgateService.getUserAll();
+  
+  const c =   ent.map( x => {
+
+    return x.map(u =>({ 
+      
+      Status: u.status
+    
+    }).Status
+
+  );
+  })
+  
+    if(input =='Solicitado') {  c.subscribe( x => this.resultS = x.filter(x=>x==input).length )  }
+      else if
+      (input =='Aguardando') {  c.subscribe( x => this.resultA = x.filter(x=>x==input).length )  }
+      else if
+      (input =='Entregue') {  c.subscribe( x => this.resultE = x.filter(x=>x==input).length )  }
  
+}
+
+  resultS;
+  resultA;
+  resultE;
+ 
+  inputS = 'Solicitado'
+  inputA = 'Aguardando'
+  inputE = 'Entregue'
+  
 
   ionViewWillLoad() {
-   this.resgates = this.resgateService.getUserAll();
-    
-    this.entregues = this.resgateService.getUserAllEntregue();
-    this.obterUser();
+  this.resgates = this.resgateService.getUserAll();
 
+// this.contar('Entregue');
+  this.contarSolicitado(this.inputA);
+ // this.contar('Aguardando');
+
+  this.entregues = this.resgateService.getUserAllEntregue();
+   
+
+    this.obterUser();
+   
   //this.loadCreate(); 
   }
 
