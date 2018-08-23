@@ -1,10 +1,10 @@
 <ion-header no-border>
     <ion-navbar>
         
-   
-Solicitado:{{resultS }} <br> 
-Aguardando:{{resultA }} <br>
-Entregue:{{resultE }}
+
+
+<!--<ion-list  *ngFor="let in of items ">
+ {{in | json}}</ion-list> -->
 
 
 
@@ -73,10 +73,10 @@ Entregue:{{resultE }}
                       
                         <ion-icon  name="calendar" item-content item-start></ion-icon>
                  
-                      
-                        <ion-select [(ngModel)]="mesHoje" interface="popover">
+                     
+                        <ion-select [(ngModel)]="mesHoje" interface="popover" >
                             <ion-option *ngFor="let mesHoje of armeses " [value]="mesHoje">{{mesHoje | uppercase}}</ion-option>
-
+                            
                         </ion-select>
                         <ion-select [(ngModel)]="anoHoje" interface="popover">
                             <ion-option *ngFor="let ano of anos " [value]="ano">{{ano | uppercase}}</ion-option>
@@ -187,7 +187,9 @@ Entregue:{{resultE }}
 
         <ion-row>
             <ion-col col-12>
-                  
+                Itens Solicitado: {{items}}
+
+                mes:  {{mesHoje}}
               <!--  pega tamanho do array {{(resgates | async)?.length}} -->
               
                 <div [ngSwitch]="status">

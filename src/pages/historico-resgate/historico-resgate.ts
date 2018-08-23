@@ -36,8 +36,12 @@ export class HistoricoResgatePage {
 
 
     this.dataAtual();
+    this.contar(this.mesHoje);
+    console.log(this.mesHoje)
 
   }
+
+
 
   date:boolean = false;
   clickDate(){
@@ -135,8 +139,22 @@ export class HistoricoResgatePage {
 }  */
   
 
-// funcao pra contar quantos tem status igual a valor //
+  contar(input){
+    //array
+      this.resgateService.getUserAll()
+    //acessa o Observable
+     .subscribe( x =>  this.items = x
+        //filtra por dentro do Obervable
+                .filter(x => x.status === 'Solicitado' && x.mesResgate === input).length
+    )
+  }
 
+items;
+
+
+
+// funcao pra contar quantos tem status igual a valor //
+/*
 contarSolicitado(input){
   const ent = this.resgates = this.resgateService.getUserAll();
   
@@ -166,19 +184,13 @@ contarSolicitado(input){
   inputS = 'Solicitado'
   inputA = 'Aguardando'
   inputE = 'Entregue'
-  
+  */
+ 
 
   ionViewWillLoad() {
   this.resgates = this.resgateService.getUserAll();
-
-// this.contar('Entregue');
-  this.contarSolicitado(this.inputA);
- // this.contar('Aguardando');
-
   this.entregues = this.resgateService.getUserAllEntregue();
-   
-
-    this.obterUser();
+  this.obterUser();
    
   //this.loadCreate(); 
   }
@@ -216,7 +228,8 @@ contarSolicitado(input){
    getFim(ev: any) {
     // Reset items back to all of the items
     this.entregues = this.resgateService.getUserAllEntregue();
-    
+
+   
 
     // set val to the value of the searchbar
     let val = ev.target.value;
