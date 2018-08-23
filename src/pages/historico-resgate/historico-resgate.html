@@ -75,7 +75,8 @@
                  
                      
                         <ion-select [(ngModel)]="mesHoje" interface="popover" >
-                            <ion-option *ngFor="let mesHoje of armeses " [value]="mesHoje">{{mesHoje | uppercase}}</ion-option>
+                            <ion-option *ngFor="let mesHoje of armeses " [value]="mesHoje" (ionSelect)="contar(mesHoje)">
+                                {{mesHoje | uppercase}}</ion-option>
                             
                         </ion-select>
                         <ion-select [(ngModel)]="anoHoje" interface="popover">
