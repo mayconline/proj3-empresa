@@ -75,7 +75,7 @@
                  
                      
                         <ion-select [(ngModel)]="mesHoje" interface="popover" >
-                            <ion-option *ngFor="let mesHoje of armeses " [value]="mesHoje" (ionSelect)="contar(mesHoje)">
+                            <ion-option *ngFor="let mesHoje of armeses " [value]="mesHoje" (ionSelect)="contar(mesHoje); contarAguardando(mesHoje); contarEntregue(mesHoje)">
                                 {{mesHoje | uppercase}}</ion-option>
                             
                         </ion-select>
@@ -101,17 +101,25 @@
 
         <ion-segment [(ngModel)]="status">
             <ion-segment-button value="solicitados">
-                <ion-icon name="clock"></ion-icon>
-                Solicitados
+                  
+                         <ion-icon name="clock" item-start></ion-icon>
+                         Solicitados
+                         <ion-badge color="light" item-end>{{items}}</ion-badge>
+                         <ion-badge color="laranja" item-end>{{contAguard}}</ion-badge>
+                      
+               
             </ion-segment-button>
             <ion-segment-button value="finalizados">
-                <ion-icon name="checkmark-circle-outline"></ion-icon>
-                Finalizados
+
+                    <ion-icon name="checkmark-circle-outline" item-start></ion-icon>
+                    Finalizados
+                    <ion-badge color="secondary" item-end>{{contEntregue}}</ion-badge>
+                            
             </ion-segment-button>
         </ion-segment>
 
 
-
+ 
 
 
 
@@ -136,61 +144,18 @@
 
 
 <ion-content padding>
-    
-    <!--
-             <ion-list >
-            <ion-item-sliding *ngFor="let resgate of resgates | async">
-
-                <ion-item *ngIf="resgate.status==='Aguardando' || resgate.status==='Solicitado'" >
-                   
-                   
-                    <ion-avatar item-start>
-                        <img src="{{ resgate.url }}" />
-                    </ion-avatar>
-                    <h2>{{resgate.prodNome}}</h2>
-                    <p> {{resgate.userNome}} </p>
-                    <p >{{resgate.dataResgate |date: 'dd/MM/yyyy'}}</p>
-
-                    <button  ion-button item-content clear (click)="abrirModal(resgate)">
-                            <ion-icon *ngIf="resgate.status === 'Aguardando'" class="iconeA" item-content name="clock"> Aguardando</ion-icon>
-                            <ion-icon *ngIf="resgate.status === 'Solicitado'" class="iconeS" item-content name="paper-plane"> Solicitado</ion-icon>
-                           </button>
-                </ion-item>
-
-                <ion-item-options side="left">
-
-                        <button ion-button color="primary" (click)="editHist(resgate)">
-                            <ion-icon name="create"> Editar</ion-icon>
-                        </button>
-                        <button ion-button color="danger" (click)="removerResgate(resgate.key)">
-                            <ion-icon name="trash"> Remover</ion-icon>
-                        </button>
-
-
-
-                    </ion-item-options>
-
-            </ion-item-sliding>
-             </ion-list>
-          
-             <ion-infinite-scroll 
-                threshold="20%" 
-                (ionInfinite)="$event.waitFor(doInfinite())">
-                <ion-infinite-scroll-content></ion-infinite-scroll-content>   
-             </ion-infinite-scroll>
-            -->
-
-
-
-
-
+       
     <ion-grid>
 
         <ion-row>
             <ion-col col-12>
-                Itens Solicitado: {{items}}
+            <!--   Itens Solicitado: {{items}}
 
-                mes:  {{mesHoje}}
+                mes:  {{mesHoje}} <br>
+
+                Aguardando: {{contAguard}} <br>
+
+                Entregue: {{contEntregue}} -->
               <!--  pega tamanho do array {{(resgates | async)?.length}} -->
               
                 <div [ngSwitch]="status">

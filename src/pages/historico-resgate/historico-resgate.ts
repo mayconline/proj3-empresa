@@ -5,9 +5,8 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { VendasProvider } from '../../providers/vendas/vendas';
 import { Observable } from 'rxjs/Observable';
 import * as moment from 'moment';
-import { map } from 'rxjs/operators';
 
-//import { tap, map, take } from 'rxjs/operators'
+
 
 @IonicPage()
 @Component({
@@ -24,7 +23,7 @@ export class HistoricoResgatePage {
   ptbr = moment.locale('pt-br');
   dataHoje: any;
   mesHoje:any;
-  dataFinal:any;
+
  
 
   constructor(private afAuth: AngularFireAuth, private resgateService: VendasProvider,
@@ -32,12 +31,11 @@ export class HistoricoResgatePage {
     public navCtrl: NavController, public navParams: NavParams,
     public modal: ModalController) {
 
-      
-
-
     this.dataAtual();
     this.contar(this.mesHoje);
-    console.log(this.mesHoje)
+    this.contarAguardando(this.mesHoje);
+    this.contarEntregue(this.mesHoje);
+   
 
   }
 
@@ -125,19 +123,9 @@ export class HistoricoResgatePage {
     })
 
   }
+ 
 
-  /*loadCreate(){
-    let loading = this.loadingCtrl.create({
-      content:'Carregando ...'
-    });
-    loading.present();
-  
-  /* setTimeout(()=>{
-      loading.dismiss();
-    },5000) 
-  
-}  */
-  
+//metodos de contar elementos por filtro //
 
   contar(input){
     //array
@@ -151,54 +139,43 @@ export class HistoricoResgatePage {
 
 items;
 
-
-
-// funcao pra contar quantos tem status igual a valor //
-/*
-contarSolicitado(input){
-  const ent = this.resgates = this.resgateService.getUserAll();
-  
-  const c =   ent.map( x => {
-
-    return x.map(u =>({ 
-      
-      Status: u.status
-    
-    }).Status
-
-  );
-  })
-  
-    if(input =='Solicitado') {  c.subscribe( x => this.resultS = x.filter(x=>x==input).length )  }
-      else if
-      (input =='Aguardando') {  c.subscribe( x => this.resultA = x.filter(x=>x==input).length )  }
-      else if
-      (input =='Entregue') {  c.subscribe( x => this.resultE = x.filter(x=>x==input).length )  }
- 
+contarAguardando(input){
+  //array
+    this.resgateService.getUserAll()
+  //acessa o Observable
+   .subscribe( x =>  this.contAguard = x
+      //filtra por dentro do Obervable
+              .filter(x => x.status === 'Aguardando' && x.mesResgate === input).length
+  )
 }
 
-  resultS;
-  resultA;
-  resultE;
- 
-  inputS = 'Solicitado'
-  inputA = 'Aguardando'
-  inputE = 'Entregue'
-  */
- 
+contAguard;
+
+contarEntregue(input){
+  //array
+    this.resgateService.getUserAll()
+  //acessa o Observable
+   .subscribe( x =>  this.contEntregue = x
+      //filtra por dentro do Obervable
+              .filter(x => x.status === 'Entregue' && x.mesResgate === input).length
+  )
+}
+
+contEntregue;
+
+
+
+
+ //inicializa as funcoes
 
   ionViewWillLoad() {
   this.resgates = this.resgateService.getUserAll();
   this.entregues = this.resgateService.getUserAllEntregue();
   this.obterUser();
    
-  //this.loadCreate(); 
+  
   }
 
-  ionViewDidLoad(){
-   // loading.dismiss();
-
-  }
 
    // searchbar solicitado//
 
@@ -245,9 +222,49 @@ contarSolicitado(input){
         }));
      
     }
-  } // searchbar selecione user //
+  } // searchbar selecione user //io
 
 
+}
+
+
+
+// funcao pra contar quantos tem status igual a valor //
+/*
+contarSolicitado(input){
+  const ent = this.resgates = this.resgateService.getUserAll();
+  
+  const c =   ent.map( x => {
+
+    return x.map(u =>({ 
+      
+      Status: u.status
+    
+    }).Status
+
+  );
+  })
+  
+    if(input =='Solicitado') {  c.subscribe( x => this.resultS = x.filter(x=>x==input).length )  }
+      else if
+      (input =='Aguardando') {  c.subscribe( x => this.resultA = x.filter(x=>x==input).length )  }
+      else if
+      (input =='Entregue') {  c.subscribe( x => this.resultE = x.filter(x=>x==input).length )  }
+ 
+}
+
+  resultS;
+  resultA;
+  resultE;
+ 
+  inputS = 'Solicitado'
+  inputA = 'Aguardando'
+  inputE = 'Entregue'
+  */
+
+
+
+  
 
  // infinity scroll
 
@@ -290,4 +307,3 @@ contarSolicitado(input){
 */
 
   //
-}
