@@ -47,9 +47,10 @@ export class HistoricoResgatePage {
   }
 
   searchBarOpen:boolean = false;
-
+ 
   barClick(){
     this.searchBarOpen = !this.searchBarOpen;
+  
    
   }
 

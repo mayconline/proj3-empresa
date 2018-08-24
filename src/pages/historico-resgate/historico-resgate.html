@@ -1,15 +1,6 @@
 <ion-header no-border>
-    <ion-navbar>
+    <!--<ion-navbar>
         
-
-
-<!--<ion-list  *ngFor="let in of items ">
- {{in | json}}</ion-list> -->
-
-
-
-
-
         <ion-row text-center>
             <ion-col col-4>
                 <p ion-text class="ptitle"> {{user.pontos}}
@@ -36,10 +27,10 @@
 
 
 
-    </ion-navbar>
+    </ion-navbar> -->
 
-    <ion-toolbar>
-        <ion-title text-center>Resgates</ion-title>
+    <ion-toolbar no-border no-padding>
+        <ion-title text-center *ngIf="!searchBarOpen && !date" >Resgates</ion-title>
 
 
         <ion-grid>

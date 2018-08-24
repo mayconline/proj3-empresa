@@ -24,7 +24,7 @@ export class NoticiasPage {
   private newservice: NewsProvider, private toast:ToastController) {
   }
 
-
+ 
      
   searchBarOpen:boolean = false;
   hideBackButton:boolean = false;

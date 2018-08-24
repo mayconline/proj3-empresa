@@ -17,8 +17,8 @@
   <ion-toolbar >
        
 
-        <ion-title *ngIf="pontos==='Historico'" text-center>Histórico</ion-title>
-        <ion-title *ngIf="pontos==='Inserir'" text-center>Inserir Pontos</ion-title>
+        <ion-title *ngIf="pontos==='Historico' &&  !searchBarOpen" text-center>Histórico</ion-title>
+        <ion-title *ngIf="pontos==='Inserir' &&  !searchBarOpen " text-center>Inserir Pontos</ion-title>
    
     
     <ion-segment  [(ngModel)]="pontos" color="primary" >
