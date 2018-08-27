@@ -4,6 +4,8 @@ import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angu
 
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { User } from 'firebase/app';
+
 
 
 
@@ -44,9 +46,10 @@ export class RegistroPage {
 
       this.authService.registrar(this.form.value)
 
-        .then((user:any) => {
+        .then((user:User) => {
     
         user.sendEmailVerification();
+        
 
           toast.setMessage('Usuário criado com sucesso.');
           toast.present();  

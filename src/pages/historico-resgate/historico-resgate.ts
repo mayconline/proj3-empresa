@@ -5,7 +5,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { VendasProvider } from '../../providers/vendas/vendas';
 import { Observable } from 'rxjs/Observable';
 import * as moment from 'moment';
-import {Subscription} from 'rxjs/Subscription';
+
 
 
 
@@ -83,9 +83,9 @@ export class HistoricoResgatePage {
   }
 
 
-  sair() {
+ /* sair() {
     this.authService.logout();
-  }
+  }*/
 
 
 
@@ -110,7 +110,7 @@ export class HistoricoResgatePage {
       })
   }
 
-  private objuser:Subscription;
+  private objuser;
   obterUser() {
   this.objuser = this.afAuth.authState.subscribe(firebaseUser => {
       if (firebaseUser) {

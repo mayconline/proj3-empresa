@@ -32,25 +32,27 @@ export class DestaquesPage {
  
   
   
-obterUser(){
-  this.afAuth.authState.subscribe(firebaseUser =>{
- if(firebaseUser){
-  this.authService.getUserInfo().subscribe(userData =>{
-     this.user = userData;
-    
-  
-   })
- }else {
-   this.user = {};
- }
-})
+  private objuser;
+  obterUser() {
+  this.objuser = this.afAuth.authState.subscribe(firebaseUser => {
+      if (firebaseUser) {
+          this.authService.getUserInfo().subscribe(userData => {
+          this.user = userData;
 
-} 
+
+        })
+      } else {
+        this.user = {};
+      }
+    })
+
+  }
 
  
 
  
    sair(){
+     this.objuser.unsubscribe();
     this.authService.logout();
   }
  
@@ -71,7 +73,7 @@ ionViewWillLoad(){
 
 ionViewWillUnload(){
 
-  
+  this.objuser.unsubscribe();
 }
 
 
