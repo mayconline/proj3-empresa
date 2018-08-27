@@ -5,6 +5,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { VendasProvider } from '../../providers/vendas/vendas';
 import { Observable } from 'rxjs/Observable';
 import * as moment from 'moment';
+import {Subscription} from 'rxjs/Subscription';
 
 
 
@@ -109,9 +110,9 @@ export class HistoricoResgatePage {
       })
   }
 
-
+  private objuser:Subscription;
   obterUser() {
-    this.afAuth.authState.subscribe(firebaseUser => {
+  this.objuser = this.afAuth.authState.subscribe(firebaseUser => {
       if (firebaseUser) {
           this.authService.getUserInfo().subscribe(userData => {
           this.user = userData;
@@ -126,23 +127,26 @@ export class HistoricoResgatePage {
   }
  
 
-//metodos de contar elementos por filtro //
 
-  contar(input){
+
+//metodos de contar elementos por filtro //
+  private subsS:any;   // metodo pra dar subscribe e unsubscribe depois //
+    contar(input){
     //array
-      this.resgateService.getUserAll()
+     this.subsS =  this.resgateService.getUserAll()
     //acessa o Observable
      .subscribe( x =>  this.items = x
         //filtra por dentro do Obervable
                 .filter(x => x.status === 'Solicitado' && x.mesResgate === input).length
-    )
+    ) 
   }
 
 items;
 
+private subsA:any;
 contarAguardando(input){
   //array
-    this.resgateService.getUserAll()
+   this.subsA = this.resgateService.getUserAll()
   //acessa o Observable
    .subscribe( x =>  this.contAguard = x
       //filtra por dentro do Obervable
@@ -152,9 +156,10 @@ contarAguardando(input){
 
 contAguard;
 
+private subsE:any;
 contarEntregue(input){
   //array
-    this.resgateService.getUserAll()
+   this.subsS =  this.resgateService.getUserAll()
   //acessa o Observable
    .subscribe( x =>  this.contEntregue = x
       //filtra por dentro do Obervable
@@ -177,6 +182,16 @@ contEntregue;
   
   }
 
+
+  ionViewWillUnload(){
+    this.subsA.unsubscribe();
+    this.subsE.unsubscribe();
+    this.subsS.unsubscribe();
+    this.objuser.unsubscribe();
+    
+    
+  
+  }
 
    // searchbar solicitado//
 

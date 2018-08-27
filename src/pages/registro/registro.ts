@@ -45,8 +45,8 @@ export class RegistroPage {
       this.authService.registrar(this.form.value)
 
         .then((user:any) => {
-          
-          user.sendEmailVerification();
+    
+        user.sendEmailVerification();
 
           toast.setMessage('Usuário criado com sucesso.');
           toast.present();  

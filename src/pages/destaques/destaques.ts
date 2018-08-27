@@ -69,5 +69,10 @@ ionViewWillLoad(){
 
 } 
 
+ionViewWillUnload(){
+
+  
+}
+
 
 }
