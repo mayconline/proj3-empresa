@@ -32,9 +32,8 @@ export class DestaquesPage {
  
   
   
-  private objuser;
   obterUser() {
-  this.objuser = this.afAuth.authState.subscribe(firebaseUser => {
+  this.afAuth.authState.subscribe(firebaseUser => {
       if (firebaseUser) {
           this.authService.getUserInfo().subscribe(userData => {
           this.user = userData;
@@ -52,7 +51,7 @@ export class DestaquesPage {
 
  
    sair(){
-     this.objuser.unsubscribe();
+ 
     this.authService.logout();
   }
  
@@ -67,14 +66,9 @@ ionViewWillLoad(){
   this.noticias = this.newservice.getAll();
 
   this.obterUser(); 
-
+ 
 
 } 
-
-ionViewWillUnload(){
-
-  this.objuser.unsubscribe();
-}
 
 
 }

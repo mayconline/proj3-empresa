@@ -110,9 +110,8 @@ export class HistoricoResgatePage {
       })
   }
 
-  private objuser;
   obterUser() {
-  this.objuser = this.afAuth.authState.subscribe(firebaseUser => {
+  this.afAuth.authState.subscribe(firebaseUser => {
       if (firebaseUser) {
           this.authService.getUserInfo().subscribe(userData => {
           this.user = userData;
@@ -159,7 +158,7 @@ contAguard;
 private subsE:any;
 contarEntregue(input){
   //array
-   this.subsS =  this.resgateService.getUserAll()
+   this.subsE =  this.resgateService.getUserAll()
   //acessa o Observable
    .subscribe( x =>  this.contEntregue = x
       //filtra por dentro do Obervable
@@ -187,11 +186,11 @@ contEntregue;
     this.subsA.unsubscribe();
     this.subsE.unsubscribe();
     this.subsS.unsubscribe();
-    this.objuser.unsubscribe();
+   
     
     
   
-  }
+  } 
 
    // searchbar solicitado//
 
