@@ -45,7 +45,8 @@ export class CriarRecompensaPage {
       pontos: [this.recompensa.pontos, Validators.required],
       destaque: [this.recompensa.destaque],
       url: [this.recompensa.url],
-      fullPath: [this.recompensa.fullPath]
+      fullPath: [this.recompensa.fullPath],
+      dias:[this.recompensa.dias, Validators.required]
 
 
 

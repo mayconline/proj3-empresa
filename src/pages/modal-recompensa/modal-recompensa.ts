@@ -69,7 +69,7 @@ export class ModalRecompensaPage {
       pontosProd: [this.prod.pontos],
       dataResgate:[this.dataResgate],
       url:[this.prod.url],
-      dias:[3],
+      dias:[this.prod.dias],
       mesResgate:[this.mesResgate],
       anoResgate:[this.anoResgate]
       

@@ -26,8 +26,8 @@ form:FormGroup;
   createForm(){
     this.form = this.formBuilder.group({
       key:[this.resgate.key],
-    status:[this.resgate.status],
-    dias:[this.resgate.dias]
+    status:[this.resgate.status]
+   
  
     }); 
    }

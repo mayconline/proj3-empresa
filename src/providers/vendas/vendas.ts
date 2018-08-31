@@ -71,7 +71,7 @@ export class VendasProvider {
       return new Promise((resolve, reject) => {
     
               this.afDb.list(this.PATH)
-                .update(resgate.key, {status: resgate.status, dias:resgate.dias})
+                .update(resgate.key, {status: resgate.status})
                 .then(()=> resolve())
                 .catch((e)=> reject(e));
         

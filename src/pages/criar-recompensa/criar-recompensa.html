@@ -41,6 +41,18 @@
                     </div>  
             
                   </ion-item>
+
+
+                  <ion-item>
+                    <ion-label>dias para entrega</ion-label>
+                    <ion-input type="number" formControlName="dias"></ion-input>
+                </ion-item>
+                <ion-item *ngIf="!form.controls.dias.valid && (form.controls.dias.dirty || form.controls.dias.touched)" color="danger">
+                  <div [hidden]="!form.controls.dias.errors.required">
+                    Defina quantidade de dias para entrega
+                  </div>  
+          
+                </ion-item>
             
             
 
@@ -112,6 +124,16 @@
             
                   </ion-item>
             
+                  <ion-item>
+                    <ion-label>dias para entrega</ion-label>
+                    <ion-input type="number" formControlName="dias"></ion-input>
+                </ion-item>
+                <ion-item *ngIf="!form.controls.dias.valid && (form.controls.dias.dirty || form.controls.dias.touched)" color="danger">
+                  <div [hidden]="!form.controls.dias.errors.required">
+                    Defina quantidade de dias para entrega
+                  </div>  
+          
+                </ion-item>
            
 
                    
