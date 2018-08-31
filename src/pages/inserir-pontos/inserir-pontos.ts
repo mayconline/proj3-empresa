@@ -25,8 +25,7 @@ export class InserirPontosPage {
       this.usuario = this.navParams.data.usuario || {};
 
       
-      console.log(this.usuario)  
-  
+     
     this.createForm();
   
   }

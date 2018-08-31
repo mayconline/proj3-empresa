@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 
-import { AngularFireAuth } from 'angularfire2/auth';
+
+
 
 
 
@@ -16,31 +16,14 @@ export class ConfigurePage {
 
   user: any = {};
 
-  constructor(private afAuth: AngularFireAuth,
-    public navCtrl: NavController, public navParams: NavParams, private authService: AuthServiceProvider) {
+  constructor(
+    public navCtrl: NavController, public navParams: NavParams) {
 
 
   }
 
 
-  obterUser() {
-    this.afAuth.authState.subscribe(firebaseUser => {
-      if (firebaseUser) {
-         this.authService.getUserInfo().subscribe(userData => {
-          this.user = userData;
-
-
-        })
-      } else {
-        this.user = {};
-      }
-    })
-
-  }
-
-  ionViewWillLoad() {
-    this.obterUser();
-  }
+ 
 
 
 
@@ -49,9 +32,7 @@ export class ConfigurePage {
     this.navCtrl.push('RecompensasPage')
   }
 
-  sair() {
-    this.authService.logout();
-  }
+ 
 
   irUsuarios() {
     this.navCtrl.push('UsuariosPage')

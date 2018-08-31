@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase /*, AngularFireList */} from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
-
+import { Subscription } from 'rxjs/Subscription';
 import { AuthServiceProvider } from '../auth-service/auth-service';
 //import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 //import { Observable } from 'rxjs/Observable';
@@ -154,25 +154,30 @@ export class VendasProvider {
   } 
 
 
-//obtem os dados do usuario //
- obterUser(){
-    this.afAuth.authState.subscribe(firebaseUser =>{
-   if(firebaseUser){
-     this.authService.getUserInfo().subscribe(userData =>{
-       this.user = userData;
-      
-      
-      
-     })
-   }else {
-     this.user = {};
-   }
- })
-
-} 
+//subscrever para pegar dados dos usuarios
+user$:Subscription;
+userinfo$:Subscription;
+obterUser() {
+this.user$ =  this.afAuth.authState.subscribe(firebaseUser => {
+    if (firebaseUser) {
+    this.userinfo$ =   this.authService.getUserInfo().subscribe(userData => {
+        this.user = userData;
 
 
+      })
+    } else {
+      this.user = {};
+    }
+  })
 
+}
+
+
+ionViewWillUnload(){
+  this.user$.unsubscribe();
+  this.userinfo$.unsubscribe();
+  
+}
 
 
   

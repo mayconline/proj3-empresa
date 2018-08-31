@@ -5,13 +5,9 @@ import { Observable } from 'rxjs/Observable';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { NewsProvider } from '../../providers/news/news';
+import { Subscription } from 'rxjs/Subscription';
 
-/**
- * Generated class for the DestaquesPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({
@@ -30,12 +26,13 @@ export class DestaquesPage {
   private newservice:NewsProvider) {}
 
  
-  
-  
+  //subscrever para pegar dados dos usuarios
+  user$:Subscription;
+  userinfo$:Subscription;
   obterUser() {
-  this.afAuth.authState.subscribe(firebaseUser => {
+  this.user$ =  this.afAuth.authState.subscribe(firebaseUser => {
       if (firebaseUser) {
-          this.authService.getUserInfo().subscribe(userData => {
+      this.userinfo$ =   this.authService.getUserInfo().subscribe(userData => {
           this.user = userData;
 
 
@@ -44,7 +41,7 @@ export class DestaquesPage {
         this.user = {};
       }
     })
-
+ 
   }
 
  
@@ -69,6 +66,12 @@ ionViewWillLoad(){
  
 
 } 
+
+ionViewWillUnload(){
+  this.user$.unsubscribe();
+  this.userinfo$.unsubscribe();
+  
+}
 
 
 }

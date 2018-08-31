@@ -5,8 +5,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { VendasProvider } from '../../providers/vendas/vendas';
 import { Observable } from 'rxjs/Observable';
 import * as moment from 'moment';
-
-
+import { Subscription } from 'rxjs/Subscription';
 
 
 @IonicPage()
@@ -110,10 +109,14 @@ export class HistoricoResgatePage {
       })
   }
 
+
+  //subscriber para pegar os dados do usuario
+  user$:Subscription;
+  userinfo$:Subscription;
   obterUser() {
-  this.afAuth.authState.subscribe(firebaseUser => {
+  this.user$ =  this.afAuth.authState.subscribe(firebaseUser => {
       if (firebaseUser) {
-          this.authService.getUserInfo().subscribe(userData => {
+      this.userinfo$ =   this.authService.getUserInfo().subscribe(userData => {
           this.user = userData;
 
 
@@ -124,12 +127,13 @@ export class HistoricoResgatePage {
     })
 
   }
+
  
 
 
 
 //metodos de contar elementos por filtro //
-  private subsS:any;   // metodo pra dar subscribe e unsubscribe depois //
+  private subsS:Subscription;   // metodo pra dar subscribe e unsubscribe depois //
     contar(input){
     //array
      this.subsS =  this.resgateService.getUserAll()
@@ -142,7 +146,7 @@ export class HistoricoResgatePage {
 
 items;
 
-private subsA:any;
+private subsA:Subscription;
 contarAguardando(input){
   //array
    this.subsA = this.resgateService.getUserAll()
@@ -155,7 +159,7 @@ contarAguardando(input){
 
 contAguard;
 
-private subsE:any;
+private subsE:Subscription;
 contarEntregue(input){
   //array
    this.subsE =  this.resgateService.getUserAll()
@@ -186,9 +190,8 @@ contEntregue;
     this.subsA.unsubscribe();
     this.subsE.unsubscribe();
     this.subsS.unsubscribe();
-   
-    
-    
+    this.user$.unsubscribe();
+    this.userinfo$.unsubscribe();  
   
   } 
 

@@ -89,7 +89,7 @@ export class CriarRecompensaPage {
       })
 
   } //
-
+ 
   //metodo de criar / editar //
 
   onSubmit() {
@@ -97,17 +97,9 @@ export class CriarRecompensaPage {
 
 
       this.recompProvider.uploadAndSave(this.form.value, this.image)
-
-
-
-      this.navCtrl.pop();
-
-
-
-
+        this.navCtrl.pop();
     }
   }
-
 
 
 }

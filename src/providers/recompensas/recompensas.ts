@@ -82,7 +82,7 @@ public uploadAndSave(recompensa: any, image:any) {
       content:'Salvando ...'
     });
     loading.present(); 
-  
+   
 
     let storageRef = this.fb.storage().ref();
     const filename = recompensa.nome  

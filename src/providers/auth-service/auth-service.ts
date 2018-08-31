@@ -48,7 +48,7 @@ export class AuthServiceProvider {
 
     return new Promise((resolve, reject) => {
       this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password)
-        .then((firebaseUser: firebase.User) => {
+        .then(() => {
           resolve();
         })
         .catch(e => {

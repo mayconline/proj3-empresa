@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup,Validators} from '@angular/forms';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { NewsProvider } from '../../providers/news/news';
@@ -25,7 +25,7 @@ export class CriarNoticiaPage {
   
   constructor(public navCtrl: NavController, public navParams: NavParams,
   private formBuilder:FormBuilder,  private camera:Camera,
-private newservice:NewsProvider, private loadingCtrl:LoadingController) {
+private newservice:NewsProvider) {
 
   this.noticia = this.navParams.data.noticia || {};
   this.createForm();
@@ -92,20 +92,13 @@ this.camera.getPicture(options)
   onSubmit(){
     if(this.form.valid){
      
-      this.loadCreate();
+      //this.loadCreate();
         this.newservice.uploadAndSave(this.form.value, this.image)
-
-          
-        
-          this.navCtrl.pop();
-
-        
-          
-
+              this.navCtrl.pop();
     }
 }  
 
-loadCreate(){
+/*loadCreate(){
   let loading = this.loadingCtrl.create({
     content:'Salvando ...'
   });
@@ -115,9 +108,9 @@ loadCreate(){
     loading.dismiss();
   },5000)
 
-}
+}*/
 
-
+ 
 
 
 //

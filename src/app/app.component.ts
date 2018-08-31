@@ -3,6 +3,7 @@ import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { Subscription } from 'rxjs/Subscription';
 
 
 
@@ -11,18 +12,20 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class MyApp {
   rootPage:any
+  user$:Subscription;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, afAuth: AngularFireAuth) {
 
-    afAuth.authState.subscribe(user=>{
+  
+  this.user$ =  afAuth.authState.subscribe(user=>{
         if(user){
           this.rootPage = 'TabsPage'
         } else{
           this.rootPage = 'LoginPage'
         }
-    }); 
+    });
 
-    
+   
 
 
     
@@ -37,6 +40,11 @@ export class MyApp {
     });
   }
 
+  ionViewWillUnload(){
+    this.user$.unsubscribe();
+   
+    
+  }
   
 
 }

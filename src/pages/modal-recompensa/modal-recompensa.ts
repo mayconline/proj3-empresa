@@ -5,7 +5,7 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { FormBuilder, FormGroup,Validators} from '@angular/forms';
 import { VendasProvider } from '../../providers/vendas/vendas';
 import * as moment from 'moment';
-
+import { Subscription } from 'rxjs/Subscription';
  
 
 /**
@@ -80,22 +80,24 @@ export class ModalRecompensaPage {
 
   
 
-   obterUser(){
-     this.afAuth.authState.subscribe(firebaseUser =>{
-    if(firebaseUser){
-      this.authService.getUserInfo().subscribe(userData =>{
+//subscrever para pegar dados dos usuarios
+user$:Subscription;
+userinfo$:Subscription;
+obterUser() {
+this.user$ =  this.afAuth.authState.subscribe(firebaseUser => {
+    if (firebaseUser) {
+    this.userinfo$ =   this.authService.getUserInfo().subscribe(userData => {
         this.user = userData;
-       
-       
-       
-  
+
+
       })
-    }else {
+    } else {
       this.user = {};
     }
   })
 
-} 
+}
+
 
 
 //metodo de criar / editar //
@@ -139,15 +141,15 @@ onSubmit(){
 this.prod = this.navParams.data.recompensa || {};
 this.createForm();
 
- 
-
-
-
-
   }
 
 
   
+ionViewWillUnload(){
+  this.user$.unsubscribe();
+  this.userinfo$.unsubscribe();
+ 
+}
    
 
   

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, ToastController } from 'ionic-angular';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { IonicPage, NavController} from 'ionic-angular';
+
 
 
 
@@ -16,10 +16,12 @@ export class TabsPage {
   tabsRoot3 = 'DestaquesPage'
 
 
-  constructor(public navCtrl: NavController, private afAuth:AngularFireAuth, private toast: ToastController) {}
+  constructor(public navCtrl: NavController) {}
 
+ // user$:Subscription;
+ /*
   ionViewDidLoad() {
-    this.afAuth.authState.subscribe(user => {
+   this.user$ =  this.afAuth.authState.subscribe(user => {
       if(user){
         this.toast.create({
           message: ` Seja Bem Vindo : ${user.email}`,
@@ -38,5 +40,11 @@ export class TabsPage {
         
     });
   }
+
+
+  
+ionViewWillUnload(){
+  this.user$.unsubscribe();  
+}*/
 
 }
