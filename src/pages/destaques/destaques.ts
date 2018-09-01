@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App, ModalController } from 'ionic-angular';
 import { RecompensasProvider } from '../../providers/recompensas/recompensas';
 import { Observable } from 'rxjs/Observable';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
@@ -23,7 +23,7 @@ export class DestaquesPage {
   constructor( private afAuth:AngularFireAuth,
      private recompProvider:RecompensasProvider, private authService:AuthServiceProvider,
     public navCtrl: NavController, public navParams: NavParams, public app: App,
-  private newservice:NewsProvider) {}
+  private newservice:NewsProvider, public modal:ModalController) {}
 
  
   //subscrever para pegar dados dos usuarios
@@ -53,6 +53,12 @@ export class DestaquesPage {
   }
  
 
+  abrirModal(recompensa: Observable<any>){
+   
+    const meuModal = this.modal.create('ModalRecompensaPage', {recompensa:recompensa})
+    meuModal.present();
+    
+ }
 
 
 ionViewWillLoad(){

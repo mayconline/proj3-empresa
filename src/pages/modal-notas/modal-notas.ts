@@ -23,6 +23,6 @@ export class ModalNotasPage {
 
   ionViewWillLoad() { 
     this.nota = this.navParams.data.nota || {};
-   // console.log(this.nota)
+    console.log(this.nota)
   }
 }
