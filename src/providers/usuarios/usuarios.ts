@@ -30,7 +30,7 @@ export class UsuariosProvider {
     return new Promise((resolve, reject) => {
 
             this.afDb.list(this.PATH)
-              .update(usuario.key, {name: usuario.name, cpf: usuario.cpf, pontos: usuario.pontos})
+              .update(usuario.key, {name: usuario.name, cpf: usuario.cpf, pontos: usuario.pontos, role:usuario.role})
               .then(()=> resolve())
               .catch((e)=> reject(e));
       

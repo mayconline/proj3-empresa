@@ -27,7 +27,8 @@ export class EditarUsuarioPage {
         key:[this.usuario.key],
         name: [this.usuario.name, [Validators.required] ],
         cpf: [this.usuario.cpf, [Validators.required] ],
-        pontos:[this.pontos]
+        pontos:[this.pontos],
+        role:[this.usuario.role]
       });
 
       

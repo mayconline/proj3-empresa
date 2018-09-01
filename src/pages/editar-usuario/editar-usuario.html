@@ -33,6 +33,16 @@
             <ion-label stacked>Pontos</ion-label>
             <ion-input type="number" formControlName="pontos"></ion-input>
           </ion-item>
+
+            
+        <ion-item>
+          <ion-label stacked>Regra de Usuario</ion-label>
+
+          <ion-select formControlName="role">
+              <ion-option value="usuario">Usuario</ion-option>
+              <ion-option value="admin">Admin</ion-option>
+            </ion-select>
+        </ion-item>
     
         <div padding>
           <button ion-button block type="submit" [disabled]="!form.valid" (click)="onSubmit()">Salvar</button>

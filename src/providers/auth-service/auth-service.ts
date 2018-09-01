@@ -30,7 +30,8 @@ export class AuthServiceProvider {
             name: user.name,
             cpf: user.cpf,
             email:user.email,
-            pontos: user.pontos
+            pontos: user.pontos,
+            role:user.role
 
           });
           resolve();

@@ -4,6 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Subscription } from 'rxjs/Subscription';
+import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 
 
 
@@ -13,13 +14,30 @@ import { Subscription } from 'rxjs/Subscription';
 export class MyApp {
   rootPage:any
   user$:Subscription;
+  userinfo$:Subscription;
+  roleUser:any;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, afAuth: AngularFireAuth) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, afAuth: AngularFireAuth,
+    private authService:AuthServiceProvider) {
 
   
   this.user$ =  afAuth.authState.subscribe(user=>{
+    
         if(user){
-          this.rootPage = 'TabsPage'
+
+          this.userinfo$ =   this.authService.getUserInfo().subscribe(userData => {
+                this.roleUser = userData.role;
+               
+            if(this.roleUser==='admin') {
+                       this.rootPage = 'TabsPage';
+                         } else {
+                          this.rootPage = 'Error403Page'
+                         }
+    
+  
+          })
+          
+
         } else{
           this.rootPage = 'LoginPage'
         }
@@ -42,6 +60,8 @@ export class MyApp {
 
   ionViewWillUnload(){
     this.user$.unsubscribe();
+    this.userinfo$.unsubscribe();
+  
    
     
   }

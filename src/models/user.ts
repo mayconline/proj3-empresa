@@ -5,4 +5,5 @@ export interface User {
     name:string;
     cpf:number;
     pontos:number;
+    role:string;
 }
