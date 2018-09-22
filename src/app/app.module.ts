@@ -20,6 +20,8 @@ import { PontosProvider } from '../providers/pontos/pontos';
 import { VendasProvider } from '../providers/vendas/vendas';
 import { NewsProvider } from '../providers/news/news';
 import { Error403PageModule } from '../pages/error403/error403.module';
+import { OnesignalProvider } from '../providers/onesignal/onesignal';
+import { OneSignal } from '@ionic-native/onesignal';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { Error403PageModule } from '../pages/error403/error403.module';
     VendasProvider,
     Camera,
     LoadingController,
-    NewsProvider
+    NewsProvider,
+    OnesignalProvider,
+    OneSignal
 
   ]
 })

@@ -6,6 +6,9 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Subscription } from 'rxjs/Subscription';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 
+import { OnesignalProvider } from '../providers/onesignal/onesignal';
+import {isCordovaAvailable} from './app.cordova.habilitado';
+
 
 
 @Component({
@@ -18,7 +21,7 @@ export class MyApp {
   roleUser:any;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, afAuth: AngularFireAuth,
-    private authService:AuthServiceProvider) {
+    private authService:AuthServiceProvider, oneSignalProvider:OnesignalProvider ) {
 
   
   this.user$ =  afAuth.authState.subscribe(user=>{
@@ -55,6 +58,16 @@ export class MyApp {
       //statusBar.overlaysWebView(true);
       statusBar.backgroundColorByHexString('#8A2BE2');
       splashScreen.hide();
+
+
+      if(isCordovaAvailable()){  oneSignalProvider.init();
+        
+        //obtem o id do usuario//
+       // oneSignalProvider.obterOneUserId();
+        //envio de mensagem pasando id e a mensagem //
+        //oneSignalProvider.enviarOneSig("78cf31ff-90aa-4941-82c8-de513bdc0691","Testando" );
+      }
+      
     });
   }
 
