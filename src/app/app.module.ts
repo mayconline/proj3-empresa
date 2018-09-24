@@ -22,6 +22,7 @@ import { NewsProvider } from '../providers/news/news';
 import { Error403PageModule } from '../pages/error403/error403.module';
 import { OnesignalProvider } from '../providers/onesignal/onesignal';
 import { OneSignal } from '@ionic-native/onesignal';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { OneSignal } from '@ionic-native/onesignal';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     LoginPageModule,
-    Error403PageModule
+    Error403PageModule,
+    HttpClientModule
   
   ],
   bootstrap: [IonicApp],

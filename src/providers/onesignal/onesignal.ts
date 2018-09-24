@@ -1,15 +1,15 @@
-//import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { OneSignal, OSNotificationPayload} from '@ionic-native/onesignal';
 
-import {oneSignalAppId, senderId} from './onesigConfig';
+import {oneSignalAppId, senderId, restAPI} from './onesigConfig';
 
 
 @Injectable()
 export class OnesignalProvider {
 
-  constructor(public oneSignal:OneSignal) {
+  constructor(public oneSignal:OneSignal, public httpClient:HttpClient) {
   
   }
 
@@ -67,7 +67,7 @@ export class OnesignalProvider {
 
    // metodo para enviar mensagem onesignal
 
-   enviarOneSig( oneID, mensagem){
+   enviarOneSigPeloPlayerId( oneID, mensagem){
     //this.oneSignal.getIds().then(data=>{
        
       var notificationObj = {
@@ -80,6 +80,37 @@ export class OnesignalProvider {
     // .catch((e)=>e);
    }
 
+   envioOneSigPeloSegment(){
+
+    const httpOptions = {
+      headers:new HttpHeaders({
+        "Content-Type": "application/json; charset=utf-8",
+        "Authorization": "Basic "+restAPI
+      })
+
+    }
+
+    var body = {           
+      "app_id":oneSignalAppId,
+      "contents":{"en": "Enviando para o CLiente" },
+      "included_segments":["clientes"]
+
+    };
+
+    return this.httpClient.post('https://onesignal.com:443/api/v1/notifications',body,httpOptions )
+    .subscribe((data)=>{ console.log(data)});
+
+   }
+
+
+   enviarTag(key,valorA){
+    this.oneSignal.sendTag(key,valorA);
+   
+  }
+  
+  deleteTag(user_UID){
+    this.oneSignal.deleteTag(user_UID);
+  }
 
 
 

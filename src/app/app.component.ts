@@ -61,6 +61,8 @@ export class MyApp {
 
 
       if(isCordovaAvailable()){  oneSignalProvider.init();
+
+        oneSignalProvider.envioOneSigPeloSegment();
         
         //obtem o id do usuario//
        // oneSignalProvider.obterOneUserId();
