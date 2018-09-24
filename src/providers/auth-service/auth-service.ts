@@ -5,13 +5,15 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
 import { User } from '../../models/user';
 
+import { OnesignalProvider } from '../onesignal/onesignal';
+
 @Injectable()
 export class AuthServiceProvider {
 
 
   private PATH = 'userProfile/'
 
-  constructor(private afAuth:AngularFireAuth, private afDb: AngularFireDatabase ) {
+  constructor(private afAuth:AngularFireAuth, private afDb: AngularFireDatabase, public onesignalProvider:OnesignalProvider ) {
    
   }
 
@@ -50,6 +52,9 @@ export class AuthServiceProvider {
     return new Promise((resolve, reject) => {
       this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password)
         .then(() => {
+
+            //enviando tag de admin //
+          this.onesignalProvider.enviarTag("type","admin");
           resolve();
         })
         .catch(e => {
@@ -62,6 +67,16 @@ export class AuthServiceProvider {
     // logout usuario //
 logout(){
   this.afAuth.auth.signOut();
+}
+
+logout2(){
+  this.afAuth.auth.signOut()
+    .then(()=>{
+        this.onesignalProvider.deleteTag("type");
+    })
+    .catch(e => {
+                e
+    });
 }
 
 //reset de senha //

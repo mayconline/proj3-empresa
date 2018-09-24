@@ -16,8 +16,14 @@ export class Error403Page {
 
   sair(){
  
-    this.authService.logout();
+    this.authService.logout2();
+      
   }
 
- 
+  ionViewWillUnload(){
+    this.sair();
+   
+    
+  }
+
 }

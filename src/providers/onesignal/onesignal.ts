@@ -113,5 +113,34 @@ export class OnesignalProvider {
   }
 
 
+  envioOneSigPeloFiltro(){
+
+    const httpOptions = {
+      headers:new HttpHeaders({
+        "Content-Type": "application/json; charset=utf-8",
+        "Authorization": "Basic "+restAPI
+      })
+
+    }
+
+    var body = {           
+      "app_id":oneSignalAppId,
+      "contents":{"en": "Enviando para o Uid do cliente" },
+      filters:[
+       
+      {"field":"tag","key":"uid_user","relation":"=","value": "IPJUyTJyyRhjmuZTKQ6q3UeoA6H3"}
+        
+      ]
+
+    };
+
+    return this.httpClient.post('https://onesignal.com:443/api/v1/notifications',body,httpOptions )
+    .subscribe((data)=>{ console.log(data)});
+
+   }
+
+
+
+
 
 }
