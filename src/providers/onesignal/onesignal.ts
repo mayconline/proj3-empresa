@@ -113,7 +113,7 @@ export class OnesignalProvider {
   }
 
 
-  envioOneSigPeloFiltro(){
+  envioOneSigPeloFiltro(titulo, mensagem, uidUser, imgbig){
 
     const httpOptions = {
       headers:new HttpHeaders({
@@ -125,12 +125,16 @@ export class OnesignalProvider {
 
     var body = {           
       "app_id":oneSignalAppId,
-      "contents":{"en": "Enviando para o Uid do cliente" },
+      "contents":{"en": mensagem},
+      "headings":{"en": titulo},
       filters:[
        
-      {"field":"tag","key":"uid_user","relation":"=","value": "IPJUyTJyyRhjmuZTKQ6q3UeoA6H3"}
+      {"field":"tag","key":"uid_user","relation":"=","value":uidUser}
         
       ]
+    //  "big_picture":imgbig
+   // "large_icon":imgbig,
+   //"small_icon":"ic_stat_onesignal_default"
 
     };
 

@@ -63,7 +63,7 @@ export class MyApp {
       if(isCordovaAvailable()){  oneSignalProvider.init();
 
        // oneSignalProvider.enviarTag("type","admin");
-        oneSignalProvider.envioOneSigPeloFiltro();
+       // oneSignalProvider.envioOneSigPeloFiltro();
         
         //obtem o id do usuario//
        // oneSignalProvider.obterOneUserId();
